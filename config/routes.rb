@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "show_attrs" => "tables#show_attrs" 
   get '/import', to: 'tables#import'
   post '/import_do', to: 'tables#import_do'
+  get 'tables/:id/add_user', to:'tables#add_user', as: :add_user
+  post '/add_user_do', to:'tables#add_user_do'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
@@ -19,7 +21,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

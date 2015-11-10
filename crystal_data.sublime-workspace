@@ -523,7 +523,7 @@
 			"file": "config/routes.rb",
 			"settings":
 			{
-				"buffer_size": 2192,
+				"buffer_size": 2303,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +563,7 @@
 			"file": "app/models/table.rb",
 			"settings":
 			{
-				"buffer_size": 302,
+				"buffer_size": 316,
 				"line_ending": "Unix"
 			}
 		},
@@ -595,7 +595,7 @@
 			"file": "app/models/user.rb",
 			"settings":
 			{
-				"buffer_size": 80,
+				"buffer_size": 95,
 				"line_ending": "Unix"
 			}
 		},
@@ -603,7 +603,7 @@
 			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
-				"buffer_size": 6573,
+				"buffer_size": 7007,
 				"line_ending": "Unix"
 			}
 		},
@@ -693,8 +693,17 @@
 			"file": "app/views/tables/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 1483,
+				"buffer_size": 1652,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/tables/add_user.html.erb",
+			"settings":
+			{
+				"buffer_size": 243,
+				"line_ending": "Unix",
+				"name": "<% simple_form_for (@user) do %>"
 			}
 		},
 		{
@@ -734,6 +743,14 @@
 			"settings":
 			{
 				"buffer_size": 1745,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/users/new.html.erb",
+			"settings":
+			{
+				"buffer_size": 315,
 				"line_ending": "Unix"
 			}
 		},
@@ -1152,15 +1169,15 @@
 					"file": "config/routes.rb",
 					"settings":
 					{
-						"buffer_size": 2192,
+						"buffer_size": 2303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								737,
+								737
 							]
 						],
 						"settings":
@@ -1288,15 +1305,15 @@
 					"file": "app/models/table.rb",
 					"settings":
 					{
-						"buffer_size": 302,
+						"buffer_size": 316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								66,
+								66
 							]
 						],
 						"settings":
@@ -1394,15 +1411,15 @@
 					"file": "app/models/user.rb",
 					"settings":
 					{
-						"buffer_size": 80,
+						"buffer_size": 95,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								75,
-								75
+								58,
+								58
 							]
 						],
 						"settings":
@@ -1420,15 +1437,15 @@
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
-						"buffer_size": 6573,
+						"buffer_size": 7007,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1250,
-								1250
+								6567,
+								6567
 							]
 						],
 						"settings":
@@ -1438,7 +1455,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 382.0,
+						"translation.y": 3366.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1721,15 +1738,15 @@
 					"file": "app/views/tables/index.html.erb",
 					"settings":
 					{
-						"buffer_size": 1483,
+						"buffer_size": 1652,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1141,
-								1141
+								836,
+								836
 							]
 						],
 						"settings":
@@ -1739,13 +1756,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 204.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 22,
+					"file": "app/views/tables/add_user.html.erb",
+					"settings":
+					{
+						"buffer_size": 243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								137,
+								137
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<% simple_form_for (@user) do %>",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 23,
 					"file": "app/views/tables/edit.html.erb",
 					"settings":
 					{
@@ -1771,7 +1815,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 24,
 					"file": "app/views/tables/_form.html.erb",
 					"settings":
 					{
@@ -1799,7 +1843,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 24,
+					"buffer": 25,
 					"file": "app/views/fields/edit.html.erb",
 					"settings":
 					{
@@ -1825,7 +1869,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 26,
 					"file": "app/views/fields/_field.html.erb",
 					"settings":
 					{
@@ -1853,7 +1897,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 27,
 					"file": "app/views/fields/_form.html.erb",
 					"settings":
 					{
@@ -1864,8 +1908,8 @@
 						"selection":
 						[
 							[
-								561,
-								561
+								1084,
+								1084
 							]
 						],
 						"settings":
@@ -1875,13 +1919,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 459.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 28,
+					"file": "app/views/users/new.html.erb",
+					"settings":
+					{
+						"buffer_size": 315,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								305,
+								305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 29,
 					"file": "app/views/tables/show.xls.erb",
 					"settings":
 					{
@@ -1909,7 +1979,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 30,
 					"file": "app/views/tables/fill.html.erb",
 					"settings":
 					{
@@ -1937,7 +2007,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 31,
 					"file": "app/views/logs/index.html.erb",
 					"settings":
 					{

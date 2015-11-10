@@ -1,0 +1,13 @@
+<br><br>
+<h2>Ajouter un utilisateur</h2>
+<br>
+
+<%= form_for :user, url: '/add_user_do' do %>
+
+  <%= hidden_field_tag :id, params[:id] %>
+
+  Email: <%= text_field_tag :email %>
+
+  <%= submit_tag "Valider", class: 'btn btn-success' %>
+
+<% end %>

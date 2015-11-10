@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_filter :authorize
-  before_action :set_table, only: [:show, :show_attrs, :fill, :fill_do, :edit, :update, :destroy, :delete_record]
+  before_action :set_table, only: [:show, :show_attrs, :add_user, :fill, :fill_do, :edit, :update, :destroy, :delete_record]
 
   #layout :checkifmobile
 
@@ -209,6 +209,26 @@ class TablesController < ApplicationController
       flash[:alert] = "Il manque le fichier source"
       redirect_to action: 'import'
     end  
+  end
+
+  def add_user
+  end
+
+  def add_user_do
+    @table = Table.find(params[:id])
+    @user = User.find_by(email:params[:email])
+    if @user
+      unless @table.users.exists?(@user)
+        @table.users << @user 
+        flash[:notice] = "Utilisateur ajouté"
+      else
+        flash[:alert] = "Utilisateur déjà ajouté"
+      end
+    else
+      flash[:alert] = "Utilisateur inconnu"
+    end
+
+    redirect_to tables_path
   end
 
 

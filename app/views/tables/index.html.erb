@@ -8,6 +8,7 @@
         <th>Colonnes</th>
         <th>Lignes</th>
         <th>MAJ</th>
+        <th>Utilisateurs</th>
         <th></th>
       </tr>
     </thead>
@@ -25,6 +26,10 @@
           <td><%= table.fields.pluck(:name).join(", ") %></td>
           <td><%= table.size %></td>
           <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
+          <td>
+            <%= table.users.pluck(:name).join(', ') %>
+            <%= link_to "+", add_user_path(table) %>
+          </td>
           <td><%= link_to image_tag('excel_logo.png', size:'25x25'), table_path(table, format:'xls'), title:'Export Excel' %></td>
           <td><%= link_to 'Modifier', show_attrs_path(id:table), title:"Modifier les colonnes", class: 'btn btn-info btn-xs' %>
               <%= link_to '[X]', table, method: :delete, data: { confirm: 'Vraiement?' }, class: 'btn btn-danger btn-xs' %></td>
