@@ -1,0 +1,18 @@
+<h2>Importer</h2>
+
+Importer un fichier .CSV au format iso-8859-1, avec séparateur ';' et entêtes de colonnes en première ligne 
+<br><br>
+
+
+<%= form_tag({action: "import_do", method: :post}, multipart: true) do %>
+
+  <div class="field">
+    <%= label :filename, "Fichier source" %>
+    <%= file_field_tag 'upload', accept: 'text/csv' %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= submit_tag "Importer", class: 'btn btn-success' %>
+  </div>
+<% end %>

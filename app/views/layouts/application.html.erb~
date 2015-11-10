@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CrystalData</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<div id="main-container" class="container">
+		<div class="row">
+			<ul class="nav nav-pills" role="tablist">
+				<% if current_user %>
+					<li class=<%= (controller_name == 'tables') ? 'active' : '' %>>
+						<%= link_to "Tables", tables_path %>
+					</li>
+					<li><%= link_to " ? ", tools_aide_path %></li>
+					<li>
+					    <%= link_to current_user.name %>
+					</li>
+					<li>
+						  <%= link_to "[X]", '/logout' %>
+					</li>
+				<% end %>
+			</ul>
+			<br>
+			<%= yield %>
+		</div>
+	</div>
+
+</body>
+</html>

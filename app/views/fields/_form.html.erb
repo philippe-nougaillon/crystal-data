@@ -1,0 +1,60 @@
+<script>
+  $(document).ready(function(){
+    $("#field_items").css('display','none')
+    if($('#field_datatype').val() == "liste"){
+          $("#field_items").css('display','inline')
+    }
+    $('#field_datatype').change(function(){
+      if($('#field_datatype').val() == "liste"){
+          $("#field_items").css('display','inline')
+       } else {
+          $("#field_items").css('display','none')
+       }
+    })
+    $(".field_sum").css('display','none')
+    if($('#field_datatype').val() == "nombre"){
+          $(".field_sum").css('display','inline')
+    }
+    $('#field_datatype').change(function(){
+      if($('#field_datatype').val() == "nombre"){
+          $(".field_sum").css('display','inline')
+       } else {
+          $(".field_sum").css('display','none')
+       }
+    })
+
+  });
+</script>
+
+<%= form_for(@field) do |f| %>
+  <% if @field.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('errors.messages.not_saved', count: @field.errors.count) %></h2>
+
+      <ul>
+      <% @field.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :table_id %>
+
+    <%= f.label :name, "Nom" %><br>
+    <%= f.text_field :name %><br><br>
+
+    <%= f.label :name, "Type" %><br>
+    <%= f.select :datatype, options_for_select(Field.datatypes.keys.to_a, @field.datatype) %>
+    <%= f.text_field :items  %><br><br>
+
+    <%= f.check_box :filtre %> Sert à filtrer les lignes ?<br><br>
+
+    <%= f.check_box :sum, class:'field_sum' %> 
+    <%= f.label :sum, "Calculer la somme ?", class:'field_sum' %><br>
+
+    <br>
+    <%= f.submit @field.new_record? ? "Ajouter" : "Modifier", class: 'btn btn-success' %>
+  </div>
+<% end %>

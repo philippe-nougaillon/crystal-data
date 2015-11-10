@@ -1,0 +1,46 @@
+<h1>Tables</h1>
+
+<% if @tables.any? %>
+  <table class="table table-striped table-hover table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Colonnes</th>
+        <th>Lignes</th>
+        <th>MAJ</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <td /><td /><td /><td />
+      </tr>
+    </tfoot>
+
+    <tbody>
+      <% @tables.each do |table| %>
+        <tr>
+          <td><b><%= link_to table.name, table %></b></td>
+          <td><%= table.fields.pluck(:name).join(", ") %></td>
+          <td><%= table.size %></td>
+          <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
+          <td><%= link_to image_tag('excel_logo.png', size:'25x25'), table_path(table, format:'xls'), title:'Export Excel' %></td>
+          <td><%= link_to 'Modifier', show_attrs_path(id:table), title:"Modifier les colonnes", class: 'btn btn-info btn-xs' %>
+              <%= link_to '[X]', table, method: :delete, data: { confirm: 'Vraiement?' }, class: 'btn btn-danger btn-xs' %></td>
+          <td><%= link_to "Historique", logs_path(table_id:table) %></td>
+        </tr>
+
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+<% end %>
+
+<%= link_to new_table_path, class: 'btn btn-success' do %>
+    <i class="glyphicon glyphicon-plus"></i> Nouvelle Table
+<% end %>
+
+<%= link_to import_path, class: 'btn btn-success' do %>
+    <i class="glyphicon glyphicon-download"></i> Importer
+<% end %>

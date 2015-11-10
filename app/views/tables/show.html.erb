@@ -1,0 +1,94 @@
+<h1>Table '<%= @table.name %>'</h1>
+
+<% if @table.fields.any? %>
+	
+	<p>
+	  <%= form_tag(request.path, method: :get) do %>
+
+	    Filtrer: 
+	    <%= text_field_tag :search, params[:search], onchange:'this.form.submit()' %>
+
+	    <% @table.fields.filtres.each_with_index do | field,index | %>
+		    <%= field.name %>
+		    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
+		    <%= select_tag "select[#{index}]", options_for_select(field.values.pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()' %>
+		<% end %>
+
+	    <%= submit_tag 'Ok', class: 'btn btn-success' %>
+	  <% end %>
+	</p>
+
+	<% if @records.any? %>
+		<table class="table table-striped table-hover table-bordered table-responsive">
+			<thead>
+				<tr>
+					<th />
+					<% @table.fields.each do | field | %>
+						<th><%= field.name %></th>
+					<% end %>
+					<th>Créé le</th>
+					<th>Modifié le</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% count = 0 %>	
+				<% @records.each do | index | %>
+					<% if @values.record_at(index) %>
+
+						<% count += 1 %> 
+						<% record = @values.record_at(index) %>
+						<tr>
+							<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
+							<% @table.fields.each do | field | %>
+								<td>
+									<% if field.values.record_at(index) %>
+										<% data = field.values.record_at(index).data %>
+										<%= data %>
+										<% if field.sum %>
+											<% @sum[field.id] += data.to_i %>
+										<% end %>
+									<% end %>
+								</td>
+							<% end %>
+							<td><%= l(record.created_at, format: :compact) %></td>
+							<td><%= l(record.updated_at, format: :compact) %></td>
+							<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
+								<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiement ?' }, class: 'btn btn-danger btn-xs' %></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+
+			<tfoot>
+				<tr>
+					<td />
+					<% @table.fields.each do |field| %>
+						<% if field.sum %>
+							<td><%= @sum[field.id] %></td>
+						<% else %>
+							<td />
+						<% end %>
+					<% end %>
+					<td />
+				</tr>
+			</tfoot>
+
+		</table>
+		<%= count %> sur <%= @table.size %> au total
+		<br>
+	<% end %>
+	<br>
+
+	<%= link_to fill_url(@table.id), class: 'btn btn-success' do %>
+	  <i class="glyphicon glyphicon-plus"></i> Ajouter
+	<% end %>
+<% else %>
+	<% unless params[:attrs] %>
+		Cette table ne contient aucune colonne<br><br>
+		<%= link_to show_attrs_path(id:@table), class: 'btn btn-success' do %>
+		  <i class="glyphicon glyphicon-plus"></i> Ajouter une colonne
+		<% end %> 
+	<% end %>
+<% end %>
+<br><br>
