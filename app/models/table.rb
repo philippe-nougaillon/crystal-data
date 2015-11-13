@@ -4,12 +4,15 @@ class Table < ActiveRecord::Base
 
 	has_many :fields, dependent: :destroy
 	has_many :values, dependent: :destroy
-	has_many :projects
 	has_many :logs, through: :fields, dependent: :destroy
 
-	validates_presence_of :name
+	validates :name, presence: true
 
 	def size
 		self.values.group(:record_index).count.size
+	end
+
+	def is_owner?(user)
+		self.users[0] == user
 	end
 end

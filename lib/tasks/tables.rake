@@ -12,8 +12,9 @@ namespace :tables do
 
 		CSV.foreach(args.file_path, headers:true, return_headers:true, col_sep:';', encoding:'iso-8859-1:UTF-8') do |row|
 			if row.header_row?
-				@new_table = Table.new(name:File.basename(args.filename,'.csv'), user_id:args.user_id)
+				@new_table = Table.new(name:File.basename(args.filename,'.csv'))
 				if @new_table.save
+					@new_table.users << User.find(args.user_id)
 					row.each do |key|
 						@new_table.fields.create(name:key.first)
 					end

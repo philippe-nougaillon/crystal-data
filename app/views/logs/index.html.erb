@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Historique</h1>
+<h2><i class="glyphicon glyphicon-time"></i> Historique</h2>
 
 <table class="table">
   <thead>
     <tr>
       <th>Date</th>
-      <th>Colonne</th>
       <th>Utilisateur</th>
-      <th>Modifications</th>
+      <th>Colonne</th>
+      <th>Modification</th>
     </tr>
   </thead>
 
@@ -16,8 +16,8 @@
     <% @logs.each do |log| %>
       <tr>
         <td><%= l(log.created_at) %></td>
-        <td><%= log.field.name %></td>
         <td><%= log.user.name %></td>
+        <td><%= log.field.name %></td>
         <td><%= log.message %></td>
       </tr>
     <% end %>

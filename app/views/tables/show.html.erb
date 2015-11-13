@@ -1,4 +1,4 @@
-<h1>Table '<%= @table.name %>'</h1>
+<h2>Table '<%= @table.name %>'</h2>
 
 <% if @table.fields.any? %>
 	
@@ -25,7 +25,7 @@
 					<th />
 					<% @table.fields.each do | field | %>
 						<th>
-							<%= link_to_unless field.datatype == 'formule', field.name, table_path(sort_by:field.id) %>
+							<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
 						</th>
 					<% end %>
 					<th>Créé le</th>

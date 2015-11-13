@@ -238,6 +238,8 @@ class TablesController < ApplicationController
       end
     else
       flash[:alert] = "Utilisateur inconnu"
+      redirect_to add_user_path(@table)
+      return
     end
 
     redirect_to tables_path
