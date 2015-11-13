@@ -25,14 +25,20 @@ class TablesController < ApplicationController
   def show
     @sum = Hash.new(0)
 
+    if params[:sort_by]
+      @sort_by = Field.find(params[:sort_by])
+    end
+
+    # recherche les lignes 
     unless params[:search].blank?
       @values = @table.values.where("data like ?", "%#{params[:search].strip}%")      
     else
       @values = @table.values
     end
     @records_search = @values.pluck(:record_index).uniq
-    @records_filter = []
 
+    # applique les filtres
+    @records_filter = []
     if params[:select]
       params[:select].each_with_index do | option, index | 
         unless option.last.blank? 
@@ -47,11 +53,17 @@ class TablesController < ApplicationController
       end
     end
 
+    # revoie les id des lignes cherchées puis filtrées 
     unless @records_filter.empty? 
       @records = @records_search & @records_filter
     else
       @records = @records_search
     end  
+
+    # tri
+    if @sort_by
+      @records = @table.values.records_at(@records).where(field:@sort_by).order(:data).pluck(:record_index)
+    end
 
     respond_to do |format|
       format.html 
@@ -147,10 +159,10 @@ class TablesController < ApplicationController
   # POST /tables.json
   def create
     @table = Table.new(table_params)
-    @table.users << @current_user
 
     respond_to do |format|
       if @table.save
+        @table.users << @current_user
         format.html { redirect_to show_attrs_path(id:@table), notice: 'Table ajoutée.' }
         format.json { render :show, status: :created, location: @table }
       else

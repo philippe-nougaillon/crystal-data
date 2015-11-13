@@ -12,11 +12,16 @@ class Field < ActiveRecord::Base
 	scope :filtres, -> { where(filtre:true)}
 	scope :sommes,  -> { where(sum:true)}
 
-
 	def evaluate(values)
 		begin
-			result = self.items.gsub(/\[([^\]]+)\]/) {|w| values[w.delete('[]').to_i - 1]}
-			return eval(result)
+			# test si opérndes nulles 
+			unless self.items.scan(/\[([^\]]+)\]/).flatten.select{|i| values[i.to_i - 1].nil? }.any?
+				# evalue [1] + [2]
+				result = self.items.gsub(/\[([^\]]+)\]/) {|w| values[w.delete('[]').to_i - 1]}
+				return eval(result)
+			else
+				return nil
+			end
 		rescue ArgumentError => se	
 			return "#{se}: #{result}"
 		rescue TypeError => se
