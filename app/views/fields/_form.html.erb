@@ -11,6 +11,18 @@
           $("#field_items").css('display','none')
        }
     })
+
+    if($('#field_datatype').val() == "formule"){
+          $("#field_items").css('display','inline')
+    }
+    $('#field_datatype').change(function(){
+      if($('#field_datatype').val() == "formule"){
+          $("#field_items").css('display','inline')
+       } else {
+          $("#field_items").css('display','none')
+       }
+    })
+
     $(".field_sum").css('display','none')
     if($('#field_datatype').val() == "nombre"){
           $(".field_sum").css('display','inline')
@@ -47,9 +59,8 @@
 
     <%= f.label :name, "Type" %><br>
     <%= f.select :datatype, options_for_select(Field.datatypes.keys.to_a, @field.datatype) %>
-    <%= f.text_field :items  %><br><br>
-
-    <%= f.check_box :filtre %> Sert à filtrer les lignes ?<br><br>
+    <%= f.text_field :items, size:50  %><br><br>
+    <%= f.check_box :filtre %> Filtre ?<br><br>
 
     <%= f.check_box :sum, class:'field_sum' %> 
     <%= f.label :sum, "Calculer la somme ?", class:'field_sum' %><br>

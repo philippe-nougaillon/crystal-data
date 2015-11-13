@@ -147,7 +147,7 @@ class TablesController < ApplicationController
   # POST /tables.json
   def create
     @table = Table.new(table_params)
-    @table.user = @current_user
+    @table.users << @current_user
 
     respond_to do |format|
       if @table.save
@@ -220,9 +220,9 @@ class TablesController < ApplicationController
     if @user
       unless @table.users.exists?(@user)
         @table.users << @user 
-        flash[:notice] = "Utilisateur ajouté"
+        flash[:notice] = "Utilisateur '#{@user.name}' ajouté"
       else
-        flash[:alert] = "Utilisateur déjà ajouté"
+        flash[:alert] = "Utilisateur '#{@user.name}' déjà ajouté"
       end
     else
       flash[:alert] = "Utilisateur inconnu"

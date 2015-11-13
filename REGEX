@@ -1,0 +1,10 @@
+REGEX
+
+s = "(1) + (2)".scan(/\(([^)]+)\)/)
+s.first[0]
+
+"(1) + (2)".gsub(/\(([^)]+)\)/) {|w| v[w.to_i].data }
+
+s = "(2) + (3)".gsub(/\(([^)]+)\)/) {|w| values[w.delete('()').to_i].data }
+eval(s)
+

@@ -35,7 +35,6 @@
 				<% count = 0 %>	
 				<% @records.each do | index | %>
 					<% if @values.record_at(index) %>
-
 						<% count += 1 %> 
 						<% record = @values.record_at(index) %>
 						<tr>
@@ -43,8 +42,14 @@
 							<% @table.fields.each do | field | %>
 								<td>
 									<% if field.values.record_at(index) %>
-										<% data = field.values.record_at(index).data %>
-										<%= data %>
+										<% value = field.values.record_at(index) %>
+
+										<%#= value.inspect #%>
+										<% if field.datatype == "formule" %>
+											<%= field.evaluate(@values.records_at(index).pluck(:data)) %>
+										<% else %>
+											<%= value.data %>
+										<% end %>
 										<% if field.sum %>
 											<% @sum[field.id] += data.to_i %>
 										<% end %>
