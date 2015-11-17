@@ -139,7 +139,10 @@ class TablesController < ApplicationController
 
   def delete_record
     if params[:record_index]
-      @table.values.where(record_index:params[:record_index]).destroy_all
+      @table.values.where(record_index:params[:record_index]).each do |value|
+          value.field.logs.create(user_id:@current_user.id, message:"ligne #{value.record_index} supprimée (#{value.data})")
+          value.delete
+      end
     end  
 
     redirect_to @table

@@ -1,7 +1,6 @@
-<h2>Table '<%= @table.name %>'</h2>
+<h2>Table '<%= @table.name.humanize %>'</h2>
 
 <% if @table.fields.any? %>
-	
 	<p>
 	  <%= form_tag(request.path, method: :get) do %>
 
@@ -36,32 +35,30 @@
 			<tbody>
 				<% count = 0 %>	
 				<% @records.each do | index | %>
-					<% if @values.record_at(index) %>
+					<% records = @values.records_at(index) %>
 						<% count += 1 %> 
-						<% record = @values.record_at(index) %>
 						<tr>
 							<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
-							<% @table.fields.each do | field | %>
+							<% @table.fields.each_with_index do | field,index | %>
 								<td>
-									<% if field.values.record_at(index) %>
-										<% value = field.values.record_at(index) %>
-										<% if field.datatype == "formule" %>
-											<%= field.evaluate(@values.records_at(index).pluck(:data)) %>
-										<% else %>
-											<%= value.data %>
-										<% end %>
-										<% if field.sum %>
-											<% @sum[field.id] += data.to_i %>
+									<% if field.datatype == "formule" %>
+										<%= field.evaluate(@values.records_at(index).pluck(:data)) %>
+									<% else %>
+										<% record = records[index] %>
+										<% if record %>
+											<%= record.data %>
+											<% if field.sum %>
+												<% @sum[field.id] += record.data.to_i %>
+											<% end %>
 										<% end %>
 									<% end %>
 								</td>
 							<% end %>
-							<td><%= l(record.created_at, format: :compact) %></td>
-							<td><%= l(record.updated_at, format: :compact) %></td>
+							<td><%= l(records[0].created_at, format: :compact) %></td>
+							<td><%= l(records[0].updated_at, format: :compact) %></td>
 							<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
 								<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiement ?' }, class: 'btn btn-danger btn-xs' %></td>
 						</tr>
-					<% end %>
 				<% end %>
 			</tbody>
 

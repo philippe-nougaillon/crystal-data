@@ -22,7 +22,7 @@
     <tbody>
       <% @tables.each do |table| %>
         <tr>
-          <td><b><%= link_to table.name, table %></b></td>
+          <td><b><%= link_to table.name.humanize, table %></b></td>
           <td><%= table.fields.pluck(:name).join(", ") %></td>
           <td><%= table.size %></td>
           <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>

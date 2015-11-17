@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h2><i class="glyphicon glyphicon-time"></i> Historique</h2>
+<h2>
+  <i class="glyphicon glyphicon-time"></i> 
+  Historique de la table '<%= @table.name.humanize %>'<%= ", ligne #{@record_index}" if @record_index %>
+</h2>
 
 <table class="table">
   <thead>
@@ -23,6 +26,7 @@
     <% end %>
   </tbody>
 </table>
+<%= pluralize(@logs.count, "changement") %> dans l'historique
 
 <br>
 

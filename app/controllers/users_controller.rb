@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  	before_filter :authorize
+
+	def show
+		@user = User.find(params[:id])
+	end
 
     def new
     	@user = User.new
@@ -8,8 +13,7 @@ class UsersController < ApplicationController
 	    user = User.new(user_params)
 	    if user.save
 	      session[:user_id] = user.id
-          flash[:notice] = "Bienvenue '#{user.name}' !"
-	      redirect_to '/'
+	      redirect_to '/', notice: "Bienvenue '#{user.name}' !"
 	    else
 	      redirect_to '/signup'
 	    end

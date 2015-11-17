@@ -6,9 +6,11 @@ class LogsController < ApplicationController
   # GET /logs.json
   def index
     if params[:table_id]
-      @logs = Table.find(params[:table_id]).logs
+      @table = Table.find(params[:table_id])
+      @logs = @table.logs
       if params[:record_index]
-        @logs = @logs.where(record_index:params[:record_index])  
+        @record_index = params[:record_index]
+        @logs = @logs.where(record_index:@record_index)  
       end 
     else     
       @logs = Log.all
