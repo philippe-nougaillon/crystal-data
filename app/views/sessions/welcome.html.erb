@@ -1,0 +1,63 @@
+<script>
+  $(document).ready(function(){
+
+	$("#pop").on("click", function() {
+	   $('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
+	   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+	});
+});
+
+</script>
+
+
+<h1>Crystal Data</h1>
+<h2>Créez vos bases de données en ligne !</h2>
+<br>
+
+<a href="#" id="pop">
+	<%= image_tag image_path("capture1.png"), width:'400', id:"imageresource" %>
+</a>
+
+<!-- Creates the bootstrap modal where the image will appear -->
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 900px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+        <h4 class="modal-title" id="myModalLabel">Aperçu d'une table</h4>
+      </div>
+      <div class="modal-body">
+        <img src="" id="imagepreview" style="width: 850px;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<h3>Ce que ça fait</h3>
+<h4>
+	<ul>
+		<li>Créez ou importez vos feuilles de données (appellées ici 'tables')</li>
+		<li>Ajoutez des colonnes à vos tables (Texte, Nombre, Date, Liste, Formule Ruby)</li>
+		<li>Editez vos enregistrements dans un formulaire (les modifications seront consignées dans l'historique)</li>
+		<li>Recherchez, filtrez, triez vos enregistrements</li> 
+		<li>Partagez vos tables avec d'autres utilisateurs</li>
+		<li>Exportez vos données</li>
+	</ul>
+</h4>
+
+<h3>Ce que ça ne fait pas encore</h3>
+<h4>
+	<ul>
+		<li>Saisie des données sur mobile</li>
+		<li>Relations entre les tables</li>
+		<li>Camenberts, statistiques</li>
+		<li>Application complexe</li>
+		<li>Le café...</li>
+	</ul>
+</h4>
+<br><br>

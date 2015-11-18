@@ -1,10 +1,10 @@
-<h2>Bienvenue !</h2>
+<h2>Se connecter</h2>
 <br>
 
 <%= form_for :user, url:'/login', html: {class: 'form-horizontal'} do |f| %>
 
     <div class="field form-group">
-	    <%= f.label :email, class: 'col-sm-2 control-label' %>
+	    <%= f.label 'Adresse mail', class: 'col-sm-2 control-label' %>
 	    <div class="col-sm-3">
 		    <%= f.text_field :email, required:true, class: 'form-control' %>
 	    </div>
@@ -23,17 +23,3 @@
 
 <% end %>
 <br><br>
-
-Nouveau ? <%= link_to "Créez votre compte", signup_path %>
-<br><br>
-
-<h3>Fonctionnalités</h3>
-<h4>
-	<ul>
-		<li>Créez ou importez vos feuilles de données (appellées ici 'tables de données')</li>
-		<li>Ajoutez des colonnes à vos tables (Texte, Nombre, Date, Liste, Formule)</li>
-		<li>Editez vos enregistrements dans un formulaire (les modifications seront consignées dans l'historique)</li>
-		<li>Partagez vos tables avec d'autres utilisateurs, mais vous seul pourrez modifier sa structure</li>
-		<li>Triez, filtrez et exportez vos données</li>
-	</ul>
-</h4>

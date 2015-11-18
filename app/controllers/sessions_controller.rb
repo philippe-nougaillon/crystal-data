@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 
+  def welcome
+  end
+
   def new
   end
 
@@ -8,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       flash[:notice] = "Bienvenue '#{user.name}' !"
-      redirect_to '/'
+      redirect_to tables_path
     else
       redirect_to '/login'
     end
@@ -16,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/login'
+    redirect_to root_path
   end
 
 end
