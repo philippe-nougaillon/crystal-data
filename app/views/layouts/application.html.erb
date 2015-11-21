@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CrystalData</title>
+  <title>crystalData</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,7 +12,7 @@
 			<ul class="nav nav-pills" role="tablist">
 				<% if current_user %>
 					<li class=<%= (controller_name == 'tables' && !params[:id]) ? 'active' : '' %>>
-						<%= link_to "Tables", tables_path %>
+						<%= link_to tables_path do %><i class="glyphicon glyphicon-th-list"></i> Tables<% end %>
 					</li>
 					<% @current_user.tables.each do |table| %>
 						<li class=<%= (controller_name == 'tables' && params[:id]== table.id.to_s) ? 'active' : '' %>>

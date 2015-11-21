@@ -6,21 +6,21 @@
 <table class="table table-striped table-hover table-bordered table-responsive">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th>Nom</th>
 			<th>Type</th>
 			<th>Options</th>
-			<th>Filtre ?</th>
-			<th>Somme ?</th>
 		</tr>
 	</thead>
-	<%= render partial:'fields/field', collection:@table.fields %>
+	<% @table.fields.each_with_index do | field, index | %>
+		<%= render partial:'fields/field', locals: {field:field, i:index} %>
+	<% end %>
 	<% unless @table.fields.any? %>
 		<tr><td>Aucune colonne pour l'instant</td><td /><td /></tr>
 	<% end %>
 </table>
-<br>
 
-<h3>Ajouter une colonne</h3>
+<h3>Créer une nouvelle colonne</h3>
 <% if @field %>	
 	<%= render partial:'fields/form' %>
 <% end %>

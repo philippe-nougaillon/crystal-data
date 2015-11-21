@@ -24,7 +24,7 @@
               <% @table.fields.each_with_index do | field,index | %>
                 <td>
                   <% if field.datatype == "formule" %>
-                    <%= field.evaluate(@values.records_at(index).pluck(:data)) %>
+                    <%= field.evaluate(records.pluck(:data)) %>
                   <% else %>
                     <% record = records[index] %>
                     <% if record %>

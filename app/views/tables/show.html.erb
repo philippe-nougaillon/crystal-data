@@ -13,7 +13,10 @@
 		    <%= select_tag "select[#{index}]", options_for_select(field.values.pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()' %>
 		<% end %>
 
-	    <%= submit_tag 'Ok', class: 'btn btn-success' %>
+	    <%= submit_tag 'Appliquer', class: 'btn btn-success' %> | 
+		<%= link_to fill_url(@table.id), class: 'btn btn-primary' do %>
+		  <i class="glyphicon glyphicon-plus"></i> Ajouter
+		<% end %>
 	  <% end %>
 	</p>
 
@@ -35,16 +38,16 @@
 			<tbody>
 				<% count = 0 %>	
 				<% @records.each do | index | %>
-					<% records = @values.records_at(index) %>
+					<% values = @table.values.records_at(index) %>
 						<% count += 1 %> 
 						<tr>
 							<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
 							<% @table.fields.each_with_index do | field,index | %>
-								<td>
+								<td class="<%= ['formule','euros','nombre'].include?(field.datatype) ? 'text-right' : '' %>">
 									<% if field.datatype == "formule" %>
-										<%= field.evaluate(@values.records_at(index).pluck(:data)) %>
+										<%= field.evaluate(values.pluck(:data) ) %>
 									<% else %>
-										<% record = records[index] %>
+										<% record = values[index] %>
 										<% if record %>
 											<%= record.data %>
 											<% if field.sum %>
@@ -54,8 +57,9 @@
 									<% end %>
 								</td>
 							<% end %>
-							<td><%= l(records[0].created_at, format: :compact) %></td>
-							<td><%= l(records[0].updated_at, format: :compact) %></td>
+							<td><%= l(values[0].created_at, format: :compact) %></td>
+							<td><%= l(values[0].updated_at, format: :compact) %></td>
+				            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %></td>
 							<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
 								<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiement ?' }, class: 'btn btn-danger btn-xs' %></td>
 						</tr>
@@ -81,10 +85,6 @@
 		<br>
 	<% end %>
 	<br>
-
-	<%= link_to fill_url(@table.id), class: 'btn btn-success' do %>
-	  <i class="glyphicon glyphicon-plus"></i> Ajouter
-	<% end %>
 <% else %>
 	<% unless params[:attrs] %>
 		Cette table ne contient aucune colonne<br><br>

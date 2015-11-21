@@ -31,7 +31,7 @@ class FieldsController < ApplicationController
 
     respond_to do |format|
       if @field.save
-        format.html { redirect_to show_attrs_path(id:@field.table), notice: 'Colonne ajoutée.' }
+        format.html { redirect_to show_attrs_path(id:@field.table), notice: 'Nouvelle colonne créée.' }
         format.json { render :show, status: :created, location: @field }
       else
         format.html { redirect_to show_attrs_path(id:@field.table), notice: 'Veuillez donner un nom à cette colonne' }

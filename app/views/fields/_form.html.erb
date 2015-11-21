@@ -60,12 +60,14 @@
     <%= f.label :name, "Type" %><br>
     <%= f.select :datatype, options_for_select(Field.datatypes.keys.to_a, @field.datatype) %>
     <%= f.text_field :items, size:50  %><br><br>
-    <%= f.check_box :filtre %> Filtre ?<br><br>
-
-    <%= f.check_box :sum, class:'field_sum' %> 
-    <%= f.label :sum, "Somme ?", class:'field_sum' %><br>
-
+    
+    <%= f.label :name, "Options" %><br>
+    <%= f.check_box :filtre %> Filtre ?<br>
+    <div class="field_sum">
+      <%= f.check_box :sum %> Cumul ?<br>
+    </div>
     <br>
-    <%= f.submit @field.new_record? ? "Ajouter" : "Modifier", class: 'btn btn-success' %>
+
+    <%= f.submit @field.new_record? ? "Créer cette colonne" : "Modifier", class: 'btn btn-success' %>
   </div>
 <% end %>
