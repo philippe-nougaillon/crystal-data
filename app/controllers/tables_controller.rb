@@ -17,7 +17,13 @@ class TablesController < ApplicationController
   # GET /tables
   # GET /tables.json
   def index
+    session[:user_id] = @current_user.id if @current_user && session[:user_id].nil?
+
     @tables = @current_user.tables.includes(:fields)
+    respond_to do |format|
+      format.html.phone
+      format.html.none 
+    end
   end
 
   # GET /tables/1
@@ -66,7 +72,8 @@ class TablesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html 
+      format.html.phone
+      format.html.none 
       format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{@table.name}-#{l(DateTime.now, format: :compact)}\"" }
     end 
   end
@@ -80,10 +87,6 @@ class TablesController < ApplicationController
       @record_index = params[:record_index]
     else
       @record_index = @table.record_index + 1
-    end
-
-    if params[:todo_id]
-      @todo = Todo.find(params[:todo_id])
     end
 
     respond_to do |format|
@@ -132,8 +135,8 @@ class TablesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html.phone { redirect_to todo }
-      format.html.none  { redirect_to table }
+      format.html.phone { redirect_to tables_path }
+      format.html.none
     end
   end  
 
@@ -210,16 +213,21 @@ class TablesController < ApplicationController
 
       #Save file to local dir
       filename = params[:upload].original_filename
-      file_with_path = Rails.root.join('public', 'tmp', filename)
-      File.open(file_with_path, 'wb') do |file|
+      filename_with_path = Rails.root.join('public', 'tmp', filename)
+      File.open(filename_with_path, 'wb') do |file|
           file.write(params[:upload].read)
       end
 
-      # execute rake and capture output  
+      execute rake and capture output  
       @out = capture_stdout do
-          Rake::Task['tables:import'].invoke(file_with_path, filename, @current_user.id)
+         Rake::Task['tables:import'].invoke(file_with_path, filename, @current_user.id)
       end
+      
+      #ImportTableJob.perform_later(filename_with_path, filename, @current_user.id) 
+
       @new_table = Table.last
+      redirect_to tables_path, notice: "import en cours... veuillez patienter "
+      return
     else
       flash[:alert] = "Il manque le fichier source"
       redirect_to action: 'import'

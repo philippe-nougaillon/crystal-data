@@ -14,7 +14,15 @@
 	    <div class="col-sm-3">
 		    <%= f.password_field :password, required:true, class: 'form-control' %>
 	    </div>
-	</div>  
+	</div>
+
+	<div class="field form-group">
+	    <%= f.label :remember_me, 'Rester connecté ?', class: 'col-sm-2 control-label' %>
+	    <div class="col-xs-1">
+			<%= f.check_box :remember_me %>
+		</div>
+	</div>
+
 	<div class="actions form-group">
     	<div class="col-sm-offset-2 col-sm-10">
 		    <%= f.submit "S'identifier", class: 'btn btn-success' %>

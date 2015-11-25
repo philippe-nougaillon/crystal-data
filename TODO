@@ -5,8 +5,13 @@ DONE
 - tester les valeurs d'une formule (ne pas calculer la formule si pas de données)
 - tri colonnes
 
+
 TODO
 
+- faire une page d'aidre
 - champs obligatoires
 - tri colonnes formule !
 
+MEMO
+
+ formule diff entre deux dates: Date.strptime("[3]","%d/%m/%Y") - Date.strptime("[2]","%d/%m/%Y") 

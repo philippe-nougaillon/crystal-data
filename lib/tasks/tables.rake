@@ -7,7 +7,6 @@ namespace :tables do
     task :import, [:file_path, :filename, :user_id] => [:environment] do |t, args|
 	  	@lignes = 0
 	  	@importes = 0
-	  	@errors = 0	
 	  	@record_index = 0
 
 		CSV.foreach(args.file_path, headers:true, return_headers:true, col_sep:';', encoding:'iso-8859-1:UTF-8') do |row|
@@ -18,18 +17,19 @@ namespace :tables do
 					row.each do |key|
 						@new_table.fields.create(name:key.first)
 					end
+				  	@fields = @new_table.fields
 				end
 			else
 				@record_index += 1
-				row.each do |key|
-					field = @new_table.fields.find_by(name:key.first)
-					@new_table.values.create(field:field, data:key.last, record_index:@record_index)
+				row.each_with_index do | key, index |
+					#field = @new_table.fields.find_by(name:key.first)
+					@new_table.values.create(field_id:@fields[index].id, data:key.last, record_index:@record_index)
 				end
 			  	@lignes += 1
 			end
 		end
 		@new_table.update_attributes(record_index:@record_index)
-		puts "Nbr de lignes traitées: #{@lignes} | Lignes importées: #{@record_index} - Erreurs: #{@errors}"
+		puts "Nbr de lignes traitées: #{@lignes} | Lignes importées: #{@record_index}"
 	end
    
 end

@@ -12,17 +12,18 @@ class UsersController < ApplicationController
     def create
 	    user = User.new(user_params)
 	    if user.save
+	      #update_authentication_token(user, nil)
 	      session[:user_id] = user.id
-	      redirect_to '/', notice: "Bienvenue '#{user.name}' !"
+	      cookies.permanent[:auth_token] = nil
+	      redirect_to '/', notice:"Bienvenue '#{user.name}' !"
 	    else
 	      redirect_to '/signup'
 	    end
 	end
 
 private
-
   	def user_params
-    	params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    	params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me)
   	end
 
 end

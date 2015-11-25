@@ -2,13 +2,15 @@
   $(document).ready(function(){
 
 	$("#pop").on("click", function() {
-	   $('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
-	   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+	   $('#imagepreview').attr('src', $('#imageresource').attr('src'));
+	   $('#imagemodal').modal('show');
 	});
-});
-
+	$("#pop2").on("click", function() {
+	   $('#imagepreview').attr('src', $('#imageresource2').attr('src'));
+	   $('#imagemodal').modal('show');
+	});
+  });
 </script>
-
 
 <h1>
 	<i class="glyphicon glyphicon-th-list"> </i>
@@ -17,20 +19,21 @@
 <h2>Base de données en ligne</h2>
 <br>
 
-<a href="#" id="pop">
-	<%= image_tag image_path("Screenshot1.png"), width:'400', id:"imageresource" %>
-</a>
+<a href="#" id="pop"><%= image_tag image_path("Screenshot1.png"), width:'400', id:"imageresource" %></a>
+<a href="#" id="pop2"><%= image_tag image_path("mobile_1_tables.png"), width:'100', id:"imageresource2" %></a>
+<%= image_tag image_path("mobile_2_show.png"), width:'100', id:"imageresource" %>
+<%= image_tag image_path("mobile_3_edit.png"), width:'100', id:"imageresource" %>
 
 <!-- Creates the bootstrap modal where the image will appear -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width: 900px;">
+  <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
-        <h4 class="modal-title" id="myModalLabel">Aperçu d'une table</h4>
+        <h4 class="modal-title" id="myModalLabel">Aperçu</h4>
       </div>
       <div class="modal-body">
-        <img src="" id="imagepreview" style="width: 850px;">
+        <img src="" id="imagepreview" >
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -44,20 +47,21 @@
 <h3>Ce que vous pouvez faire avec</h3>
 <h4>
 	<ul>
-		<li>Créez vos tables de données ou importez-les à partir de vos feuilles Excel</li>
-		<li>Ajoutez des colonnes de type Texte, Nombre, €, Date, Liste, Formule (Ruby)</li>
-		<li>Partagez vos tables avec d'autres utilisateurs (visualisation/ajout/modification). Seul le créateur de la table pourra la modifier</li>
-		<li>Recherchez, filtrez, triez les enregistrements</li> 
-		<li>Editez les enregistrements dans un formulaire (les modifications seront consignées dans un historique)</li>
-		<li>Exportez vos données vers Excel</li>
+		<li>Créer vos tables de données ou les importer à partir de feuilles Excel</li>
+		<li>Ajouter des colonnes de type Texte, Nombre, €, Date, Liste, Formule (Ruby)</li>
+		<li>Partager des tables avec d'autres utilisateurs (visualisation/ajout/modification). Seul le créateur d'une table peut la modifier</li>
+		<li>Rechercher, filtrer, trier les enregistrements</li> 
+		<li>Editer les enregistrements dans un formulaire (les modifications sont consignées dans un historique)</li>
+		<li>Exporter les tables vers Excel</li>
+		<li>Utiliser l'application depuis votre mobile</li>
 	</ul>
 </h4>
 
 <h3>Ce que vous ne pouvez pas (encore) faire</h3>
 <h4>
 	<ul>
-		<li>Saisie des données dans une application mobile</li>
-		<li>Relations entre les tables</li>
+		<li>Saisir des données dans une application mobile (mode déconnecté)</li>
+		<li>Faire des relations entre des tables</li>
 		<li>Faire des graphiques</li>
 		<li>Générer des PDF</li>
 	</ul>
