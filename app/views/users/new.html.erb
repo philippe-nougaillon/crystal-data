@@ -2,7 +2,20 @@
 <br><br>
 
 <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+
+	<% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= t('errors.messages.not_saved', count: @user.errors.count) %></h2>
+
+	      <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
    
+
  	<div class="field form-group">
 	    <%= f.label :name, "Prénom", class: 'col-sm-2 control-label' %>
 	    <div class="col-sm-2">

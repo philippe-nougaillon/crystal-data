@@ -1,43 +1,41 @@
 <script>
   $(document).ready(function(){
 
-	$("#pop").on("click", function() {
-	   $('#imagepreview').attr('src', $('#imageresource').attr('src'));
-	   $('#imagemodal').modal('show');
+	$("#pop-lg").on("click", function() {
+	   $('#imagepreview-lg').attr('src', $('#imageresource-lg').attr('src'));
+	   $('#imagemodal-lg').modal('show');
 	});
-	$("#pop2").on("click", function() {
-	   $('#imagepreview').attr('src', $('#imageresource2').attr('src'));
-	   $('#imagemodal').modal('show');
+	$("#pop-sm").on("click", function() {
+	   $('#imagepreview-sm').attr('src', $('#imageresource-sm-1').attr('src'));
+	   $('#imagemodal-sm').modal('show');
 	});
   });
 </script>
 
 <h1>
-	<i class="glyphicon glyphicon-th-list"> </i>
+	<i class="glyphicon glyphicon-th-list"></i>
 	crystalData
 </h1>
 <h2>Base de données en ligne</h2>
 <br>
 
-<a href="#" id="pop"><%= image_tag image_path("Screenshot1.png"), width:'400', id:"imageresource" %></a>
-<a href="#" id="pop2"><%= image_tag image_path("mobile_1_tables.png"), width:'100', id:"imageresource2" %></a>
-<%= image_tag image_path("mobile_2_show.png"), width:'100', id:"imageresource" %>
-<%= image_tag image_path("mobile_3_edit.png"), width:'100', id:"imageresource" %>
+<a href="#" id="pop-lg"><%= image_tag image_path("screen-lg.png"), width:'400', id:"imageresource-lg" %></a>
+<a href="#" id="pop-sm"><%= image_tag image_path("screen-sm-1.png"), width:'160', id:"imageresource-sm-1" %></a>
+<a href="#" id="pop-sm"><%= image_tag image_path("screen-sm-2.png"), width:'160', id:"imageresource-sm-2" %></a>
+<a href="#" id="pop-sm"><%= image_tag image_path("screen-sm-3.png"), width:'160', id:"imageresource-sm-3" %></a>
 
 <!-- Creates the bootstrap modal where the image will appear -->
-<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" >
+<div class="modal fade" id="imagemodal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" >
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
-        <h4 class="modal-title" id="myModalLabel">Aperçu</h4>
-      </div>
-      <div class="modal-body">
-        <img src="" id="imagepreview" >
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-      </div>
+        <img src="" id="imagepreview-lg" >
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="imagemodal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" >
+    <div class="modal-content">
+        <img src="" id="imagepreview-sm" >
     </div>
   </div>
 </div>
@@ -53,11 +51,11 @@
 		<li>Rechercher, filtrer, trier les enregistrements</li> 
 		<li>Editer les enregistrements dans un formulaire (les modifications sont consignées dans un historique)</li>
 		<li>Exporter les tables vers Excel</li>
-		<li>Utiliser l'application depuis votre mobile</li>
+		<li>Utiliser l'application depuis votre mobile, les écrans s'adaptent à la taille d'un écran de smartphone</li>
 	</ul>
 </h4>
 
-<h3>Ce que vous ne pouvez pas (encore) faire</h3>
+<h3>Ce que vous ne pourrez pas (encore) faire</h3>
 <h4>
 	<ul>
 		<li>Saisir des données dans une application mobile (mode déconnecté)</li>
