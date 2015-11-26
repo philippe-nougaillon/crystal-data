@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   post '/import_do', to: 'tables#import_do'
   get 'tables/:id/add_user', to:'tables#add_user', as: :add_user
   post '/add_user_do', to:'tables#add_user_do'
-
+  get 'tables/:id/partages', to:'tables#partages', as: :partages
+  get 'tables/:id/partages_delete', to:'tables#partages_delete', as: :annuler_partage
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 

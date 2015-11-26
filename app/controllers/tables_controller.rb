@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_filter :authorize
-  before_action :set_table, only: [:show, :show_attrs, :add_user, :fill, :fill_do, :edit, :update, :destroy, :delete_record]
+  before_action :set_table, except: [:checkifmobile, :index]
 
   #layout :checkifmobile
 
@@ -119,7 +119,7 @@ class TablesController < ApplicationController
               # enregistre les modifications dans l'historique
               field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
               # supprimer les anciennes données
-              table.values.find_by(record_index:record_index, field:field).destroy
+              table.values.find_by(record_index:record_index, field:field).delete
               # enregistrer les nouvelles données
               table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
           end
@@ -148,12 +148,15 @@ class TablesController < ApplicationController
     end
   end  
 
+
   def delete_record
     if params[:record_index]
-      @table.values.where(record_index:params[:record_index]).each do |value|
-          value.field.logs.create(user_id:@current_user.id, message:"ligne #{value.record_index} supprimée (#{value.data})")
+      record_index = params[:record_index]
+      @table.values.where(record_index:record_index).each do |value|
+          value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"ligne supprimée. #{value.data} => !")
           value.delete
       end
+      flash[:notice] = "Enregistrement ##{record_index} supprimé avec succès"
     end  
 
     redirect_to @table
@@ -226,9 +229,9 @@ class TablesController < ApplicationController
           file.write(params[:upload].read)
       end
 
-      execute rake and capture output  
+      #execute rake and capture output  
       @out = capture_stdout do
-         Rake::Task['tables:import'].invoke(file_with_path, filename, @current_user.id)
+         Rake::Task['tables:import'].invoke(filename_with_path, filename, @current_user.id, request.remote_ip)
       end
       
       #ImportTableJob.perform_later(filename_with_path, filename, @current_user.id) 
@@ -246,24 +249,38 @@ class TablesController < ApplicationController
   end
 
   def add_user_do
-    @table = Table.find(params[:id])
-    @user = User.find_by(email:params[:email])
-    if @user
-      unless @table.users.exists?(@user)
-        @table.users << @user 
-        flash[:notice] = "Utilisateur '#{@user.name}' ajouté"
+    unless params[:email].blank?
+      @user = User.find_by(email:params[:email])
+      if @user
+        unless @table.users.exists?(@user)
+          @table.users << @user 
+          flash[:notice] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' activé"
+        else
+          flash[:alert] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' déjà existant !"
+        end
       else
-        flash[:alert] = "Utilisateur '#{@user.name}' déjà ajouté"
+        flash[:alert] = "Utilisateur inconnu ! Demandez-lui de s'incrire d'abord."
+        redirect_to add_user_path(@table)
+        return
       end
     else
-      flash[:alert] = "Utilisateur inconnu"
+      flash[:alert] = "Veuillez entrer une adresse mail svp."
       redirect_to add_user_path(@table)
       return
     end
-
-    redirect_to tables_path
+    redirect_to partages_path(@table)
   end
 
+  def partages
+  end
+
+  def partages_delete
+    @user = User.find(params[:user_id])
+    # supprime l'utilisateur que si ce n'est pas le dernier
+    @table.users.delete(@user) if @table.users.count > 1
+    flash[:notice] = "Le partage avec l'utilisateur '#{@user.name}' a été désactivé !"
+    redirect_to partages_path
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

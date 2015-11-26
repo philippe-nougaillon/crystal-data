@@ -37,7 +37,7 @@
 				<% count = 0 %>	
 				<% numeric_types = ['formule','euros','nombre'] %>
 				<% @records.each do | index | %>
-					<% values = @table.values.records_at(index).pluck(:data) %>
+					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
 						<% count += 1 %> 
 						<tr>
 							<td>

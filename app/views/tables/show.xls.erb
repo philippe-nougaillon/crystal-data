@@ -17,9 +17,10 @@
       <tbody>
         <% count = 0 %> 
         <% @records.each do | index | %>
-          <% records = @values.records_at(index) %>
+          <% records = @values.records_at(index).order(:record_index,:field_id) %>
             <% count += 1 %> 
             <tr>
+              <td><%= index %>
               <td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
               <% @table.fields.each_with_index do | field,index | %>
                 <td>

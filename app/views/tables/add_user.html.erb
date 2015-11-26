@@ -1,4 +1,4 @@
-<br><br>
+<br>
 <h2>Partager avec un autre utilisateur</h2>
 <br>
 
@@ -6,7 +6,13 @@
 
   <%= hidden_field_tag :id, params[:id] %>
 
-  Son adresse mail: <%= text_field_tag :email %>
+  <div class="field form-group">
+  		<div class="col-sm-4">
+		    Entrez son adresse mail
+		    <%= text_field_tag :email, nil, class:'form-control'  %>
+		</div>
+  </div>
+  <br>
 
   <%= submit_tag "Partager", class: 'btn btn-success' %>
 

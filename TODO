@@ -5,6 +5,7 @@ DONE
 - tester les valeurs d'une formule (ne pas calculer la formule si pas de données)
 - tri colonnes (ASC/DESC)
 - historique: inclure l'adresse IP 
+- import table: entrée dans l'historique
 
 
 TODO
@@ -13,9 +14,8 @@ TODO
 - champs obligatoires
 - tri colonnes type formule 
 - formule sur colonne formule... 
-- import table: entrée dans l'historique
 - support tablette... 
-
+- pouvoir annuler le partgage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))
 
 MEMO
 
