@@ -31,10 +31,6 @@ class TablesController < ApplicationController
   def show
     @sum = Hash.new(0)
 
-    if params[:sort_by]
-      @sort_by = Field.find(params[:sort_by])
-    end
-
     # recherche les lignes 
     unless params[:search].blank?
       @values = @table.values.where("data like ?", "%#{params[:search].strip}%")      
@@ -66,9 +62,15 @@ class TablesController < ApplicationController
       @records = @records_search
     end  
 
-    # tri
-    if @sort_by
-      @records = @table.values.records_at(@records).where(field:@sort_by).order(:data).pluck(:record_index)
+    if params[:sort_by]
+      order_by = (params[:sort_by] == session[:sort_by]) ? ((session[:order_by] == "DESC") ? "ASC" : "DESC") : "ASC"
+      if params[:sort_by] == '0' # tri sur date de maj
+        @records = @table.values.records_at(@records).order("updated_at #{order_by}").uniq.pluck(:record_index)
+      else
+        @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
+      end 
+      session[:sort_by] = params[:sort_by]
+      session[:order_by] = order_by
     end
 
     respond_to do |format|
@@ -107,36 +109,42 @@ class TablesController < ApplicationController
       # # modification = si données existent déjà, on les supprime pour pouvoir ajouter les données modifiées 
       update = table.values.where(record_index:record_index).any?
       if update 
+        # mise à jour
         created_at_date = table.values.where(record_index:record_index).first.created_at
 
         # test quel champ a été modifié
         table.fields.each do |field|
           old_value = table.values.find_by(record_index:record_index, field:field)
           if old_value and (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
-              #logger.debug "DEBUG  #{field.name} modifié !!! old_value:#{old_value.data} | new_data: #{values[field.id.to_s]}"
-              field.logs.create(user:user, record_index:record_index, message:"#{old_value.data} => #{values[field.id.to_s]}")
+              # enregistre les modifications dans l'historique
+              field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
+              # supprimer les anciennes données
               table.values.find_by(record_index:record_index, field:field).destroy
+              # enregistrer les nouvelles données
               table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
           end
         end
       else
         # ajout des données
         table.fields.each do |field|
-          @table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date )
+          # enregistre les ajouts dans l'historique
+          field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:values[field.id.to_s])
+          # enregistrer les nouvelles données
+          table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date )
         end
       end
 
       # maj du nombre de lignes si c'est un ajout
-      table.update_attributes(record_index:record_index) if not update
+      table.update_attributes(record_index:record_index) unless update
 
-      flash[:notice] = "Enregistrement #{update ? "modifié" : "ajouté"}"
+      flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
     else
-      flash[:notice] = "L'enregistrement n'a pas été ajouté"
+      flash[:alert] = "L'enregistrement n'a pas pu être ajouté"
     end
 
     respond_to do |format|
       format.html.phone { redirect_to tables_path }
-      format.html.none
+      format.html.none { redirect_to table }
     end
   end  
 

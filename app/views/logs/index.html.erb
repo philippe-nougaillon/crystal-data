@@ -2,16 +2,18 @@
 
 <h2>
   <i class="glyphicon glyphicon-time"></i> 
-  Historique des modification de '<%= @table.name.humanize %>'<%= ", ligne #{@record_index}" if @record_index %>
+  Historique des modifications dans la table '<%= @table.name.humanize %>'<%= ", ligne #{@record_index}" if @record_index %>
 </h2>
+<br>
 
 <table class="table table-striped table-hover table-bordered table-responsive">
   <thead>
     <tr>
       <th>Le</th>
-      <th>Utilisateur</th>
       <th>Colonne</th>
       <th>Modification</th>
+      <th>Utilisateur</th>
+      <th>IP</th>
     </tr>
   </thead>
 
@@ -19,9 +21,10 @@
     <% @logs.each do |log| %>
       <tr>
         <td><%= l(log.created_at) %></td>
-        <td><%= log.user.name %></td>
         <td><%= log.field.name %></td>
         <td><%= log.message %></td>
+        <td><%= log.user.name %></td>
+        <td><%= link_to log.ip, "http://www.ip-tracker.org/locator/ip-lookup.php?ip=#{log.ip}", target:'_new' %></td>
       </tr>
     <% end %>
   </tbody>

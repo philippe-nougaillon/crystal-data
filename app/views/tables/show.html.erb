@@ -30,35 +30,39 @@
 					</th>
 				<% end %>
 				<th />
+				<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
+				<th /><th />
 			</tr>
 		</thead>
 
 		<% if @records.any? %>
-
 			<tbody>
 				<% count = 0 %>	
 				<% numeric_types = ['formule','euros','nombre'] %>
 				<% @records.each do | index | %>
 					<% values = @table.values.records_at(index).pluck(:data) %>
-						<% count += 1 %> 
-						<tr>
-							<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
-							<% @table.fields.each_with_index do | field,index | %>
-								<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
-									<% if field.datatype == "formule" %>
-										<%= field.evaluate(values) %>
-									<% else %>
-										<%= values[index] %>
-										<% if field.sum %>
-											<% @sum[field.id] += values[index].to_i %>
-										<% end %>
+					<% updated_at = @table.values.records_at(index).maximum(:updated_at) %>
+					<% count += 1 %> 
+					<tr>
+						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
+						<% @table.fields.each_with_index do | field,index | %>
+							<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
+								<% if field.datatype == "formule" %>
+									<%= field.evaluate(values) %>
+								<% else %>
+									<%= values[index] %>
+									<% if field.sum %>
+										<% @sum[field.id] += values[index].to_i %>
 									<% end %>
-								</td>
-							<% end %>
-							<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
-								<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiement ?' }, class: 'btn btn-danger btn-xs' %></td>
-				            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %></td>
-						</tr>
+								<% end %>
+							</td>
+						<% end %>
+						<td />
+						<td><%= l(updated_at) %></td>
+			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %></td>
+						<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
+							<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiement ?' }, class: 'btn btn-danger btn-xs' %></td>
+					</tr>
 				<% end %>
 			</tbody>
 
@@ -74,10 +78,8 @@
 							<td />
 						<% end %>
 					<% end %>
-					<td />
 				</tr>
 			</tfoot>
-
 		</table>
 		<%= count %> sur <%= @table.size %> au total
 		<br>

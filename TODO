@@ -3,14 +3,19 @@ CrystalData TODO
 DONE
 
 - tester les valeurs d'une formule (ne pas calculer la formule si pas de données)
-- tri colonnes
+- tri colonnes (ASC/DESC)
+- historique: inclure l'adresse IP 
 
 
 TODO
 
-- faire une page d'aidre
+- faire une page d'aide
 - champs obligatoires
-- tri colonnes formule !
+- tri colonnes type formule 
+- formule sur colonne formule... 
+- import table: entrée dans l'historique
+- support tablette... 
+
 
 MEMO
 
