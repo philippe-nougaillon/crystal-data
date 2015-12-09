@@ -67,7 +67,10 @@ class TablesController < ApplicationController
       # ordre de tri ASC/DESC
       order_by = (params[:sort_by] == session[:sort_by]) ? ((session[:order_by] == "DESC") ? "ASC" : "DESC") : "ASC"
       if params[:sort_by] == '0' # tri sur la date de maj de la ligne
-         @records = @table.values.records_at(@records).order("updated_at #{order_by}").uniq.pluck(:record_index)
+         #@records = @table.values.records_at(@records).order("updated_at #{order_by}").pluck(:record_index)
+         h = @table.values.group(:record_index).maximum(:updated_at)
+         @records = Hash[h.sort_by{|k, v| v}.reverse].keys
+
       else
          @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
       end 
