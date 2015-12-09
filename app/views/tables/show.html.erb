@@ -38,7 +38,6 @@
 		<% if @records.any? %>
 			<tbody>
 				<% count = 0 %>	
-				<% numeric_types = ['formule','euros','nombre'] %>
 				<% @records.each do | index | %>
 					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
 					<% updated_at = @table.values.records_at(index).maximum(:updated_at) %>
@@ -46,7 +45,7 @@
 					<tr>
 						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
 						<% @table.fields.each_with_index do | field,index | %>
-							<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
+							<td class="<%= @numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
 								<% if field.datatype == "formule" %>
 									<%= field.evaluate(values) %>
 								<% else %>

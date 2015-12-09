@@ -30,6 +30,7 @@ class TablesController < ApplicationController
   # GET /tables/1.json
   def show
     @sum = Hash.new(0)
+    @numeric_types = ['formule','euros','nombre']
 
     # recherche les lignes 
     unless params[:search].blank?
@@ -63,11 +64,12 @@ class TablesController < ApplicationController
     end  
 
     if params[:sort_by]
+      # ordre de tri ASC/DESC
       order_by = (params[:sort_by] == session[:sort_by]) ? ((session[:order_by] == "DESC") ? "ASC" : "DESC") : "ASC"
-      if params[:sort_by] == '0' # tri sur date de maj
-        @records = @table.values.records_at(@records).order("updated_at #{order_by}").uniq.pluck(:record_index)
+      if params[:sort_by] == '0' # tri sur la date de maj de la ligne
+         @records = @table.values.records_at(@records).order("updated_at #{order_by}").uniq.pluck(:record_index)
       else
-        @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
+         @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
       end 
       session[:sort_by] = params[:sort_by]
       session[:order_by] = order_by
@@ -109,19 +111,26 @@ class TablesController < ApplicationController
       # # modification = si données existent déjà, on les supprime pour pouvoir ajouter les données modifiées 
       update = table.values.where(record_index:record_index).any?
       if update 
-        # mise à jour
+        # garde la date de dernière mise à jour
         created_at_date = table.values.where(record_index:record_index).first.created_at
 
         # test quel champ a été modifié
         table.fields.each do |field|
           old_value = table.values.find_by(record_index:record_index, field:field)
-          if old_value and (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
-              # enregistre les modifications dans l'historique
-              field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
-              # supprimer les anciennes données
-              table.values.find_by(record_index:record_index, field:field).delete
-              # enregistrer les nouvelles données
-              table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
+          if old_value 
+              if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
+                # enregistre les modifications dans l'historique
+                field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
+                # supprimer les anciennes données
+                table.values.find_by(record_index:record_index, field:field).delete
+                # enregistrer les nouvelles données
+                table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
+              end
+          else
+            # enregistre les modifications dans l'historique
+            field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
+            # enregistrer les nouvelles données
+            table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
           end
         end
       else

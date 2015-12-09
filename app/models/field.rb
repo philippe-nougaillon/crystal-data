@@ -18,16 +18,16 @@ class Field < ActiveRecord::Base
 			unless self.items.scan(/\[([^\]]+)\]/).flatten.select{|i| values[i.to_i - 1].nil? }.any?
 				# evalue [1] + [2]
 				result = self.items.gsub(/\[([^\]]+)\]/) {|w| values[w.delete('[]').to_i - 1]}
-				return eval(result)
+				eval(result)
 			else
-				return nil
+				nil
 			end
 		rescue ArgumentError => se	
-			return "#{se}: #{result}"
+			"#{se}: #{result}"
 		rescue TypeError => se
-			return "#{se}: #{result}"
+			"#{se}: #{result}"
 		rescue SyntaxError => se
-			return "#{se}: #{result}"
+			"#{se}: #{result}"
 		end
 	end 	
 

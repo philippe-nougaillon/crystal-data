@@ -1,3 +1,54 @@
 <br>
-<h2><%= @user.name %></h2>
+<h2>
+    <i class="glyphicon glyphicon-user"></i> 
+	<%= @user.name %>
+</h2>
+<br>
+Utilisateur depuis: <%= time_ago_in_words(@user.created_at) %><br>
+<% if @user.authentication_token %>
+	Rester connecté activé 
+<% end %>
 <br><br>
+
+
+<h4>Changer de mot de passe</h4>
+<br>
+
+<%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+
+	<% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= t('errors.messages.not_saved', count: @user.errors.count) %></h2>
+
+	      <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+   
+	<%= f.hidden_field :name %>
+	<%= f.hidden_field :email %>
+
+
+	<div class="field form-group">
+	    <%= f.label :password, 'Mot de passe', class: 'col-sm-2 control-label' %>
+	    <div class="col-sm-2">
+		    <%= f.password_field :password, required:true, class: 'form-control' %>
+	    </div>
+	</div>  
+	<div class="field form-group">
+	    <%= f.label :password_confirmation, 'Confirmation', class: 'col-sm-2 control-label' %>
+	    <div class="col-sm-2">
+	    	<%= f.password_field :password_confirmation, class: 'form-control' %>
+	    </div>
+	</div>
+
+	<div class="actions form-group">
+    	<div class="col-sm-offset-2 col-sm-10">
+	    	<%= f.submit "Valider", class: 'btn btn-success' %>
+  		</div>
+	</div>
+
+<% end %>

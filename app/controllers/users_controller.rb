@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class UsersController < ApplicationController
   	before_filter :authorize, except:[:new, :create]
 
@@ -16,10 +18,18 @@ class UsersController < ApplicationController
 	      cookies.permanent[:auth_token] = nil
 	      redirect_to '/', notice:"Bienvenue '#{@user.name}' !"
 	    else
-		    render :new	
-	      #redirect_to '/signup'
+		  render :new	
 	    end
 	end
+
+    def update
+      @user = User.new(user_params)
+      if @user.update(user_params)
+        redirect_to @user, notice:'Mot de passe modifié avec succès.'
+      else
+        render :show
+      end
+    end
 
 private
   	def user_params

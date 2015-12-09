@@ -40,7 +40,7 @@
 					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
 						<% count += 1 %> 
 						<tr>
-							<td>
+							<td>	
 								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
 							</td>
 							<% @table.fields.each_with_index do | field,index | %>
