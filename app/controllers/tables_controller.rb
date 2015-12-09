@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_filter :authorize
-  before_action :set_table, except: [:checkifmobile, :index]
+  before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
 
   #layout :checkifmobile
 

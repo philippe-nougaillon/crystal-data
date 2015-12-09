@@ -10,34 +10,30 @@
           <% @table.fields.each do | field | %>
             <th><%= field.name %></th>
           <% end %>
-          <th>Créé le</th>
           <th>Modifié le</th>
         </tr>
       </thead>
       <tbody>
         <% count = 0 %> 
+        <% updated_at_list = @table.values.group(:record_index).maximum(:updated_at) %>
+
         <% @records.each do | index | %>
-          <% records = @values.records_at(index).order(:record_index,:field_id) %>
-            <% count += 1 %> 
-            <tr>
-              <td><%= index %>
-              <td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
-              <% @table.fields.each_with_index do | field,index | %>
-                <td>
-                  <% if field.datatype == "formule" %>
-                    <%= field.evaluate(records.pluck(:data)) %>
-                  <% else %>
-                    <% record = records[index] %>
-                    <% if record %>
-                      <%= record.data %>
-                      <% if field.sum %>
-                        <% @sum[field.id] += record.data.to_i %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </td>
-              <% end %>
-            </tr>
+          <% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
+          <% updated_at = updated_at_list[index] %>
+          <% count += 1 %> 
+          <tr>
+            <td><%= index %></td>
+            <% @table.fields.each_with_index do | field,index | %>
+              <td>
+                <% if field.datatype == "formule" %>
+                  <%= field.evaluate(values) %>
+                <% else %>
+                  <%= values[index] %>
+                <% end %>
+              </td>
+            <% end %>
+            <td><%= l(updated_at) %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>

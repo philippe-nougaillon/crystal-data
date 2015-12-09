@@ -24,7 +24,7 @@
         <tr>
           <td><b><%= link_to table.name.humanize, table %></b></td>
           <td><%= table.fields.pluck(:name).join(", ") %></td>
-          <td><%= table.size %></td>
+          <td class="text-right"><%= table.size %></td>
           <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
           <td>
             <%= table.users.pluck(:name).join(', ') %>
@@ -40,7 +40,9 @@
           <% end %>
           <td>
             <%= link_to logs_path(table_id:table), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %>
-            <%= link_to table_path(table, format:'xls'), title:"Export Excel" do %><i class="glyphicon glyphicon-th-list"></i><% end %>
+          </td>
+          <td>
+            <%= link_to table_path(table, format:'xls'), title:"Export Excel" do %><i class="glyphicon glyphicon-th"></i><% end %>
           </td>
         </tr>
 
