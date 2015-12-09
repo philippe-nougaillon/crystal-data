@@ -87,6 +87,11 @@ class TablesController < ApplicationController
   end
 
   def show_attrs
+    unless @table.is_owner?(@current_user)
+      flash[:notice] = "Vous n'êtes pas son propriétaire !"
+      redirect_to tables_path
+      return
+    end 
     @field = Field.new(table_id:@table.id)
   end
 
@@ -106,6 +111,12 @@ class TablesController < ApplicationController
   def fill_do
     table = Table.find(params[:table_id])
     user = @current_user
+    unless table.users.include?(user)
+      flash[:notice] = "Vous n'êtes pas utilisateur connu de cette table, circulez !"
+      redirect_to tables_path
+      return
+    end
+
     data = params[:data]
     record_index = data.first.first
     values = data[record_index.to_s]
@@ -163,6 +174,12 @@ class TablesController < ApplicationController
 
 
   def delete_record
+     unless @table.users.include?(@current_user)
+      flash[:notice] = "Vous n'êtes pas un utilisateur connu de cette table, circulez !"
+      redirect_to @table
+      return
+    end
+
     if params[:record_index]
       record_index = params[:record_index]
       @table.values.where(record_index:record_index).each do |value|
@@ -219,9 +236,14 @@ class TablesController < ApplicationController
   # DELETE /tables/1
   # DELETE /tables/1.json
   def destroy
-    @table.destroy
+    if @table.is_owner?(@current_user)
+      @table.destroy
+      flash[:notice] = "Table supprimée."
+    else
+      flash[:notice] = "Vous n'êtes pas son propriétaire !"
+    end 
     respond_to do |format|
-      format.html { redirect_to tables_url, notice: 'Table supprimée.' }
+      format.html { redirect_to tables_url }
       format.json { head :no_content }
     end
   end
