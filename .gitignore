@@ -17,3 +17,6 @@
 /tmp
 /public/tmp
 
+# ignore user's files
+/public/table_files
+
