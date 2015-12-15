@@ -1,7 +1,7 @@
 <h2>Formulaire '<%= @table.name.humanize %>'</h2>
 <br>
 
-<%= form_tag do %>
+<%= form_tag({action: :fill}, multipart:true) do %>
 
   <%= hidden_field_tag :table_id, @table.id %>
 
@@ -43,6 +43,10 @@
               <div class="col-sm-2">
                 <% field_value = field.evaluate(@table.values.records_at(@record_index).pluck(:data)) %>
                 <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
+              </div>
+            <% elsif field.datatype == "fichier" %>
+              <div class="col-sm-4">
+                <%= file_field_tag field_name %>
               </div>
             <% end %>
             <br>

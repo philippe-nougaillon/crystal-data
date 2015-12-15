@@ -55,6 +55,8 @@
 							<td class="<%= @numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
 								<% if field.datatype == "formule" %>
 									<%= field.evaluate(values) %>
+								<% elsif field.datatype == "fichier" and values[index] %>
+									<%= link_to(values[index].split('__').last, url_for("/table_files/" + values[index])) %>
 								<% else %>
 									<%= values[index] %>
 									<% if field.sum %>

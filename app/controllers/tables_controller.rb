@@ -31,6 +31,7 @@ class TablesController < ApplicationController
   def show
     @sum = Hash.new(0)
     @numeric_types = ['formule','euros','nombre']
+    @pathname = Rails.root.join('public', 'table_files') 
 
     # recherche les lignes 
     unless params[:search].blank?
@@ -120,6 +121,7 @@ class TablesController < ApplicationController
     data = params[:data]
     record_index = data.first.first
     values = data[record_index.to_s]
+    pathname = Rails.root.join('public', 'table_files') 
 
     if values.values.select{|v| v.present? }.any? # test si tous les champs sont renseignés 
 
@@ -132,6 +134,16 @@ class TablesController < ApplicationController
         # test quel champ a été modifié
         table.fields.each do |field|
           old_value = table.values.find_by(record_index:record_index, field:field)
+
+          if field.datatype == 'fichier'
+              uploaded_io = values[field.id.to_s]
+              filename = DateTime.now.to_s(:compact) + '__' + uploaded_io.original_filename
+              File.open(pathname + filename, 'wb') do | file |
+                  file.write(uploaded_io.read)
+              end
+              values[field.id.to_s] = filename
+          end
+    
           if old_value 
               if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
                 # enregistre les modifications dans l'historique
@@ -151,6 +163,17 @@ class TablesController < ApplicationController
       else
         # ajout des données
         table.fields.each do |field|
+          
+          # si fichier, on l'enregistre 
+          if field.datatype == 'fichier'
+              uploaded_io = values[field.id.to_s]
+              filename = DateTime.now.to_s(:compact) + '__' + uploaded_io.original_filename
+              File.open(pathname + filename, 'wb') do | file |
+                  file.write(uploaded_io.read)
+              end
+              values[field.id.to_s] = filename
+          end
+
           # enregistre les ajouts dans l'historique
           field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:values[field.id.to_s])
           # enregistrer les nouvelles données
