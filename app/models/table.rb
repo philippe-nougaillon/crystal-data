@@ -15,4 +15,15 @@ class Table < ActiveRecord::Base
 	def is_owner?(user)
 		self.users[0] == user
 	end
+
+	def files_size
+		sizeInMB = 0.0 
+		self.fields.fichier.each do |f| 
+			f.values.each do |v| 
+				sizeInMB += (File.size("public/table_files/#{v.data}").to_f / 2**20).round(2) if v.data
+			end
+		end
+		sizeInMB
+	end
+
 end

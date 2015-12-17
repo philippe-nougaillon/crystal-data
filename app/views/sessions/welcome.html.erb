@@ -2,78 +2,88 @@
 	<i class="glyphicon glyphicon-th-list"></i>
 	crystalData
 </h1>
-<h2>Base de données en ligne</h2>
+<h2>Vos données en ligne</h2>
 <br>
 
-<table class="table-striped table-hover table-bordered table-responsive"> 
-	<tr>
-		<td style="width:50%;margin-right:50px;">
-			<h3>Créez vos propres tables de données<br> ou importer-les à partir de feuille Excel</h3>
-		</td>
-		<td style="vertical-align:center">
-			<a href="#pop-lg1" id="pop-lg1"> <%= image_tag image_path("screen-lg.png"), width:'600', id:"imageresource-lg1" %></a>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="#pop-lg2" id="pop-lg2"> <%= image_tag image_path("screen-lg-modif.png"), width:'600', id:"imageresource-lg2" %></a>
-		</td>
-		<td>
-			<h3>Créez de nouvelles colonnes<br><br>Types: Texte, Nombre, €, Date, Oui/Non, Liste, Formule</h3>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<h3>Editez les enregistrements dans un formulaire</h3>
-		</td>
-		<td>
-			<a href="#pop-lg3" id="pop-lg3"> <%= image_tag image_path("screen-lg-form.png"), width:'600', id:"imageresource-lg3" %></a>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="#pop-lg4" id="pop-lg4"> <%= image_tag image_path("screen-lg-filtre.png"), width:'600', id:"imageresource-lg4" %></a>
-		</td>
-		<td>
-			<h3>Recherchez, filtrez, triez</h3>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<h3>Partagez vos tables avec d'autres utilisateurs</h3>
-		</td>
-		<td>
-			<a href="#pop-lg5" id="pop-lg5"> <%= image_tag image_path("screen-lg-partage.png"), width:'600', id:"imageresource-lg5" %></a>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="#pop-lg6" id="pop-lg6"> <%= image_tag image_path("screen-lg-excel.png"), width:'600', id:"imageresource-lg6" %></a>
-		</td>
-		<td>
-			<h3>Exportez vos tables vers Excel</h3>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<h3>Chaque modification est consignée dans un historique</h3>
-		</td>
-		<td>
-			<a href="#pop-lg7" id="pop-lg7"> <%= image_tag image_path("screen-lg-historique.png"), width:'600', id:"imageresource-lg7" %></a>
-		</td>
-	</tr>
+<div class="table-responsive">
+	<table class="table-striped table-bordered table-condensed"> 
+		<tr>
+			<td style="width:50%;margin-right:50px;">
+				<h3>Importez vos feuilles de données (CSV, Excel, ...)</h3>
+			</td>
+			<td style="vertical-align:center">
+				<a href="#pop-lg1" id="pop-lg1">
+					<%= image_tag image_path("screen-lg.png"), width:'600', id:"imageresource-lg1", class:"img-thumbnail" %>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#pop-lg2" id="pop-lg2">
+					<%= image_tag image_path("screen-lg-modif.png"), width:'600', id:"imageresource-lg2", class:"img-thumbnail" %>
+				</a>
+			</td>
+			<td>
+				<h3>Créez de nouvelles colonnes:<br><br>Texte, Nombre, Date, Oui/Non, Liste, Formule, Fichier</h3>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h3>Editez les enregistrements dans un formulaire<br><br>
+					Les modifications sont consignées dans un historique
+				</h3>
+			</td>
+			<td>
+				<a href="#pop-lg3" id="pop-lg3">
+					<%= image_tag image_path("screen-lg-form.png"), width:'600', id:"imageresource-lg3", class:"img-thumbnail" %>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#pop-lg4" id="pop-lg4">
+					<%= image_tag image_path("screen-lg-filtre.png"), width:'600', id:"imageresource-lg4", class:"img-thumbnail" %>
+				</a>
+			</td>
+			<td>
+				<h3>Recherchez, filtrez, triez vos données</h3>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h3>Partagez avec d'autres utilisateurs</h3>
+			</td>
+			<td>
+				<a href="#pop-lg5" id="pop-lg5">
+					<%= image_tag image_path("screen-lg-partage.png"), width:'600', id:"imageresource-lg5", class:"img-thumbnail" %>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#pop-lg6" id="pop-lg6">
+					<%= image_tag image_path("screen-lg-excel.png"), width:'600', id:"imageresource-lg6", class:"img-thumbnail" %>
+				</a>
+			</td>
+			<td>
+				<h3>Exportez vers Excel</h3>
+			</td>
+		</tr>
 
-	<tr>
-		<td>
-			<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'160', id:"imageresource-sm-1" %></a>
-			<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'160', id:"imageresource-sm-2" %></a>
-			<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'160', id:"imageresource-sm-3" %></a>
-		</td>
-		<td>
-			<h3>Utilisez l'application depuis votre mobile, les écrans s'adaptent automatiquement à la taille d'un écran de smartphone</h3>
-		</td>
-	</tr>
-</table>
+		<tr>
+			<td>
+				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'160', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
+				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'160', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
+				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'160', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
+			</td>
+			<td>
+				<h3>Visualisez vos données en mobilité.<br><br>
+				 	Les écrans s'adaptent automatiquement à la taille d'un écran de smartphone
+				 </h3>
+			</td>
+		</tr>
+	</table>
+</div>
 <br><br><br>
 
 

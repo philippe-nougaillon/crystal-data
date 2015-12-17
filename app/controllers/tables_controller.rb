@@ -121,63 +121,42 @@ class TablesController < ApplicationController
     data = params[:data]
     record_index = data.first.first
     values = data[record_index.to_s]
-    pathname = Rails.root.join('public', 'table_files') 
 
     if values.values.select{|v| v.present? }.any? # test si tous les champs sont renseignés 
 
       # # modification = si données existent déjà, on les supprime pour pouvoir ajouter les données modifiées 
       update = table.values.where(record_index:record_index).any?
-      if update 
-        # garde la date de dernière mise à jour
-        created_at_date = table.values.where(record_index:record_index).first.created_at
+      # garde la date de dernière mise à jour
+      created_at_date = table.values.where(record_index:record_index).first.created_at if update
 
-        # test quel champ a été modifié
-        table.fields.each do |field|
-          old_value = table.values.find_by(record_index:record_index, field:field)
+      # test quel champ a été modifié
+      table.fields.each do |field|
 
-          if field.datatype == 'fichier'
-              uploaded_io = values[field.id.to_s]
-              filename = DateTime.now.to_s(:compact) + '__' + uploaded_io.original_filename
-              File.open(pathname + filename, 'wb') do | file |
-                  file.write(uploaded_io.read)
-              end
-              values[field.id.to_s] = filename
-          end
+        # save file
+        if field.datatype == 'fichier' 
+           if values[field.id.to_s]
+              values[field.id.to_s] = field.save_file(values[field.id.to_s])
+           else
+              next
+           end
+        end 
     
-          if old_value 
-              if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
-                # enregistre les modifications dans l'historique
-                field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
-                # supprimer les anciennes données
-                table.values.find_by(record_index:record_index, field:field).delete
-                # enregistrer les nouvelles données
-                table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
-              end
-          else
-            # enregistre les modifications dans l'historique
-            field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
-            # enregistrer les nouvelles données
-            table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
-          end
-        end
-      else
-        # ajout des données
-        table.fields.each do |field|
-          
-          # si fichier, on l'enregistre 
-          if field.datatype == 'fichier'
-              uploaded_io = values[field.id.to_s]
-              filename = DateTime.now.to_s(:compact) + '__' + uploaded_io.original_filename
-              File.open(pathname + filename, 'wb') do | file |
-                  file.write(uploaded_io.read)
-              end
-              values[field.id.to_s] = filename
-          end
-
-          # enregistre les ajouts dans l'historique
-          field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:values[field.id.to_s])
+        # test si c'est un update ou new record
+        old_value = table.values.find_by(record_index:record_index, field:field)
+        if old_value 
+            if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
+              # enregistre les modifications dans l'historique
+              field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
+              # supprimer les anciennes données
+              table.values.find_by(record_index:record_index, field:field).delete
+              # enregistrer les nouvelles données
+              table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
+            end
+        else
+          # enregistre les modifications dans l'historique
+          field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
           # enregistrer les nouvelles données
-          table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date )
+          table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
         end
       end
 

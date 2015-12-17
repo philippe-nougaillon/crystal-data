@@ -7,15 +7,16 @@
         <th>Nom</th>
         <th>Colonnes</th>
         <th>Nb Lignes</th>
+        <th>Stockage</th>
         <th>Màj</th>
         <th>Utilisateurs</th>
-        <th></th>
+        <th /><th /><th />
       </tr>
     </thead>
 
     <tfoot>
       <tr>
-        <td /><td /><td /><td />
+        <td /><td /><td /><td /><td /><td /><td /><td /><td />
       </tr>
     </tfoot>
 
@@ -25,6 +26,7 @@
           <td><b><%= link_to table.name.humanize, table %></b></td>
           <td><%= table.fields.pluck(:name).join(", ") %></td>
           <td class="text-right"><%= table.size %></td>
+          <td class="text-right"><%= table.files_size %> MB</td>
           <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
           <td>
             <%= table.users.pluck(:name).join(', ') %>
@@ -45,7 +47,6 @@
             <%= link_to table_path(table, format:'xls'), title:"Export Excel" do %><i class="glyphicon glyphicon-th"></i><% end %>
           </td>
         </tr>
-
       <% end %>
     </tbody>
   </table>

@@ -12,11 +12,11 @@ class Field < ActiveRecord::Base
 	scope :filtres, -> { where(filtre:true)}
 	scope :sommes,  -> { where(sum:true)}
 
+	# evaluer [1] + [2]
 	def evaluate(values)
 		begin
 			# test si opérandes nulles 
 			unless self.items.scan(/\[([^\]]+)\]/).flatten.select{|i| values[i.to_i - 1].nil? }.any?
-				# evalue [1] + [2]
 				result = self.items.gsub(/\[([^\]]+)\]/) {|w| values[w.delete('[]').to_i - 1]}
 				eval(result)
 			else
@@ -29,6 +29,16 @@ class Field < ActiveRecord::Base
 		rescue SyntaxError => se
 			"#{se}: #{result}"
 		end
+	end
+
+	def save_file(uploaded_io)
+		pathname = Rails.root.join('public', 'table_files') 
+			
+        filename = DateTime.now.to_s(:compact) + '__' + uploaded_io.original_filename
+        File.open(pathname + filename, 'wb') do | file |
+            file.write(uploaded_io.read)
+        end
+        filename
 	end 	
 
 end

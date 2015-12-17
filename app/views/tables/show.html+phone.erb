@@ -20,61 +20,65 @@
 	  <% end %>
 	</p>
 
-	<table class="table table-striped table-hover table-bordered table-responsive">
-		<thead>
-			<tr>
-				<th />
-				<% @table.fields.each do | field | %>
-					<th>
-						<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
-					</th>
-				<% end %>
-			</tr>
-		</thead>
-
-		<% if @records.any? %>
-			<tbody>
-				<% count = 0 %>	
-				<% numeric_types = ['formule','euros','nombre'] %>
-				<% @records.each do | index | %>
-					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
-						<% count += 1 %> 
-						<tr>
-							<td>	
-								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
-							</td>
-							<% @table.fields.each_with_index do | field,index | %>
-								<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
-									<% if field.datatype == "formule" %>
-										<%= field.evaluate(values) %>
-									<% else %>
-										<%= values[index] %>
-										<% if field.sum %>
-											<% @sum[field.id] += values[index].to_i %>
-										<% end %>
-									<% end %>
-								</td>
-							<% end %>
-						</tr>
-				<% end %>
-			</tbody>
-
-			<tfoot>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered">
+			<thead>
 				<tr>
-					<td />
-					<% @table.fields.each do |field| %>
-						<% if field.sum %>
-							<td class="text-right">
-								<%= @sum[field.id] %>
-							</td>
-						<% else %>
-							<td />
-						<% end %>
+					<th />
+					<% @table.fields.each do | field | %>
+						<th>
+							<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
+						</th>
 					<% end %>
 				</tr>
-			</tfoot>
+			</thead>
 
-		</table>
+			<% if @records.any? %>
+				<tbody>
+					<% count = 0 %>	
+					<% numeric_types = ['formule','euros','nombre'] %>
+					<% @records.each do | index | %>
+						<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
+							<% count += 1 %> 
+							<tr>
+								<td>	
+									<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
+								</td>
+								<% @table.fields.each_with_index do | field,index | %>
+									<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
+										<% if field.datatype == "formule" %>
+											<%= field.evaluate(values) %>
+										<% elsif field.datatype == "fichier" and values[index] %>
+											<%= link_to(values[index].split('__').last, url_for("/table_files/" + values[index])) %>
+										<% else %>
+											<%= values[index] %>
+											<% if field.sum %>
+												<% @sum[field.id] += values[index].to_i %>
+											<% end %>
+										<% end %>
+									</td>
+								<% end %>
+							</tr>
+					<% end %>
+				</tbody>
+
+				<tfoot>
+					<tr>
+						<td />
+						<% @table.fields.each do |field| %>
+							<% if field.sum %>
+								<td class="text-right">
+									<%= @sum[field.id] %>
+								</td>
+							<% else %>
+								<td />
+							<% end %>
+						<% end %>
+					</tr>
+				</tfoot>
+
+			</table>
+		</div>	
 		<%= count %> sur <%= @table.size %> au total
 		<br>
 	<% end %>
