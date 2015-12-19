@@ -14,42 +14,42 @@
       <div class="field form-group">
           <%= label_tag truncate(field.name, length:23), nil, class: 'col-sm-2 control-label' %>
 
-            <% if field.datatype == "texte" %>  
-              <div class="col-sm-4">
-                <%= text_field_tag field_name, field_value, class: 'form-control' %>
-              </div>
-            <% elsif field.datatype == "nombre" %>
-              <div class="col-sm-2">
-                <%= number_field_tag field_name, field_value, class: 'form-control' %>
-              </div>
-            <% elsif field.datatype == "euros" %>  
-              <div class="col-sm-2">
-                <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
-              </div>
-            <% elsif field.datatype == "date" %>
-              <div class="col-sm-2">
-                <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
-              </div>
-            <% elsif field.datatype == "oui_non?" %>
-              <div class="col-sm-2">
-                <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
-                <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
-              </div>
-            <% elsif field.datatype == "liste" %>
-              <div class="col-sm-2">
-                <%= select_tag field_name, options_for_select(field.items.split(","), field_value), include_blank: true, class: 'form-control' %>
-              </div>
-            <% elsif field.datatype == "formule" %>
-              <div class="col-sm-2">
-                <% field_value = field.evaluate(@table.values.records_at(@record_index).pluck(:data)) %>
-                <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
-              </div>
-            <% elsif field.datatype == "fichier" %>
-              <div class="col-sm-4">
-                <%= file_field_tag field_name, class: 'form-control' %>
-              </div>
-            <% end %>
-            <br>
+          <% if field.datatype == "texte" %>  
+            <div class="col-sm-4">
+              <%= text_field_tag field_name, field_value, class: 'form-control' %>
+            </div>
+          <% elsif field.datatype == "nombre" %>
+            <div class="col-sm-2">
+              <%= number_field_tag field_name, field_value, class: 'form-control' %>
+            </div>
+          <% elsif field.datatype == "euros" %>  
+            <div class="col-sm-2">
+              <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
+            </div>
+          <% elsif field.datatype == "date" %>
+            <div class="col-sm-2">
+              <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
+            </div>
+          <% elsif field.datatype == "oui_non?" %>
+            <div class="col-sm-2">
+              <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
+              <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
+            </div>
+          <% elsif field.datatype == "liste" %>
+            <div class="col-sm-2">
+              <%= select_tag field_name, options_for_select(field.items.split(","), field_value), include_blank: true, class: 'form-control' %>
+            </div>
+          <% elsif field.datatype == "formule" %>
+            <div class="col-sm-2">
+              <% field_value = field.evaluate(@table.values.records_at(@record_index).order(:record_index,:field_id).pluck(:data)) %>
+              <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
+            </div>
+          <% elsif field.datatype == "fichier" %>
+            <div class="col-sm-4">
+              <%= file_field_tag field_name, class: 'form-control' %>
+            </div>
+          <% end %>
+          <br>
   		</div>
   <% end %>  
   <br><br>

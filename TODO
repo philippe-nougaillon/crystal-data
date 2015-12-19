@@ -6,6 +6,9 @@ DONE
 - tri colonnes (ASC/DESC)
 - historique: inclure l'adresse IP 
 - import table: entrée dans l'historique
+- pouvoir annuler le partage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))
+- champs calculé, formulaire, les données ne s'affichent pas !!
+- new colonne, type liste, pas d'option !
 
 
 TODO
@@ -15,7 +18,6 @@ TODO
 - tri colonnes type formule 
 - formule sur colonne formule... 
 - support tablette... 
-- pouvoir annuler le partgage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))
 
 MEMO
 

@@ -520,13 +520,10 @@
 	"buffers":
 	[
 		{
-			"contents": "CrystalData TODO\n\nDONE\n\n- tester les valeurs d'une formule (ne pas calculer la formule si pas de données)\n- tri colonnes (ASC/DESC)\n- historique: inclure l'adresse IP \n- import table: entrée dans l'historique\n- pouvoir annuler le partage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))\n\n\nTODO\n\n- faire une page d'aide\n- champs obligatoires\n- tri colonnes type formule \n- formule sur colonne formule... \n- support tablette... \n\nMEMO\n\n formule diff entre deux dates: (Date.strptime(\"[5]\",\"%d/%m/%Y\") - Date.strptime(\"[4]\",\"%d/%m/%Y\")).to_s.chomp('/1') \n",
 			"file": "TODO",
-			"file_size": 570,
-			"file_write_time": 1449657439000000,
 			"settings":
 			{
-				"buffer_size": 567,
+				"buffer_size": 673,
 				"line_ending": "Unix",
 				"name": "TODO"
 			}
@@ -631,7 +628,7 @@
 			"file": "app/views/tables/show.html.erb",
 			"settings":
 			{
-				"buffer_size": 3728,
+				"buffer_size": 3738,
 				"line_ending": "Unix"
 			}
 		},
@@ -1048,7 +1045,7 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1056,7 +1053,7 @@
 					"file": "TODO",
 					"settings":
 					{
-						"buffer_size": 567,
+						"buffer_size": 673,
 						"regions":
 						{
 						},
@@ -1291,7 +1288,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1400,7 +1397,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 672.0,
+						"translation.y": 621.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1410,15 +1407,15 @@
 					"file": "app/views/tables/show.html.erb",
 					"settings":
 					{
-						"buffer_size": 3728,
+						"buffer_size": 3738,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2219,
-								2219
+								811,
+								811
 							]
 						],
 						"settings":
@@ -1427,7 +1424,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 612.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

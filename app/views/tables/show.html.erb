@@ -14,12 +14,13 @@
 	    <%= text_field_tag :search, params[:search], onchange:'this.form.submit()' %>
 
 	    <% @table.fields.filtres.each_with_index do | field,index | %>
-		    <%= field.name %>
+		    <%= field.name %>:
 		    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
 		    <%= select_tag "select[#{index}]", options_for_select(field.values.pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()' %>
 		<% end %>
-
-	    <%= submit_tag 'Appliquer', class: 'btn btn-success' %> | 
+		|
+	    <%= submit_tag 'Appliquer', class: 'btn btn-success' %> 
+	    | 
 		<%= link_to fill_url(@table.id), class: 'btn btn-primary' do %>
 		  <i class="glyphicon glyphicon-plus"></i> Ajouter
 		<% end %>
