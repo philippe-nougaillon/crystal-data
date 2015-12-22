@@ -13,14 +13,14 @@
 			</td>
 			<td style="vertical-align:center">
 				<a href="#pop-lg1" id="pop-lg1">
-					<%= image_tag image_path("screen-lg.png"), width:'600', id:"imageresource-lg1", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg.png"), width:'100%', id:"imageresource-lg1", class:"img-thumbnail" %>
 				</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="#pop-lg2" id="pop-lg2">
-					<%= image_tag image_path("screen-lg-modif.png"), width:'600', id:"imageresource-lg2", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-modif.png"), width:'100%', id:"imageresource-lg2", class:"img-thumbnail" %>
 				</a>
 			</td>
 			<td>
@@ -35,14 +35,14 @@
 			</td>
 			<td>
 				<a href="#pop-lg3" id="pop-lg3">
-					<%= image_tag image_path("screen-lg-form.png"), width:'600', id:"imageresource-lg3", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-form.png"), width:'100%', id:"imageresource-lg3", class:"img-thumbnail" %>
 				</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="#pop-lg4" id="pop-lg4">
-					<%= image_tag image_path("screen-lg-filtre.png"), width:'600', id:"imageresource-lg4", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-filtre.png"), width:'100%', id:"imageresource-lg4", class:"img-thumbnail" %>
 				</a>
 			</td>
 			<td>
@@ -51,18 +51,18 @@
 		</tr>
 		<tr>
 			<td>
-				<h3>Partagez avec d'autres utilisateurs</h3>
+				<h3>Partagez vos données avec d'autres utilisateurs</h3>
 			</td>
 			<td>
 				<a href="#pop-lg5" id="pop-lg5">
-					<%= image_tag image_path("screen-lg-partage.png"), width:'600', id:"imageresource-lg5", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-partage.png"), width:'100%', id:"imageresource-lg5", class:"img-thumbnail" %>
 				</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="#pop-lg6" id="pop-lg6">
-					<%= image_tag image_path("screen-lg-excel.png"), width:'600', id:"imageresource-lg6", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-excel.png"), width:'100%', id:"imageresource-lg6", class:"img-thumbnail" %>
 				</a>
 			</td>
 			<td>
@@ -72,9 +72,9 @@
 
 		<tr>
 			<td>
-				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'160', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
-				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'160', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
-				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'160', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
+				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'32%', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
+				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'32%', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
+				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'32%', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
 			</td>
 			<td>
 				<h3>Visualisez vos données en mobilité.<br><br>
@@ -86,19 +86,26 @@
 </div>
 <br><br><br>
 
-
 <!-- Creates the bootstrap modal where the image will appear -->
 <div class="modal fade" id="imagemodal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg" >
+  <div class="modal-dialog modal-lg" data-dismiss="modal">
     <div class="modal-content">
-        <img src="" id="imagepreview-lg" >
+	    <div class="modal-header"></div>
+        <img src="" id="imagepreview-lg" style="width: 100%;">
+	    <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		</div>
     </div>
   </div>
 </div>
 <div class="modal fade" id="imagemodal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" >
+  <div class="modal-dialog modal-sm" data-dismiss="modal">
     <div class="modal-content">
-        <img src="" id="imagepreview-sm" >
+	    <div class="modal-header"></div>
+        <img src="" id="imagepreview-sm" style="width: 100%;">
+	    <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		</div>
     </div>
   </div>
 </div>

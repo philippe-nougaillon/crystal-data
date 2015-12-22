@@ -1,7 +1,7 @@
 <h2>Tables</h2>
 
 <% if @tables.any? %>
-  <table class="table table-striped table-hover table-bordered table-responsive">
+  <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
       	<th />
@@ -19,15 +19,15 @@
       	<% @tables.each do |table| %>
         	<tr>
         		<td>
-        			<%= link_to fill_url(table.id), class:'btn btn-success btn-lg' do %>
-	  					<i class="glyphicon glyphicon-plus"></i> 
-					<% end %>
-				</td>
-          		<td><b><%= link_to table.name.humanize, table, class:'btn btn-default' %></b></td>
-          		<td style="text-align:center"><%= table.size %></td>
-          		<td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
-			</tr>
-	  	<% end %>
+        			<%= link_to fill_url(table.id), class:'btn btn-lg btn-primary' do %>
+	  		   			<i class="glyphicon glyphicon-plus"></i> 
+					    <% end %>
+    				</td>
+        		<td><b><%= link_to table.name.humanize, table, class:'btn btn-lg btn-default' %></b></td>
+        		<td style="text-align:center"><%= table.size %></td>
+        		<td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
+			    </tr>
+	  	  <% end %>
 	</tbody>
   </table>
 <% end %>

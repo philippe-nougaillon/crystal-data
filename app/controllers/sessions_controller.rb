@@ -2,11 +2,6 @@ class SessionsController < ApplicationController
   before_filter :authorize, except:[:new, :create, :welcome]
 
   def welcome
-    # if @current_user
-    #   # si utilisateur déjà authentifié (remember me), on va aux tables 
-    #   session[:user_id] = @current_user.id
-    #   redirect_to tables_path
-    # end
   end
 
   def new

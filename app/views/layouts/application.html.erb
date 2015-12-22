@@ -52,8 +52,6 @@
 				            <ul class="dropdown-menu">
 				              <li><%= link_to "Profil", @current_user %></li>
 				              <li class="divider"></li>
-				              <li><%= link_to "A propos de crystalData", '/about' %></li>
-				              <li class="divider"></li>
 				              <li>
 				                <%= link_to "Se déconnecter", '/logout' %>
 				              </li>
@@ -81,7 +79,7 @@
 			    <div class="alert <%= notice ? "alert-info" : "" %><%= alert ? "alert-danger" : "" %> alert-dismissible" role="alert">
 			        <button type="button" class="close" data-dismiss="alert">
 			            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			        <div >
+			        <div>
 			            <% if notice %>
 			                <%= notice %>
 			            <% elsif alert %>
