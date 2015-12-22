@@ -1,7 +1,6 @@
 CrystalData TODO
 
 DONE
-
 - tester les valeurs d'une formule (ne pas calculer la formule si pas de données)
 - tri colonnes (ASC/DESC)
 - historique: inclure l'adresse IP 
@@ -10,9 +9,7 @@ DONE
 - champs calculé, formulaire, les données ne s'affichent pas !!
 - new colonne, type liste, pas d'option !
 
-
 TODO
-
 - faire une page d'aide
 - champs obligatoires
 - tri colonnes type formule 
@@ -20,5 +17,4 @@ TODO
 - support tablette... 
 
 MEMO
-
- formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 
+- formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 

@@ -15,11 +15,12 @@
 			    <%= select_tag "select[#{index}]", options_for_select(field.values.pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
 			    <br>
 			<% end %>
-		    <%= submit_tag 'Filtrer', class: 'btn btn-success' %>
+		    <%= submit_tag 'Filtrer', class: 'btn-lg btn-success' %>
 		</div>
 	  <% end %>
 	</p>
-
+	<br>
+	
 	<div class="table-responsive">
 		<table class="table table-striped table-hover table-bordered">
 			<thead>
@@ -83,12 +84,5 @@
 		<br>
 	<% end %>
 	<br>
-<% else %>
-	<% unless params[:attrs] %>
-		Cette table ne contient aucune colonne<br><br>
-		<%= link_to show_attrs_path(id:@table), class: 'btn btn-success' do %>
-		  <i class="glyphicon glyphicon-plus"></i> Ajouter une colonne
-		<% end %> 
-	<% end %>
 <% end %>
 <br><br>
