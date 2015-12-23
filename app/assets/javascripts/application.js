@@ -18,7 +18,9 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require turbolinks
+//= require stickytableheaders
 
+    
 $(function() {
     var flashCallback;
     flashCallback = function() {

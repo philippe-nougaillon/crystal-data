@@ -4,22 +4,18 @@ class TablesController < ApplicationController
   before_filter :authorize
   before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
 
-  #layout :checkifmobile
-
-  def checkifmobile
-    if request.variant and request.variant.include?(:phone) 
-      return 'phone'  
-    else
-      return 'application'
-    end
-  end
-
   # GET /tables
   # GET /tables.json
   def index
     session[:user_id] = @current_user.id if @current_user && session[:user_id].nil?
-
     @tables = @current_user.tables.includes(:fields)
+    # calcule le nombre de lignes total
+    @total_size = 0
+    @tables.each{|t| @total_size += t.size }
+    # calcule la taille total de stockage
+    @total_files_size = 0
+    @tables.each{|t| @total_files_size += t.files_size }
+     
     respond_to do |format|
       format.html.phone
       format.html.none 
