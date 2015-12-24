@@ -39,6 +39,11 @@ class Field < ActiveRecord::Base
             file.write(uploaded_io.read)
         end
         filename
-	end 	
+	end
+
+	def delete_file(filename)
+		pathname = Rails.root.join('public', 'table_files') 
+		File.delete(pathname + filename) 
+	end	
 
 end

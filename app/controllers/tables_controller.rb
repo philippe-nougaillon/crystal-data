@@ -173,15 +173,19 @@ class TablesController < ApplicationController
 
   def delete_record
      unless @table.users.include?(@current_user)
-      flash[:notice] = "Vous n'êtes pas un utilisateur connu de cette table, circulez !"
+      flash[:notice] = "Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
       redirect_to @table
       return
     end
 
     if params[:record_index]
       record_index = params[:record_index]
-      @table.values.where(record_index:record_index).each do |value|
+      @table.values.where(record_index:record_index).each do | value |
           value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"ligne supprimée. #{value.data} => !")
+          if value.field.fichier?
+              value.field.delete_file(value.data)
+              value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"fichier supprimé. #{value.data} => !")
+          end
           value.delete
       end
       flash[:notice] = "Enregistrement ##{record_index} supprimé avec succès"
@@ -235,6 +239,10 @@ class TablesController < ApplicationController
   # DELETE /tables/1.json
   def destroy
     if @table.is_owner?(@current_user)
+       # supprime les fichiers liés
+       @table.values.each do | value |
+          value.field.delete_file(value.data) if value.field.fichier? and value.data
+      end
       @table.destroy
       flash[:notice] = "Table supprimée."
     else
