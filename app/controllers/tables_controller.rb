@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_filter :authorize
-  before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
+  before_action :set_table, except: [:new, :create, :import, :import_do, :export, :export_do, :checkifmobile, :index]
 
   # GET /tables
   # GET /tables.json
@@ -60,15 +60,26 @@ class TablesController < ApplicationController
       @records = @records_search
     end  
 
+    unless params[:debut].blank? and params[:fin].blank?
+      @debut = Time.parse(params[:debut]).strftime("%Y-%m-%d")
+      @fin = Time.parse(params[:fin]).strftime("%Y-%m-%d")
+
+      # calcule la date maximum de chaque ligne d'enregistrement 
+      h = @table.values.group(:record_index).maximum(:updated_at)
+      # selectionne les lignes modifées dans la période
+      hash = h.select{|record| h[record].between?(@debut,@fin) }
+      # retourne que les clés
+      @records = hash.keys
+    end
+
     if params[:sort_by]
       # ordre de tri ASC/DESC
       order_by = (params[:sort_by] == session[:sort_by]) ? ((session[:order_by] == "DESC") ? "ASC" : "DESC") : "ASC"
       if params[:sort_by] == '0' # tri sur la date de maj de la ligne
-         # calcul la date maximume par enregistrement 
+         # calcule la date maximum de chaque ligne d'enregistrement 
          h = @table.values.group(:record_index).maximum(:updated_at)
-         # retourne le hash pour faire un tri par date et retourne les record_index
+         # inverse le hash (keys <=> values) pour faire un tri par date et retourne les record_index
          @records = Hash[h.sort_by{|k, v| v}.reverse].keys
-
       else
          @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
       end 
@@ -182,7 +193,8 @@ class TablesController < ApplicationController
       record_index = params[:record_index]
       @table.values.where(record_index:record_index).each do | value |
           value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"ligne supprimée. #{value.data} => !")
-          if value.field.fichier?
+          # supprime le fichier lié
+          if value.field.fichier? and value.data
               value.field.delete_file(value.data)
               value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"fichier supprimé. #{value.data} => !")
           end
@@ -284,6 +296,20 @@ class TablesController < ApplicationController
       flash[:alert] = "Il manque le fichier source"
       redirect_to action: 'import'
     end  
+  end
+
+  def export
+  end
+
+  def export_do
+    unless params[:debut].blank? and params[:fin].blank?
+      @debut = params[:debut]
+      @fin = params[:fin]
+      @table = Table.find(params[:table_id])
+    else
+      flash[:alert] = "Oups ! Il manque les dates de début et de fin..."
+      redirect_to action: 'export'
+    end
   end
 
   def add_user

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"pathname"
+			],
+			[
 				"fil",
 				"field_value"
 			],
@@ -30,10 +34,6 @@
 			[
 				"upda",
 				"updated_at_list"
-			],
-			[
-				"pa",
-				"params"
 			],
 			[
 				"ta",
@@ -548,7 +548,7 @@
 			"file": "app/models/field.rb",
 			"settings":
 			{
-				"buffer_size": 1112,
+				"buffer_size": 1235,
 				"line_ending": "Unix"
 			}
 		},
@@ -703,7 +703,7 @@
 			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
-				"buffer_size": 10603,
+				"buffer_size": 11103,
 				"line_ending": "Unix"
 			}
 		},
@@ -1105,7 +1105,7 @@
 	"groups":
 	[
 		{
-			"selected": 17,
+			"selected": 22,
 			"sheets":
 			[
 				{
@@ -1194,15 +1194,15 @@
 					"file": "app/models/field.rb",
 					"settings":
 					{
-						"buffer_size": 1112,
+						"buffer_size": 1235,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1100,
-								1100
+								1188,
+								1188
 							]
 						],
 						"settings":
@@ -1211,7 +1211,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 43.0,
+						"translation.y": 162.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1254,8 +1254,8 @@
 						"selection":
 						[
 							[
-								527,
-								527
+								514,
+								514
 							]
 						],
 						"settings":
@@ -1320,7 +1320,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 255.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1694,8 +1694,8 @@
 						"selection":
 						[
 							[
-								337,
-								337
+								617,
+								617
 							]
 						],
 						"settings":
@@ -1714,15 +1714,15 @@
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
-						"buffer_size": 10603,
+						"buffer_size": 11103,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								600,
-								600
+								6637,
+								6637
 							]
 						],
 						"settings":
@@ -1732,7 +1732,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8.0,
+						"translation.y": 2915.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

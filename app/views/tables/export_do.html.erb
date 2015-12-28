@@ -1,0 +1,6 @@
+<h2>Exporter</h2>
+
+Données modifiées entre le <%= @debut %> et le <%= @fin %>
+<br><br>
+
+<%= link_to "Cliquez sur ce lien pour obtenir les données", table_path(@table, format: :xls, debut:@debut, fin:@fin) %>

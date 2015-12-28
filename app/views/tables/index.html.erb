@@ -46,7 +46,7 @@
             <%= link_to logs_path(table_id:table), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %>
           </td>
           <td>
-            <%= link_to table_path(table, format:'xls'), title:"Export Excel" do %><i class="glyphicon glyphicon-th"></i><% end %>
+            <%= link_to export_path(table_id:table), title:"Export Excel" do %><i class="glyphicon glyphicon-th"></i><% end %>
           </td>
         </tr>
       <% end %>
