@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_filter :authorize
-  before_action :set_table, except: [:new, :create, :import, :import_do, :export, :export_do, :checkifmobile, :index]
+  before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
 
   # GET /tables
   # GET /tables.json
@@ -25,6 +25,11 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
+    unless @table.users.include?(@current_user)
+      redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
+      return
+    end
+
     @sum = Hash.new(0)
     @numeric_types = ['formule','euros','nombre']
     @pathname = Rails.root.join('public', 'table_files') 
@@ -183,9 +188,8 @@ class TablesController < ApplicationController
 
 
   def delete_record
-     unless @table.users.include?(@current_user)
-      flash[:notice] = "Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
-      redirect_to @table
+    unless @table.users.include?(@current_user)
+      redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
       return
     end
 
@@ -290,25 +294,27 @@ class TablesController < ApplicationController
       #ImportTableJob.perform_later(filename_with_path, filename, @current_user.id) 
 
       @new_table = Table.last
-      redirect_to tables_path, notice: "import en cours... veuillez patienter "
+      redirect_to tables_path, notice: "Import en cours... Veuillez patienter"
       return
     else
-      flash[:alert] = "Il manque le fichier source"
-      redirect_to action: 'import'
+      redirect_to action: 'import', alert:"Il manque le fichier source"
     end  
   end
 
   def export
+    unless @table.users.include?(@current_user)
+      redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
+      return
+    end
   end
 
   def export_do
     unless params[:debut].blank? and params[:fin].blank?
       @debut = params[:debut]
       @fin = params[:fin]
-      @table = Table.find(params[:table_id])
     else
-      flash[:alert] = "Oups ! Il manque les dates de début et de fin..."
-      redirect_to action: 'export'
+      @debut = '01/01/1900'
+      @fin = '01/01/2100'
     end
   end
 
@@ -338,6 +344,7 @@ class TablesController < ApplicationController
     redirect_to partages_path(@table)
   end
 
+
   def partages
   end
 
@@ -348,6 +355,19 @@ class TablesController < ApplicationController
     flash[:notice] = "Le partage avec l'utilisateur '#{@user.name}' a été désactivé !"
     redirect_to partages_path
   end 
+
+  def logs
+    unless @table.users.include?(@current_user)
+      redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
+      return
+    end
+
+    @logs = @table.logs.order('id DESC')
+    if params[:record_index]
+      @record_index = params[:record_index]
+      @logs = @logs.where(record_index:@record_index)  
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

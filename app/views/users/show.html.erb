@@ -4,12 +4,12 @@
 	<%= @user.name %>
 </h2>
 <br>
+
 Utilisateur depuis: <%= time_ago_in_words(@user.created_at) %><br>
 <% if @user.authentication_token %>
 	Rester connecté activé 
 <% end %>
 <br><br>
-
 
 <h4>Changer de mot de passe</h4>
 <br>
@@ -31,22 +31,20 @@ Utilisateur depuis: <%= time_ago_in_words(@user.created_at) %><br>
 	<%= f.hidden_field :name %>
 	<%= f.hidden_field :email %>
 
-
 	<div class="field form-group">
-	    <%= f.label :password, 'Mot de passe', class: 'col-sm-2 control-label' %>
 	    <div class="col-sm-2">
-		    <%= f.password_field :password, required:true, class: 'form-control' %>
+		    <%= f.password_field :password, required:true, class: 'form-control', placeholder:'Mot de passe' %>
 	    </div>
 	</div>  
 	<div class="field form-group">
-	    <%= f.label :password_confirmation, 'Confirmation', class: 'col-sm-2 control-label' %>
 	    <div class="col-sm-2">
-	    	<%= f.password_field :password_confirmation, class: 'form-control' %>
+	    	<%= f.password_field :password_confirmation, class: 'form-control', placeholder:'Confirmation' %>
 	    </div>
 	</div>
+	<br>
 
 	<div class="actions form-group">
-    	<div class="col-sm-offset-2 col-sm-10">
+    	<div class="col-sm-10">
 	    	<%= f.submit "Valider", class: 'btn btn-success' %>
   		</div>
 	</div>

@@ -1,15 +1,15 @@
-<h1>
+<h2>
 	<i class="glyphicon glyphicon-th-list"></i>
-	crystalData
-</h1>
-<h2>Vos données en ligne</h2>
+	A propos de crystalData<br>
+	<small>Vos bases de données en ligne</small>
+</h2>
 <br>
 
 <div class="table-responsive">
-	<table class="table-striped table-bordered table-condensed"> 
+	<table class="table-striped table-hover"> 
 		<tr>
 			<td style="width:50%;margin-right:50px;">
-				<h3>Importez vos feuilles de données (CSV, Excel, ...)</h3>
+				<h3>Créez ou importez vos feuilles de données</h3>
 			</td>
 			<td style="vertical-align:center">
 				<a href="#pop-lg1" id="pop-lg1">
@@ -24,13 +24,16 @@
 				</a>
 			</td>
 			<td>
-				<h3>Créez de nouvelles colonnes:<br><br>Texte, Nombre, Date, Oui/Non, Liste, Formule, Fichier</h3>
+				<h3>Ajoutez de nouvelles colonnes<br><br>
+					<small>Formats:</small><br>
+					<ul><li>Texte</li><li>Nombre</li><li>Date</li><li>Oui/Non</li><li>Liste</li><li>Formule</li><li>Fichier</li>
+				</h3>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<h3>Editez les enregistrements dans un formulaire<br><br>
-					Les modifications sont consignées dans un historique
+					<small>Les modifications sont consignées dans un historique</small>
 				</h3>
 			</td>
 			<td>
@@ -62,24 +65,23 @@
 		<tr>
 			<td>
 				<a href="#pop-lg6" id="pop-lg6">
-					<%= image_tag image_path("screen-lg-excel.png"), width:'100%', id:"imageresource-lg6", class:"img-thumbnail" %>
+					<%= image_tag image_path("screen-lg-excel2.png"), width:'100%', id:"imageresource-lg6", class:"img-thumbnail" %>
 				</a>
 			</td>
 			<td>
-				<h3>Exportez vers Excel</h3>
+				<h3>Exportez vos données vers un tableur</h3>
 			</td>
 		</tr>
-
 		<tr>
 			<td>
-				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'32%', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
-				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'32%', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
-				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'32%', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
+				<h3>Visualisez vos données en mobilité<br><br>
+				 	<small>Les écrans s'adaptent automatiquement à la taille d'un écran de smartphone</small>
+				 </h3>
 			</td>
 			<td>
-				<h3>Visualisez vos données en mobilité.<br><br>
-				 	Les écrans s'adaptent automatiquement à la taille d'un écran de smartphone
-				 </h3>
+				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'33%', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
+				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'32%', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
+				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'33%', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
 			</td>
 		</tr>
 	</table>

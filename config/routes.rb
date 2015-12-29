@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :logs
   resources :users
   resources :tables
   resources :values
@@ -13,13 +12,14 @@ Rails.application.routes.draw do
 
   get '/import', to: 'tables#import'
   post '/import_do', to: 'tables#import_do'
-  get '/export', to: 'tables#export'
-  post '/export_do', to: 'tables#export_do'
 
   get 'tables/:id/add_user', to:'tables#add_user', as: :add_user
   post '/add_user_do', to:'tables#add_user_do'
   get 'tables/:id/partages', to:'tables#partages', as: :partages
   get 'tables/:id/partages_delete', to:'tables#partages_delete', as: :annuler_partage
+  get 'tables/:id/export', to: 'tables#export', as: :export
+  post '/export_do', to: 'tables#export_do'
+  get 'tables/:id/logs', to: 'tables#logs', as: :logs
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

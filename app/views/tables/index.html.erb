@@ -1,10 +1,12 @@
-<h2>Tables</h2>
+<h2>
+  Tables
+</h2>
 
 <% if @tables.any? %>
-  <table class="table table-hover table-bordered table-condensed">
+  <table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th>Nom</th>
+        <th></th>
         <th>Colonnes</th>
         <th>Lignes</th>
         <th>Stockage</th>
@@ -17,8 +19,9 @@
     <tfoot>
       <tr>
         <td /><td />
-        <td class="text-right"><%= @total_size %></td><td class="text-right"><%= @total_files_size %> MB<td/>
-        <td /><td /><td /><td /><td /><td />
+        <td class="text-right"><span class="badge"><%= @total_size %></span></td>
+        <td class="text-right"><%= @total_files_size %> MB<td/>
+        <td /><td /><td /><td />
       </tr>
     </tfoot>
 
@@ -27,7 +30,7 @@
         <tr>
           <td><b><%= link_to table.name.humanize, table %></b></td>
           <td><%= table.fields.pluck(:name).join(", ") %></td>
-          <td class="text-right"><%= table.size %></td>
+          <td class="text-right"><span class="badge"><%= table.size %></span></td>
           <td class="text-right"><%= table.files_size %> MB</td>
           <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
           <td>
@@ -43,10 +46,10 @@
             </td>
           <% end %>
           <td>
-            <%= link_to logs_path(table_id:table), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %>
+            <%= link_to logs_path(table), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %>
           </td>
           <td>
-            <%= link_to export_path(table_id:table), title:"Export Excel" do %><i class="glyphicon glyphicon-th"></i><% end %>
+            <%= link_to export_path(table), title:"Exporter les données" do %><i class="glyphicon glyphicon-upload"></i><% end %>
           </td>
         </tr>
       <% end %>

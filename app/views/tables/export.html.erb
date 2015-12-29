@@ -1,13 +1,15 @@
-<h2>Exporter</h2>
-
-Exporter les données vers un fichier compatible Excel<br><br>
+<br>
+<h2>
+  <i class="glyphicon glyphicon-upload"></i> 
+  Exporter la table '<%= @table.name.humanize %>'</h2>
+<br><br>
 
 <%= form_tag(action: "export_do", method: :post) do %>
 
-  <%= hidden_field_tag :table_id, params[:table_id] %>
+  <%= hidden_field_tag :id, params[:id] %>
 
   <div class="field">
-    <%= label :date_debut, "Données modifiées entre le " %>
+    <%= label :date_debut, "Exporter les données de '#{@table.name}' modifiées entre le " %>
     <%= text_field_tag :debut, params[:debut], class: 'datepicker' %>
 
     <%= label :date_fin, "et le " %>

@@ -1,4 +1,7 @@
-<h2>Créez votre compte</h2>
+<br>
+<div class="col-sm-offset-2">
+	<h2>Créez votre compte</h2>
+</div>	
 <br><br>
 
 <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
@@ -39,6 +42,8 @@
 	    	<%= f.password_field :password_confirmation, class: 'form-control' %>
 	    </div>
 	</div>
+	<br>
+	
 	<div class="actions form-group">
     	<div class="col-sm-offset-2 col-sm-10">
 	    	<%= f.submit "Créer ce compte", class: 'btn btn-success' %> | 
