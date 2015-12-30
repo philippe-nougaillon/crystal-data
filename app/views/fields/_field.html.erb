@@ -6,8 +6,9 @@
         <%= "= #{field.items}" unless field.items.blank? %>
     </td>
     <td>
-        <% if field.filtre %><i class="glyphicon glyphicon-zoom-in"></i> Filtre<% end %>
-        <% if field.sum %><i class="glyphicon glyphicon-plus"></i> Somme<% end %>
+        <% if field.obligatoire %><i class="glyphicon glyphicon-ok"></i> Obligatoire <% end %>
+        <% if field.filtre %><i class="glyphicon glyphicon-zoom-in"></i> Filtre <% end %>
+        <% if field.sum %><i class="glyphicon glyphicon-plus"></i> Somme <% end %>
     </td>
     <td>
         <%= link_to 'Modifier', edit_field_path(field), class: 'btn btn-info btn-xs' %>

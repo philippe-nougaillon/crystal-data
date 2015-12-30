@@ -101,7 +101,7 @@ class TablesController < ApplicationController
 
   def show_attrs
     unless @table.is_owner?(@current_user)
-      flash[:notice] = "Vous n'êtes pas son propriétaire !"
+      flash[:notice] = "Désolé mais vous n'êtes pas son propriétaire !"
       redirect_to tables_path
       return
     end 
@@ -134,7 +134,7 @@ class TablesController < ApplicationController
     record_index = data.first.first
     values = data[record_index.to_s]
 
-    if values.values.select{|v| v.present? }.any? # test si tous les champs sont renseignés 
+    #if values.values.select{|v| v.present? }.any? # test si tous les champs sont renseignés 
 
       # # modification = si données existent déjà, on les supprime pour pouvoir ajouter les données modifiées 
       update = table.values.where(record_index:record_index).any?
@@ -143,6 +143,12 @@ class TablesController < ApplicationController
 
       # test quel champ a été modifié
       table.fields.each do |field|
+
+        if field.obligatoire and values[field.id.to_s].blank?
+          flash[:alert] = "Champ(s) obligatoire(s) manquant(s)"
+          redirect_to action: 'fill'
+          return
+        end  
 
         # save file
         if field.datatype == 'fichier' 
@@ -176,9 +182,9 @@ class TablesController < ApplicationController
       table.update_attributes(record_index:record_index) unless update
 
       flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
-    else
-      flash[:alert] = "L'enregistrement n'a pas pu être ajouté"
-    end
+#    else
+#      flash[:alert] = "L'enregistrement n'a pas pu être ajouté"
+#    end
 
     respond_to do |format|
       format.html.phone { redirect_to tables_path }

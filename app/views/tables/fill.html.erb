@@ -12,8 +12,10 @@
 
       <br>
       <div class="field form-group">
-          <%= label_tag truncate(field.name, length:23), nil, class: 'col-sm-2 control-label' %>
-
+          <div class='col-sm-2' style='font-weight:bold' %>
+            <%= truncate((field.obligatoire ? field.name.upcase.insert(0, '* ') : field.name), length:23) %>
+          </div>
+            
           <% if field.datatype == "texte" %>  
             <div class="col-sm-4">
               <%= text_field_tag field_name, field_value, class: 'form-control' %>
