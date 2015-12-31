@@ -1,6 +1,6 @@
 <br>
 <h2>
-    <i class="glyphicon glyphicon-share"></i> 
+  <i class="glyphicon glyphicon-share"></i> 
 	Partager la table '<%= @table.name.humanize %>' avec un autre utilisateur</h2>
 <br>
 
@@ -9,11 +9,13 @@
   <%= hidden_field_tag :id, params[:id] %>
 
   <div class="field form-group">
-  		<div class="col-sm-4">
-		    Entrez son adresse mail (l'utilisateur doit avoir un compte)
-		    <%= text_field_tag :email, nil, class:'form-control'  %>
+  		<div class="col-sm-5">
+		    <h4>Entrez son adresse mail</h4>
+        <%= text_field_tag :email, nil, class:'form-control'  %>
+        si l'utilisateur n'en a pas encore, <%= link_to "créez-lui un compte", signup_path %>
 		</div>
   </div>
+  <br>
   <br>
 
   <%= submit_tag "Partager", class: 'btn btn-success' %>

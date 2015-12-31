@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
-  	before_filter :authorize, except:[:new, :create]
+  	before_filter :authorize
 
 	def show
 		@user = User.find(params[:id])
@@ -14,9 +14,9 @@ class UsersController < ApplicationController
     def create
 	    @user = User.new(user_params)
 	    if @user.save
-	      session[:user_id] = @user.id
-	      cookies.permanent[:auth_token] = nil
-	      redirect_to '/', notice:"Bienvenue '#{@user.name}' !"
+	      #session[:user_id] = @user.id
+	      #cookies.permanent[:auth_token] = nil
+	      redirect_to root_url, notice:"Compte '#{@user.name}' créé !"
 	    else
 		  render :new	
 	    end
