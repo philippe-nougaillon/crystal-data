@@ -3,16 +3,20 @@
     <i class="glyphicon glyphicon-download"></i> 
 	Importer
 </h2>
+<br>
 
-Importer un fichier CSV au format iso-8859-1, avec séparateur ';' et entêtes des colonnes sur la première ligne 
-<br><br>
+Importer un fichier CSV au format iso-8859-1, avec séparateur ';' et entêtes des colonnes sur la première ligne. 
+<br>
+<i><small>Attention, le traitement peut être long...</small></i>
+<br><br>  
 
 <%= form_tag({action: "import_do", method: :post}, multipart: true) do %>
 
   <div class="field">
-    <%= label :filename, "Fichier source" %>
+    <%= label :filename, "Fichier source:" %>
     <%= file_field_tag 'upload', accept: 'text/csv' %>
   </div>
+  <br>
   <br>
 
   <div class="actions">

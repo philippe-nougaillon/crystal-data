@@ -3,7 +3,6 @@
     <i class="glyphicon glyphicon-share"></i> 
 	Liste des partages de la table '<%= @table.name.humanize %>'</h2>
 <br>
-<i>Seul le créateur d'une table peut en modifier la structure</i>
 
 <table class="table table-striped table-hover table-bordered table-responsive">
 	<thead>
@@ -26,7 +25,9 @@
 		</tr>
 	<% end %>
 </table>
-<br>
+<i><small>Seul le créateur d'une table peut en modifier la structure</small></i>
+<br><br>
+
 
 <% if @table.is_owner?(@current_user) %>
   	<%= link_to add_user_path(@table), title:"Ajouter un partage avec un autre utilisateur", class:'btn btn-success' do %>

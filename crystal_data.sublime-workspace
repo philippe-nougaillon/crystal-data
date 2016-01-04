@@ -596,7 +596,7 @@
 			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 4154,
+				"buffer_size": 4151,
 				"line_ending": "Unix"
 			}
 		},
@@ -628,7 +628,7 @@
 			"file": "app/views/users/new.html.erb",
 			"settings":
 			{
-				"buffer_size": 1615,
+				"buffer_size": 1612,
 				"line_ending": "Unix"
 			}
 		},
@@ -636,7 +636,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 3702,
+				"buffer_size": 4168,
 				"line_ending": "Unix"
 			}
 		},
@@ -745,6 +745,14 @@
 			}
 		},
 		{
+			"file": "app/controllers/users_controller.rb",
+			"settings":
+			{
+				"buffer_size": 790,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
@@ -805,13 +813,10 @@
 			}
 		},
 		{
-			"contents": "<br>\n<h2>\n  <i class=\"glyphicon glyphicon-share\"></i> \n	Partager la table '<%= @table.name.humanize %>' avec un autre utilisateur</h2>\n<br>\n\n<%= form_for :user, url: '/add_user_do' do %>\n\n  <%= hidden_field_tag :id, params[:id] %>\n\n  <div class=\"field form-group\">\n  		<div class=\"col-sm-4\">\n		    Entrez son adresse mail (l'utilisateur doit avoir un compte)\n		    <%= text_field_tag :email, nil, class:'form-control'  %>\n		</div>\n  </div>\n  <br>\n\n  <%= submit_tag \"Partager\", class: 'btn btn-success' %>\n\n<% end %>",
 			"file": "app/views/tables/add_user.html.erb",
-			"file_size": 517,
-			"file_write_time": 1451394989000000,
 			"settings":
 			{
-				"buffer_size": 515,
+				"buffer_size": 590,
 				"line_ending": "Unix"
 			}
 		},
@@ -1005,6 +1010,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"glyphicon-ok",
 			"600",
 			"Crystal",
 			"<br>",
@@ -1131,8 +1137,7 @@
 			"check",
 			"jalon_id",
 			"1",
-			"jalon_id",
-			":one"
+			"jalon_id"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1140,6 +1145,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"glyphicon-record",
 			"100%",
 			"crystal",
 			"600",
@@ -1221,7 +1227,7 @@
 	"groups":
 	[
 		{
-			"selected": 24,
+			"selected": 14,
 			"sheets":
 			[
 				{
@@ -1474,15 +1480,15 @@
 					"file": "app/views/layouts/application.html.erb",
 					"settings":
 					{
-						"buffer_size": 4154,
+						"buffer_size": 4151,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								70,
-								70
+								2677,
+								2677
 							]
 						],
 						"settings":
@@ -1491,7 +1497,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 969.0,
+						"translation.y": 714.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1582,15 +1588,15 @@
 					"file": "app/views/users/new.html.erb",
 					"settings":
 					{
-						"buffer_size": 1615,
+						"buffer_size": 1612,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								662,
-								662
+								69,
+								69
 							]
 						],
 						"settings":
@@ -1599,7 +1605,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1609,15 +1615,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 3702,
+						"buffer_size": 4168,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5,
-								5
+								33,
+								33
 							]
 						],
 						"settings":
@@ -1991,6 +1997,34 @@
 				},
 				{
 					"buffer": 28,
+					"file": "app/controllers/users_controller.rb",
+					"settings":
+					{
+						"buffer_size": 790,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								402,
+								402
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 29,
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
@@ -2018,7 +2052,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 30,
 					"file": "app/controllers/fields_controller.rb",
 					"settings":
 					{
@@ -2046,7 +2080,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 30,
+					"buffer": 31,
 					"file": "app/views/tables/logs.html.erb",
 					"settings":
 					{
@@ -2074,7 +2108,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 31,
+					"buffer": 32,
 					"file": "app/views/tables/import.html.erb",
 					"settings":
 					{
@@ -2102,7 +2136,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 32,
+					"buffer": 33,
 					"file": "app/views/tables/import_do.html.erb",
 					"settings":
 					{
@@ -2128,7 +2162,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 33,
+					"buffer": 34,
 					"file": "app/views/tables/export.html.erb",
 					"settings":
 					{
@@ -2157,7 +2191,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 34,
+					"buffer": 35,
 					"file": "app/views/tables/export_do.html.erb",
 					"settings":
 					{
@@ -2183,19 +2217,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 35,
+					"buffer": 36,
 					"file": "app/views/tables/add_user.html.erb",
 					"settings":
 					{
-						"buffer_size": 515,
+						"buffer_size": 590,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								55,
+								55
 							]
 						],
 						"settings":
@@ -2211,7 +2245,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 36,
+					"buffer": 37,
 					"file": "app/views/users/show.html.erb",
 					"settings":
 					{
@@ -2238,7 +2272,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 37,
+					"buffer": 38,
 					"file": "app/views/tables/new.html.erb",
 					"settings":
 					{

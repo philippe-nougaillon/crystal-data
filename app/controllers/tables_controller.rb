@@ -9,12 +9,6 @@ class TablesController < ApplicationController
   def index
     session[:user_id] = @current_user.id if @current_user && session[:user_id].nil?
     @tables = @current_user.tables.includes(:fields)
-    # calcule le nombre de lignes total
-    @total_size = 0
-    @tables.each{|t| @total_size += t.size }
-    # calcule la taille total de stockage
-    @total_files_size = 0
-    @tables.each{|t| @total_files_size += t.files_size }
      
     respond_to do |format|
       format.html.phone

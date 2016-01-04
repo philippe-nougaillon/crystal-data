@@ -3,9 +3,17 @@
 class UsersController < ApplicationController
   	before_filter :authorize
 
-	def show
-		@user = User.find(params[:id])
-	end
+  	def show
+  		@user = @current_user
+      @total_tables, @total_lignes, @total_fichiers = 0, 0, 0
+      @user.tables.each do |table|
+        if table.is_owner?(@user)
+           @total_tables += 1
+           @total_lignes += table.size
+           @total_fichiers += table.files_size
+        end
+      end
+  	end
 
     def new
     	@user = User.new
@@ -18,9 +26,9 @@ class UsersController < ApplicationController
 	      #cookies.permanent[:auth_token] = nil
 	      redirect_to root_url, notice:"Compte '#{@user.name}' créé !"
 	    else
-		  render :new	
+		    render :new	
 	    end
-	end
+	  end
 
     def update
       @user = User.new(user_params)
@@ -31,7 +39,7 @@ class UsersController < ApplicationController
       end
     end
 
-private
+  private
   	def user_params
     	params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me)
   	end

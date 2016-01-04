@@ -5,14 +5,14 @@
 	  <%= form_tag(request.path, method: :get) do %>
 	  	<div class="input-group-lg">
 
-		    Filtre: 
+		    Rechercher: 
 		    <%= text_field_tag :search, params[:search], onchange:'this.form.submit()', class: 'form-control' %>
 		    <br>
 		    
 		    <% @table.fields.filtres.each_with_index do | field,index | %>
 			    <%= field.name %>
 			    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
-			    <%= select_tag "select[#{index}]", options_for_select(field.values.pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
+			    <%= select_tag "select[#{index}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
 			    <br>
 			<% end %>
 		    <%= submit_tag 'Filtrer', class: 'btn-lg btn-success' %>
