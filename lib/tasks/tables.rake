@@ -22,7 +22,7 @@ namespace :tables do
 					#field = @new_table.fields.find_by(name:key.first)
 					@new_table.values.create(field_id:@fields[index].id, data:key.last, record_index:@record_index)
 					# enregistre les ajouts dans l'historique
-			        @new_table.fields[index].logs.create(user_id:args.user_id, record_index:@record_index, ip:args.ip, message:key.last)
+			        @new_table.fields[index].logs.import.create(user_id:args.user_id, record_index:@record_index, ip:args.ip, message:key.last)
 				end
 			  	@lignes += 1
 			end

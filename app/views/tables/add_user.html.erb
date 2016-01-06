@@ -10,9 +10,9 @@
 
   <div class="field form-group">
   		<div class="col-sm-5">
-		    <h4>Entrez son adresse mail</h4>
+		    <h4>Entrez l'adresse mail de son compte</h4>
         <%= text_field_tag :email, nil, class:'form-control'  %>
-        si l'utilisateur n'en a pas encore, <%= link_to "créez-lui un compte", signup_path %>
+        <i><small>Si l'utilisateur n'en a pas encore, <%= link_to "créez-lui un compte", signup_path %></small></i>
 		</div>
   </div>
   <br>

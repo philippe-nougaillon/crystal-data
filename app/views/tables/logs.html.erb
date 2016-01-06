@@ -6,15 +6,26 @@
 </h2>
 <br>
 
+<p>
+  <%= form_tag(request.path, method: :get) do %>
+
+    Action:
+    <%= select_tag :type_action, options_for_select(Log.actions, params[:type_action]), include_blank:true, onchange: 'this.form.submit()' %>
+
+    <%= submit_tag 'Filtrer', class: 'btn btn-success' %>
+  <% end %>
+</p>
+
 <table class="table table-striped table-hover table-bordered table-responsive">
   <thead>
     <tr>
       <th>Le</th>
+      <th>Utilisateur</th>
+      <th>IP</th>
+      <th>Action</th>
       <th>Ligne</th>
       <th>Colonne</th>
       <th>Modification</th>
-      <th>Utilisateur</th>
-      <th>IP</th>
     </tr>
   </thead>
 
@@ -22,11 +33,12 @@
     <% @logs.each do |log| %>
       <tr>
         <td><%= l(log.created_at) %></td>
+        <td><%= log.user.name %></td>
+        <td><%= link_to log.ip, "http://www.ip-tracker.org/locator/ip-lookup.php?ip=#{log.ip}", target:'_new' %></td>
+        <td><%= log.action.humanize %></td>
         <td class="text-right"><%= log.record_index %></td>
         <td><%= log.field.name %></td>
         <td><%= log.message %></td>
-        <td><%= log.user.name %></td>
-        <td><%= link_to log.ip, "http://www.ip-tracker.org/locator/ip-lookup.php?ip=#{log.ip}", target:'_new' %></td>
       </tr>
     <% end %>
   </tbody>

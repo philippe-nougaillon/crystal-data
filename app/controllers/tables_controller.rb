@@ -158,7 +158,7 @@ class TablesController < ApplicationController
         if old_value 
             if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
               # enregistre les modifications dans l'historique
-              field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
+              field.logs.modification.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
               # supprimer les anciennes données
               table.values.find_by(record_index:record_index, field:field).delete
               # enregistrer les nouvelles données
@@ -166,7 +166,7 @@ class TablesController < ApplicationController
             end
         else
           # enregistre les modifications dans l'historique
-          field.logs.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
+          field.logs.ajout.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
           # enregistrer les nouvelles données
           table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
         end
@@ -196,7 +196,7 @@ class TablesController < ApplicationController
     if params[:record_index]
       record_index = params[:record_index]
       @table.values.where(record_index:record_index).each do | value |
-          value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"ligne supprimée. #{value.data} => !")
+          value.field.logs.suppression.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"#{value.data} => ~")
           # supprime le fichier lié
           if value.field.fichier? and value.data
               value.field.delete_file(value.data)
@@ -257,7 +257,7 @@ class TablesController < ApplicationController
     if @table.is_owner?(@current_user)
        # supprime les fichiers liés
        @table.values.each do | value |
-          value.field.delete_file(value.data) if value.field.fichier? and value.data
+          value.field.delete_file(value.data) if value.field and value.field.fichier? and value.data
       end
       @table.destroy
       flash[:notice] = "Table supprimée."
@@ -363,10 +363,15 @@ class TablesController < ApplicationController
     end
 
     @logs = @table.logs.order('id DESC')
+
     if params[:record_index]
       @record_index = params[:record_index]
       @logs = @logs.where(record_index:@record_index)  
     end 
+
+    unless params[:type_action].blank?
+      @logs = @logs.where(action:params[:type_action].to_i)
+    end
   end
 
   private

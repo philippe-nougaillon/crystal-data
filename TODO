@@ -8,13 +8,14 @@ DONE
 - pouvoir annuler le partage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))
 - champs calculé, formulaire, les données ne s'affichent pas !!
 - new colonne, type liste, pas d'option !
+- champs obligatoires
 
 TODO
 - faire une page d'aide
-- champs obligatoires
 - tri colonnes type formule 
 - formule sur colonne formule... 
 - support tablette... 
+- notifier le créateur par mail quand ajout de ligne
 
 MEMO
 - formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 

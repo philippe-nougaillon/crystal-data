@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230100504) do
+ActiveRecord::Schema.define(version: 20160106155604) do
 
   create_table "fields", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151230100504) do
     t.datetime "updated_at",               null: false
     t.integer  "record_index", limit: 4
     t.string   "ip",           limit: 255
+    t.integer  "action",       limit: 4
   end
 
   add_index "logs", ["field_id"], name: "index_logs_on_field_id", using: :btree
