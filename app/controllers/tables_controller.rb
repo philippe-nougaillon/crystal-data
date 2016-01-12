@@ -374,6 +374,24 @@ class TablesController < ApplicationController
     end
   end
 
+  def activity
+    unless @table.users.include?(@current_user)
+      redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
+      return
+    end
+
+    unless params[:type_action].blank?
+      @logs = @table.logs.where(action:params[:type_action].to_i)
+    else
+      @logs = @table.logs.all
+    end
+
+    unless params[:user_id].blank?
+      @logs = @logs.where(user_id:params[:user_id])
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table

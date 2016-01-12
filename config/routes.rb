@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'tables/:id/export', to: 'tables#export', as: :export
   post '/export_do', to: 'tables#export_do'
   get 'tables/:id/logs', to: 'tables#logs', as: :logs
+  get 'tables/:id/activity', to: 'tables#activity', as: :activity
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

@@ -1,0 +1,20 @@
+<h2>
+  <i class="glyphicon glyphicon-stats"></i> 
+  Activité
+</h2>
+<br>
+
+<p>
+  <%= form_tag(request.path, method: :get) do %>
+
+    Utilisateur:
+    <%= select_tag :user_id, options_from_collection_for_select(@table.users, :id, :name, params[:user_id]), include_blank:true, onchange: 'this.form.submit()' %>
+
+    Action:
+    <%= select_tag :type_action, options_for_select(Log.actions, params[:type_action]), include_blank:true, onchange: 'this.form.submit()' %>
+    | 
+    <%= submit_tag 'Filtrer', class:'btn btn-success' %>
+  <% end %>
+</p>
+
+<%= line_chart @logs.group_by_day("logs.created_at").count %>
