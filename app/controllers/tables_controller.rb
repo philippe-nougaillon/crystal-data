@@ -287,14 +287,14 @@ class TablesController < ApplicationController
       end
 
       #execute rake and capture output  
-      @out = capture_stdout do
+      #@out = capture_stdout do
          Rake::Task['tables:import'].invoke(filename_with_path, filename, @current_user.id, request.remote_ip)
-      end
+      #end
       
       #ImportTableJob.perform_later(filename_with_path, filename, @current_user.id) 
 
       @new_table = Table.last
-      redirect_to tables_path, notice: "Import en cours... Veuillez patienter"
+      redirect_to tables_path, notice: "Importation terminé. Table '#{Table.last.name.humanize}' créée avec succès."
       return
     else
       redirect_to action: 'import', alert:"Il manque le fichier source"

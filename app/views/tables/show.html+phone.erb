@@ -10,9 +10,9 @@
 		    <br>
 		    
 		    <% @table.fields.filtres.each_with_index do | field,index | %>
-			    <%= field.name %>
+			    <%= field.name.humanize %>
 			    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
-			    <%= select_tag "select[#{index}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
+			    <%= select_tag "select[#{index}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
 			    <br>
 			<% end %>
 		    <%= submit_tag 'Filtrer', class: 'btn-lg btn-success' %>
