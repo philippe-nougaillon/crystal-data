@@ -389,6 +389,10 @@ class TablesController < ApplicationController
     unless params[:user_id].blank?
       @logs = @logs.where(user_id:params[:user_id])
     end
+
+    @hash = @logs.group_by_day("logs.created_at").count
+    @hash.each{|key,value| @hash[key]= value / @table.fields.count }  
+
   end
 
 
