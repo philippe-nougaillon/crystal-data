@@ -175,11 +175,11 @@ class TablesController < ApplicationController
           end
       else
         # enregistre les ajouts dans l'historique
-        inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+        inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
         # enregistrer les nouvelles données
         table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
         # collecte les données pour les envoyer par mail
-        notif_items.push "#{field.name}:#{value}"
+        notif_items.push "#{field.name}:#{value}" unless value.blank?
       end
     end
 

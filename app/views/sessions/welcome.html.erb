@@ -4,7 +4,6 @@
 </h2>
 <br>
 
-
 <div class="table-responsive">
 	<table class="table-striped table-hover"> 
 		<tr>
@@ -63,7 +62,10 @@
 					</i> 
 
 					<small style="margin-left:20px;">Formats:</small><br>
-					<ul><li>Texte</li><li>Nombre</li><li>Euros</li><li>Date</li><li>Oui/Non</li><li>Liste de choix</li><li>Formule (champ calculé)</li><li>Fichier</li>
+					<ul><li>Texte</li><li>Nombre</li><li>Euros</li><li>Date</li><li>Oui/Non</li><li>Liste de choix</li>
+						<li>Champ calculé (formule <%= link_to "Ruby","https://www.ruby-lang.org/fr/documentation/quickstart/", :target => "_blank" %>)</li>
+						<li>Fichier</li>
+					</ul>
 				</h3>
 			</td>
 		</tr>
@@ -108,6 +110,20 @@
 				<a href="#pop-sm1" id="pop-sm1"><%= image_tag image_path("screen-sm-1.png"), width:'33%', id:"imageresource-sm-1", class:"img-thumbnail" %></a>
 				<a href="#pop-sm2" id="pop-sm2"><%= image_tag image_path("screen-sm-2.png"), width:'32%', id:"imageresource-sm-2", class:"img-thumbnail" %></a>
 				<a href="#pop-sm3" id="pop-sm3"><%= image_tag image_path("screen-sm-3.png"), width:'33%', id:"imageresource-sm-3", class:"img-thumbnail" %></a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#pop-lg8" id="pop-lg8">
+					<%= image_tag image_path("screen-lg-chart.png"), width:'100%', id:"imageresource-lg8", class:"img-thumbnail" %>
+				</a>
+			</td>
+			<td>
+				<h3>
+					<i style="margin-left:20px;">Graphique d'activité</i> 
+					<br><br>	
+					<i style="margin-left:20px;">Notification mail à chaque ajout de données (option)</i>
+				</h3>
 			</td>
 		</tr>
 	</table>

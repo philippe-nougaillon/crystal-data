@@ -17,7 +17,7 @@
       <%= f.input :name, label:"Nom :" %>
       <% unless @table.new_record? %>
         <br>
-        <%= f.input :notification, label:"Notification ?", hint:"Notifier le créateur de cette table lors de l'ajout de données" %>
+        <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque ajout de données" %>
         <%= f.input :lifo, label:"Lifo ?", hint:"Classer les lignes par date de modification" %>
       <% end %>
       <br>

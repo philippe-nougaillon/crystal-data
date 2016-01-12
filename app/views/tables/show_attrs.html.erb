@@ -1,8 +1,9 @@
 <h2>Table '<%= @table.name.humanize %>'</h2>
-
-<%= link_to "Modifier Options", edit_table_path(@table), title:"Renommer cette table ou en modifier les options" %>
-|
-<%= link_to "Partager", partages_path(@table), title:"Voir les utilisateurs qui partagent de cette table" %>
+<small>
+	<%= link_to "Modifier les options/Renommer", edit_table_path(@table), title:"Renommer cette table ou en modifier les options" %>
+	|
+	<%= link_to "Partager", partages_path(@table), title:"Voir les utilisateurs qui partagent de cette table" %>
+</small>
 
 <br><br>
 

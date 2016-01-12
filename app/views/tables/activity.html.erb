@@ -18,4 +18,4 @@
   <% end %>
 </p>
 
-<%= line_chart @hash %>
+<%= line_chart [name:@table.name.humanize, data:@hash] %>

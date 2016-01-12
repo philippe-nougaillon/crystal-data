@@ -26,6 +26,10 @@ $ -> $('#pop-lg7').on 'click', ->
   $('#imagepreview-lg').attr 'src', $('#imageresource-lg7').attr('src')
   $('#imagemodal-lg').modal 'show'
 
+$ -> $('#pop-lg8').on 'click', ->
+  $('#imagepreview-lg').attr 'src', $('#imageresource-lg8').attr('src')
+  $('#imagemodal-lg').modal 'show'
+
 $ -> $('#pop-sm1').on 'click', ->
   $('#imagepreview-sm').attr 'src', $('#imageresource-sm-1').attr('src')
   $('#imagemodal-sm').modal 'show'
