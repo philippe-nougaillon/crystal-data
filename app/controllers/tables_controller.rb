@@ -102,6 +102,7 @@ class TablesController < ApplicationController
     @field = Field.new(table_id:@table.id)
   end
 
+  # formulaire d'ajout / modification
   def fill
     if params[:record_index]
       @record_index = params[:record_index]
@@ -115,6 +116,7 @@ class TablesController < ApplicationController
     end
   end
 
+  # formulaire d'ajout / modification posté
   def fill_do
     table = Table.find(params[:table_id])
     user = @current_user
@@ -127,65 +129,65 @@ class TablesController < ApplicationController
     data = params[:data]
     record_index = data.first.first
     values = data[record_index.to_s]
+    inserts_log = []
 
-    #if values.values.select{|v| v.present? }.any? # test si tous les champs sont renseignés 
+    # update? = si données existent déjà, on les supprime avant pour pouvoir ajouter les données modifiées 
+    update = table.values.where(record_index:record_index).any?
+    # garde la date de dernière mise à jour
+    created_at_date = table.values.where(record_index:record_index).first.created_at if update
 
-      # # modification = si données existent déjà, on les supprime pour pouvoir ajouter les données modifiées 
-      update = table.values.where(record_index:record_index).any?
-      # garde la date de dernière mise à jour
-      created_at_date = table.values.where(record_index:record_index).first.created_at if update
+    # quel champ a été modifié ?
+    table.fields.each do |field|
+      value =  values[field.id.to_s]
+      if field.obligatoire and value.blank?
+        flash[:alert] = "Champ(s) obligatoire(s) manquant(s)"
+        redirect_to action: 'fill'
+        return
+      end  
 
-      # test quel champ a été modifié
-      table.fields.each do |field|
-
-        if field.obligatoire and values[field.id.to_s].blank?
-          flash[:alert] = "Champ(s) obligatoire(s) manquant(s)"
-          redirect_to action: 'fill'
-          return
-        end  
-
-        # save file
-        if field.datatype == 'fichier' 
-           if values[field.id.to_s]
-              values[field.id.to_s] = field.save_file(values[field.id.to_s])
-           else
-              next
-           end
-        end 
-    
-        # test si c'est un update ou new record
-        old_value = table.values.find_by(record_index:record_index, field:field)
-        if old_value 
-            if (old_value.data != values[field.id.to_s]) and !(old_value.data.blank? and values[field.id.to_s].blank?)
-              # enregistre les modifications dans l'historique
-              field.logs.modification.create(user:user, record_index:record_index, ip:request.remote_ip, message:"#{old_value.data} => #{values[field.id.to_s]}")
-              # supprimer les anciennes données
-              table.values.find_by(record_index:record_index, field:field).delete
-              # enregistrer les nouvelles données
-              table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
-            end
-        else
-          # enregistre les modifications dans l'historique
-          field.logs.ajout.create(user:user, record_index:record_index, ip:request.remote_ip, message:"=> #{values[field.id.to_s]}")
-          # enregistrer les nouvelles données
-          table.values.create(record_index:record_index, field_id:field.id, data:values[field.id.to_s], user_id:user.id, created_at:created_at_date)
-        end
+      # enregistre le fichier
+      if field.datatype == 'fichier' 
+         if value
+            value = field.save_file(value)
+         else
+            next
+         end
+      end 
+  
+      # test si c'est un update ou new record
+      old_value = table.values.find_by(record_index:record_index, field:field)
+      if old_value
+          if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
+            # enregistre les modifications dans l'historique
+            inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+            # supprimer les anciennes données
+            table.values.find_by(record_index:record_index, field:field).delete
+            # enregistrer les nouvelles données
+            table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
+          end
+      else
+        # enregistre les ajouts dans l'historique
+        inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+        # enregistrer les nouvelles données
+        table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
       end
+    end
 
-      # maj du nombre de lignes si c'est un ajout
-      table.update_attributes(record_index:record_index) unless update
+    # maj du nombre de lignes si c'est un ajout
+    table.update_attributes(record_index:record_index) unless update
 
+    # execure requête d'insertion dans LOGS
+    if inserts_log.any?
+      sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{inserts_log.join(", ")}"
+      ActiveRecord::Base.connection.execute sql
       flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
-#    else
-#      flash[:alert] = "L'enregistrement n'a pas pu être ajouté"
-#    end
+    end
 
     respond_to do |format|
       format.html.phone { redirect_to tables_path }
       format.html.none { redirect_to table }
     end
   end  
-
 
   def delete_record
     unless @table.users.include?(@current_user)
@@ -194,15 +196,23 @@ class TablesController < ApplicationController
     end
 
     if params[:record_index]
+      deletes_log = []
       record_index = params[:record_index]
       @table.values.where(record_index:record_index).each do | value |
-          value.field.logs.suppression.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"#{value.data} => ~")
+          # log l'action dans l'historique
+          deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"#{value.data} => ~"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
+
           # supprime le fichier lié
           if value.field.fichier? and value.data
               value.field.delete_file(value.data)
-              value.field.logs.create(user_id:@current_user.id, ip:request.remote_ip,record_index:record_index, message:"fichier supprimé. #{value.data} => !")
+              deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"fichier supprimé. #{value.data} => !"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
           end
           value.delete
+      end
+
+      if deletes_log.any?
+        sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{deletes_log.join(", ")}"
+        ActiveRecord::Base.connection.execute sql
       end
       flash[:notice] = "Enregistrement ##{record_index} supprimé avec succès"
     end  
@@ -286,12 +296,7 @@ class TablesController < ApplicationController
           file.write(params[:upload].read)
       end
 
-      #execute rake and capture output  
-      #@out = capture_stdout do
-         Rake::Task['tables:import'].invoke(filename_with_path, filename, @current_user.id, request.remote_ip)
-      #end
-      
-      #ImportTableJob.perform_later(filename_with_path, filename, @current_user.id) 
+      Rake::Task['tables:import'].invoke(filename_with_path, filename, @current_user.id, request.remote_ip)
 
       @new_table = Table.last
       redirect_to tables_path, notice: "Importation terminé. Table '#{Table.last.name.humanize}' créée avec succès."
@@ -372,6 +377,8 @@ class TablesController < ApplicationController
     unless params[:type_action].blank?
       @logs = @logs.where(action:params[:type_action].to_i)
     end
+
+    @logs = @logs.paginate(page:params[:page])
   end
 
   def activity
@@ -392,9 +399,7 @@ class TablesController < ApplicationController
 
     @hash = @logs.group_by_day("logs.created_at").count
     @hash.each{|key,value| @hash[key]= value / @table.fields.count }  
-
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,5 @@
-<h2>Modification de colonne</h2>
+<h2>Modification de la colonne '<%= @field.name.humanize %>'</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Retour',  @field.table %>
+<%= link_to 'Retour',  show_attrs_path(id:@field.table)  %>

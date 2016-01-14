@@ -19,7 +19,8 @@
 //= require_tree .
 //= require turbolinks
 //= require stickytableheaders
-
+//= require nprogress
+//= require nprogress-turbolinks
     
 $(function() {
     var flashCallback;

@@ -39,11 +39,14 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-gem 'capture_stdout'
 
 gem "groupdate"
 gem "chartkick"
 
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
+gem 'nprogress-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

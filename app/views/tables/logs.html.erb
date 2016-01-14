@@ -15,7 +15,7 @@
   <% end %>
 </p>
 
-<table class="table table-striped table-hover table-bordered table-responsive">
+<table class="table table-striped table-hover table-bordered table-responsive sticky">
   <thead>
     <tr>
       <th>Le</th>
@@ -42,6 +42,11 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @logs, renderer: BootstrapPagination::Rails %>
+<br>
+
 <%= pluralize(@logs.count, "modification") %> dans l'historique
 
-<br>
+
+
+

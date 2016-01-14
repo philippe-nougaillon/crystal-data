@@ -40,7 +40,6 @@
 						<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
 					</th>
 				<% end %>
-				<th />
 				<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
 				<th /><th />
 			</tr>
@@ -54,7 +53,7 @@
 				<% @records.each do | index | %>
 					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
 					<% updated_at = updated_at_list[index] %>
-					<% count += 1 %> 
+					<% count += 1 %>
 					<tr>
 						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
 						<% @table.fields.each_with_index do | field,index | %>
@@ -71,11 +70,11 @@
 								<% end %>
 							</td>
 						<% end %>
-						<td />
 						<td><%= l(updated_at) %></td>
 			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %></td>
 						<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
-							<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %></td>
+							<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -92,7 +91,7 @@
 							<td />
 						<% end %>
 					<% end %>
-					<td /><td /><td /><td />
+					<td /><td /><td />
 				</tr>
 			</tfoot>
 		</table>
@@ -103,7 +102,7 @@
 		<tr>
 			<td />
 			<td>
-				Aucun enregistrement pour l'instant. Utilisez le bouton Ajouter pour saisir des données
+				Aucun enregistrement trouvé...
 			</td>
 		</tr>
 	</tbody>
