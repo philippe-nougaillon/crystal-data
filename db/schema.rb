@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106155604) do
+ActiveRecord::Schema.define(version: 20160115092227) do
 
   create_table "fields", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -45,9 +45,11 @@ ActiveRecord::Schema.define(version: 20160106155604) do
   create_table "tables", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.string   "name",         limit: 255
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "record_index", limit: 4,   default: 0
+    t.boolean  "notification", limit: 1,   default: false
+    t.boolean  "lifo",         limit: 1,   default: false
   end
 
   create_table "tables_users", force: :cascade do |t|

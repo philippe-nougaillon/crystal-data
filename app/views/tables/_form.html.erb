@@ -1,4 +1,4 @@
-<%= form_for(@table) do |f| %>
+<%= simple_form_for(@table) do |f| %>
   <% if @table.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@table.errors.count, "error") %> prohibited this table from being saved:</h2>
@@ -11,13 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, "Nom" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <br>
 
-  <div class="actions">
-    <%= f.submit @table.new_record? ? "Créer cette table" : "Renommer cette table", class: 'btn btn-success' %>
+  <div class="group-vertical">
+    <div class="col-sm-4">
+      <%= f.input :name, label:"Nom :" %>
+      <% unless @table.new_record? %>
+        <br>
+        <%= f.input :notification, label:"Notification ?", hint:"Notifier le créateur de cette table lors de l'ajout de données" %>
+        <%= f.input :lifo, label:"Lifo ?", hint:"Classer les lignes par date de modification" %>
+      <% end %>
+      <br>
+
+      <%= f.submit @table.new_record? ? "Créer cette table" : "Modifier cette table", class: 'btn btn-success' %>
+    </div>  
   </div>
+
 <% end %>

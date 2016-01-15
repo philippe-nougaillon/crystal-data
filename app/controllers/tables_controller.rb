@@ -52,7 +52,7 @@ class TablesController < ApplicationController
       end
     end
 
-    # revoie les id des lignes cherchées puis filtrées 
+    # renvoyer les id des lignes cherchées puis filtrées 
     unless @records_filter.empty? 
       @records = @records_search & @records_filter
     else
@@ -70,6 +70,13 @@ class TablesController < ApplicationController
       # retourne que les clés
       @records = hash.keys
     end
+
+    if @table.lifo 
+     # calcule la date maximum de chaque ligne d'enregistrement 
+     h = @table.values.group(:record_index).maximum(:updated_at)
+     # inverse le hash (keys <=> values) pour faire un tri par date et retourne les record_index
+     @records = Hash[h.sort_by{|k, v| v}.reverse].keys
+    end     
 
     if params[:sort_by]
       # ordre de tri ASC/DESC
@@ -130,6 +137,7 @@ class TablesController < ApplicationController
     record_index = data.first.first
     values = data[record_index.to_s]
     inserts_log = []
+    notif_items = []
 
     # update? = si données existent déjà, on les supprime avant pour pouvoir ajouter les données modifiées 
     update = table.values.where(record_index:record_index).any?
@@ -170,6 +178,8 @@ class TablesController < ApplicationController
         inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
         # enregistrer les nouvelles données
         table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
+        # collecte les données pour les envoyer par mail
+        notif_items.push "#{field.name}:#{value}"
       end
     end
 
@@ -181,6 +191,11 @@ class TablesController < ApplicationController
       sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{inserts_log.join(", ")}"
       ActiveRecord::Base.connection.execute sql
       flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
+    end
+
+    # notifier l'utilisateur d'un ajout 
+    if not update and table.notification
+      UserMailer.notification(table, notif_items).deliver_now
     end
 
     respond_to do |format|
@@ -409,6 +424,6 @@ class TablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_params
-      params.require(:table).permit(:name, :record_index)
+      params.require(:table).permit(:name, :record_index, :lifo, :notification)
     end
 end
