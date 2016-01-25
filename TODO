@@ -16,6 +16,8 @@ TODO
 - tri colonnes type formule 
 - formule sur colonne formule... 
 - support tablette... 
+- ordonner les colonnes 
+- droits d'accès: lecture seule, ajout, modif, suppr ?
 
 MEMO
 - formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 

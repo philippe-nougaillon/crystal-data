@@ -26,6 +26,7 @@ class TablesController < ApplicationController
 
     @sum = Hash.new(0)
     @numeric_types = ['formule','euros','nombre']
+    @td_style = []
     @pathname = Rails.root.join('public', 'table_files') 
 
     # recherche les lignes 
@@ -413,7 +414,18 @@ class TablesController < ApplicationController
     end
 
     @hash = @logs.group_by_day("logs.created_at").count
-    @hash.each{|key,value| @hash[key]= value / @table.fields.count }  
+    fields_count = @table.fields.count
+
+    # arroudir au multiple du nombre de champs supérieur
+    @hash.each do |key,value| 
+      if value % fields_count == 0 
+        r = value / fields_count
+      else
+        r = value + fields_count - (value % fields_count) 
+      end 
+      logger.debug "[DEBUG] value:#{value} fields:#{fields_count} r:#{r}"
+      @hash[key] = r / fields_count
+    end  
   end
 
   private

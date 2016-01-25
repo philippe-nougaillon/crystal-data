@@ -13,7 +13,7 @@
       <br>
       <div class="field form-group">
           <div class='col-sm-2' style='font-weight:bold' %>
-            <%= truncate((field.obligatoire ? field.name.upcase.insert(0, '* ') : field.name), length:23) %>
+            <%= truncate((field.obligatoire ? field.name.humanize.insert(0, '* ') : field.name.humanize), length:23) %>
           </div>
             
           <% if field.datatype == "texte" %>  
@@ -38,7 +38,7 @@
               <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
             </div>
           <% elsif field.datatype == "liste" %>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <%= select_tag field_name, options_for_select(field.items.split(","), field_value), include_blank: true, class: 'form-control' %>
             </div>
           <% elsif field.datatype == "formule" %>

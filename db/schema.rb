@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115092227) do
+ActiveRecord::Schema.define(version: 20160125111254) do
 
   create_table "fields", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160115092227) do
 
   add_index "values", ["field_id"], name: "index_values_on_field_id", using: :btree
   add_index "values", ["record_index"], name: "index_values_on_record_index", using: :btree
+  add_index "values", ["table_id", "record_index"], name: "index_values_on_table_id_and_record_index", using: :btree
   add_index "values", ["table_id"], name: "index_values_on_table_id", using: :btree
 
   add_foreign_key "logs", "fields"

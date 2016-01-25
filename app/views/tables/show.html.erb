@@ -35,10 +35,11 @@
 		<thead>
 			<tr>
 				<th />
-				<% @table.fields.each do | field | %>
+				<% @table.fields.each_with_index do | field,index | %>
 					<th>
-						<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
+						<%= link_to_unless field.datatype == 'formule', field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
 					</th>
+					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : '' %>
 				<% end %>
 				<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
 				<th /><th />
@@ -57,21 +58,24 @@
 					<tr>
 						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
 						<% @table.fields.each_with_index do | field,index | %>
-							<td class="<%= @numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
+							<% value = values[index] %>
+							<td class="<%= @td_style[index] %>">
 								<% if field.datatype == "formule" %>
 									<%= field.evaluate(values) %>
-								<% elsif field.datatype == "fichier" and values[index] %>
-									<%= link_to(values[index].split('__').last, url_for("/table_files/" + values[index])) %>
+								<% elsif field.datatype == "fichier" and value %>
+									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 								<% else %>
-									<%= values[index] %>
+									<%= value %>
 									<% if field.sum %>
-										<% @sum[field.id] += values[index].to_i %>
+										<% @sum[field.id] += value.to_f %>
 									<% end %>
 								<% end %>
 							</td>
 						<% end %>
 						<td><%= l(updated_at) %></td>
-			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %><i class="glyphicon glyphicon-time"></i><% end %></td>
+			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %>
+			            		<i class="glyphicon glyphicon-time"></i><% end %>
+			            </td>
 						<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
 							<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
 						</td>
@@ -98,14 +102,14 @@
 		<%= count %> sur <%= @table.size %> au total
 		<br>
 	<% else %>
-	<tbody>
-		<tr>
-			<td />
-			<td>
-				Aucun enregistrement trouvé...
-			</td>
-		</tr>
-	</tbody>
+		<tbody>
+			<tr>
+				<td />
+				<td>
+					Aucun enregistrement trouvé...
+				</td>
+			</tr>
+		</tbody>
 	<% end %>
 <% else %>
 	<% unless params[:attrs] %>
