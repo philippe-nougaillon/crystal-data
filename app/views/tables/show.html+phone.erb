@@ -28,36 +28,33 @@
 			<thead> 
 				<tr>
 					<th />
-					<% @table.fields.each do | field | %>
+					<% @table.fields.each_with_index do | field,index | %>
 						<th>
 							<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
 						</th>
+						<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 					<% end %>
 				</tr>
 			</thead>
 
 			<% if @records.any? %>
 				<tbody>
-					<% count = 0 %>	
-					<% numeric_types = ['formule','euros','nombre'] %>
 					<% @records.each do | index | %>
 						<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
-							<% count += 1 %> 
 							<tr>
 								<td>	
 									<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
 								</td>
 								<% @table.fields.each_with_index do | field,index | %>
-									<td class="<%= numeric_types.include?(field.datatype) ? 'text-right' : '' %>">
+									<% value = values[index] %>
+									<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
 										<% if field.datatype == "formule" %>
 											<%= field.evaluate(values) %>
-										<% elsif field.datatype == "fichier" and values[index] %>
-											<%= link_to(values[index].split('__').last, url_for("/table_files/" + values[index])) %>
+										<% elsif field.datatype == "fichier" and value %>
+											<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 										<% else %>
-											<%= values[index] %>
-											<% if field.sum %>
-												<% @sum[field.id] += values[index].to_i %>
-											<% end %>
+											<%= value %>
+											<% @sum[field.id] += value.to_i if field.sum %>
 										<% end %>
 									</td>
 								<% end %>
@@ -82,7 +79,7 @@
 
 			</table>
 		</div>	
-		<%= count %> sur <%= @table.size %> au total
+		<%= @records.count %> sur <%= @table.size %> au total
 		<br>
 	<% end %>
 	<br>

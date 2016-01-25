@@ -39,7 +39,7 @@
 					<th>
 						<%= link_to_unless field.datatype == 'formule', field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
 					</th>
-					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : '' %>
+					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 				<% end %>
 				<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
 				<th /><th />
@@ -48,31 +48,24 @@
 
 		<% if @records.any? %>
 			<tbody>
-				<% count = 0 %>	
-		        <% updated_at_list = @table.values.group(:record_index).maximum(:updated_at) %>
-
 				<% @records.each do | index | %>
 					<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
-					<% updated_at = updated_at_list[index] %>
-					<% count += 1 %>
 					<tr>
 						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
 						<% @table.fields.each_with_index do | field,index | %>
 							<% value = values[index] %>
-							<td class="<%= @td_style[index] %>">
+							<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
 								<% if field.datatype == "formule" %>
 									<%= field.evaluate(values) %>
 								<% elsif field.datatype == "fichier" and value %>
 									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 								<% else %>
 									<%= value %>
-									<% if field.sum %>
-										<% @sum[field.id] += value.to_f %>
-									<% end %>
+									<% @sum[field.id] += value.to_f if field.sum %>
 								<% end %>
 							</td>
 						<% end %>
-						<td><%= l(updated_at) %></td>
+						<td><%= l(@updated_at_list[index]) %></td>
 			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %>
 			            		<i class="glyphicon glyphicon-time"></i><% end %>
 			            </td>
@@ -99,7 +92,7 @@
 				</tr>
 			</tfoot>
 		</table>
-		<%= count %> sur <%= @table.size %> au total
+		<%= @records.count %> sur <%= @table.size %> au total 
 		<br>
 	<% else %>
 		<tbody>

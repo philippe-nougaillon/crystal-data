@@ -94,6 +94,8 @@ class TablesController < ApplicationController
       session[:order_by] = order_by
     end
 
+    @updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
+
     respond_to do |format|
       format.html.phone
       format.html.none 
