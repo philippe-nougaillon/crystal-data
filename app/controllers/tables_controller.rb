@@ -387,11 +387,15 @@ class TablesController < ApplicationController
     if params[:record_index]
       @logs = @logs.where(record_index:params[:record_index])  
     else
-      @logs = @table.logs.unscoped.all
+      @logs = @table.logs
     end 
 
     unless params[:type_action].blank?
       @logs = @logs.where(action:params[:type_action].to_i)
+    end
+
+    unless params[:user_id].blank?
+      @logs = @logs.where(user_id:params[:user_id])
     end
 
     @logs = @logs.order('id DESC').paginate(page:params[:page])
