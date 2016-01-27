@@ -19,7 +19,7 @@
       <br>
 
       <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque nouvel ajout de données ?" %>
-      <%= f.input :lifo, label:"Lifo ?", hint:"Afficher la liste triée par date de modification (plus récents en premier)" %>
+      <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (sinon c'est par ordre d'entrée)" %>
       <br><br>
 
       <%= f.submit @table.new_record? ? "Créer cette table" : "Modifier cette table", class: 'btn btn-success' %>

@@ -99,8 +99,10 @@
 			<tr>
 				<td />
 				<td>
-					Aucun enregistrement trouvé...
+					Aucune données pour l'instant... Utilisez le bouton '+ Ajouter' pour saisir de nouvelles données
 				</td>
+				<% @table.fields.count.times do %><td /><% end %>
+				<td /><td />
 			</tr>
 		</tbody>
 	<% end %>
