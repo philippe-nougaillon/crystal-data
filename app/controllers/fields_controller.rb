@@ -66,6 +66,16 @@ class FieldsController < ApplicationController
     end
   end
 
+  def update_row_order
+    @field = Field.find(field_params[:field_id])
+    @field.row_order_position = field_params[:row_order_position]
+    @field.save
+
+    #redirect_to show_attrs_path(id:@field.table)
+    render nothing: true # this is a POST action, updates sent via AJAX, no view rendered
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_field
@@ -74,6 +84,7 @@ class FieldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_params
-      params.require(:field).permit(:name, :table_id, :datatype, :filtre, :sum, :items, :obligatoire)
+      params.require(:field).permit(:name, :table_id, :datatype, :filtre, :sum, :items, :obligatoire, :field_id, :row_order_position)
     end
+
 end

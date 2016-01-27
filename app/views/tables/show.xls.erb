@@ -6,23 +6,19 @@
     <table id="table_list" style="border:0;">
       <thead>
         <tr>
-          <th>#</th>
           <% @table.fields.each do | field | %>
-            <th><%= field.name %></th>
+              <th><%= field.name %></th>
           <% end %>
           <th>Modifié le</th>
         </tr>
       </thead>
       <tbody>
-        <% count = 0 %> 
         <% updated_at_list = @table.values.group(:record_index).maximum(:updated_at) %>
 
         <% @records.each do | index | %>
-          <% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
+          <% values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data) %>
           <% updated_at = updated_at_list[index] %>
-          <% count += 1 %> 
           <tr>
-            <td><%= index %></td>
             <% @table.fields.each_with_index do | field,index | %>
               <td>
                 <% if field.datatype == "formule" %>

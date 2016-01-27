@@ -40,25 +40,25 @@
 			<% if @records.any? %>
 				<tbody>
 					<% @records.each do | index | %>
-						<% values = @table.values.records_at(index).order(:record_index,:field_id).pluck(:data) %>
-							<tr>
-								<td>	
-									<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
+						<% values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data) %>
+						<tr>
+							<td>	
+								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
+							</td>
+							<% @table.fields.each_with_index do | field,index | %>
+								<% value = values[index] %>
+								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
+									<% if field.datatype == "formule" %>
+										<%= field.evaluate(values) %>
+									<% elsif field.datatype == "fichier" and value %>
+										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
+									<% else %>
+										<%= value %>
+										<% @sum[field.id] += value.to_i if field.sum %>
+									<% end %>
 								</td>
-								<% @table.fields.each_with_index do | field,index | %>
-									<% value = values[index] %>
-									<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
-										<% if field.datatype == "formule" %>
-											<%= field.evaluate(values) %>
-										<% elsif field.datatype == "fichier" and value %>
-											<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
-										<% else %>
-											<%= value %>
-											<% @sum[field.id] += value.to_i if field.sum %>
-										<% end %>
-									</td>
-								<% end %>
-							</tr>
+							<% end %>
+						</tr>
 					<% end %>
 				</tbody>
 

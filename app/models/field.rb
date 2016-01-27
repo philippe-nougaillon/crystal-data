@@ -1,4 +1,6 @@
 class Field < ActiveRecord::Base
+	include RankedModel
+  	ranks :row_order, :with_same => :table_id 
 
 	belongs_to :table
 	has_many :values
@@ -11,6 +13,8 @@ class Field < ActiveRecord::Base
 
 	scope :filtres, -> { where(filtre:true)}
 	scope :sommes,  -> { where(sum:true)}
+
+	default_scope { rank(:row_order) } 
 
 	# evaluer [1] + [2]
 	def evaluate(values)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125111254) do
+ActiveRecord::Schema.define(version: 20160127115156) do
 
   create_table "fields", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160125111254) do
     t.boolean  "filtre",      limit: 1,   default: false
     t.boolean  "sum",         limit: 1,   default: false
     t.boolean  "obligatoire", limit: 1,   default: false
+    t.integer  "row_order",   limit: 4
   end
 
   add_index "fields", ["name"], name: "index_fields_on_name", using: :btree

@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require jquery_ujs
 //= require jquery-ui/datepicker
+//= require jquery-ui/sortable
+//= require jquery-ui/effect-highlight
 //= require bootstrap-sprockets
 //= require_tree .
 //= require turbolinks

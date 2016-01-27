@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :users
   resources :tables
   resources :values
-  resources :fields
+
+  resources :fields do
+    post :update_row_order, on: :collection
+  end
 
   get 'tables/:id/fill' => 'tables#fill', as: :fill
   post 'tables/:id/fill' => 'tables#fill_do', as: :fill_do

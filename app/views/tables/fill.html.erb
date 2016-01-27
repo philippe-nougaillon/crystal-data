@@ -43,7 +43,7 @@
             </div>
           <% elsif field.datatype == "formule" %>
             <div class="col-sm-2">
-              <% field_value = field.evaluate(@table.values.records_at(@record_index).order(:record_index,:field_id).pluck(:data)) %>
+              <% field_value = field.evaluate(@table.values.joins(:field).records_at(@record_index).order("fields.row_order").pluck(:data)) %>
               <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
             </div>
           <% elsif field.datatype == "fichier" %>

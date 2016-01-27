@@ -49,6 +49,9 @@ gem 'will_paginate-bootstrap'
 
 gem 'nprogress-rails'
 
+gem 'ranked-model'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

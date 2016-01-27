@@ -157,16 +157,15 @@ class TablesController < ApplicationController
       end  
 
       # enregistre le fichier
-      if field.datatype == 'fichier' 
-         if value
-            value = field.save_file(value)
-         else
-            next
-         end
+      if field.datatype == 'fichier' and value
+        value = field.save_file(value)
       end 
   
       # test si c'est un update ou new record
       old_value = table.values.find_by(record_index:record_index, field:field)
+
+      #logger.debug "DEBUG: value:#{value} old_value:#{old_value.data} update:#{update}"
+
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
             # enregistre les modifications dans l'historique
@@ -385,18 +384,17 @@ class TablesController < ApplicationController
       return
     end
 
-    @logs = @table.logs.order('id DESC')
-
     if params[:record_index]
-      @record_index = params[:record_index]
-      @logs = @logs.where(record_index:@record_index)  
+      @logs = @logs.where(record_index:params[:record_index])  
+    else
+      @logs = @table.logs.unscoped.all
     end 
 
     unless params[:type_action].blank?
       @logs = @logs.where(action:params[:type_action].to_i)
     end
 
-    @logs = @logs.paginate(page:params[:page])
+    @logs = @logs.order('id DESC').paginate(page:params[:page])
   end
 
   def activity
