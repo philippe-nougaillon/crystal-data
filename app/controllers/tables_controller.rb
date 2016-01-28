@@ -156,10 +156,13 @@ class TablesController < ApplicationController
         return
       end  
 
-      # enregistre le fichier
       if field.datatype == 'fichier' and value
-        value = field.save_file(value)
-      end 
+         # enregistre le fichier
+         value = field.save_file(value)
+      elsif field.datatype == 'formule'
+         # evalue le champ calculé
+         value = field.evaluate(values.values)
+      end          
   
       # test si c'est un update ou new record
       old_value = table.values.find_by(record_index:record_index, field:field)

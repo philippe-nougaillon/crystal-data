@@ -55,9 +55,7 @@
 						<% @table.fields.each_with_index do | field,index | %>
 							<% value = values[index] %>
 							<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
-								<% if field.datatype == "formule" %>
-									<%= field.evaluate(values) %>
-								<% elsif field.datatype == "fichier" and values[index] %>
+								<% if field.datatype == "fichier" and values[index] %>
 									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 								<% else %>
 									<%= value %>
