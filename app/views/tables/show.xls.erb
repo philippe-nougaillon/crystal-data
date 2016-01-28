@@ -21,11 +21,7 @@
           <tr>
             <% @table.fields.each_with_index do | field,index | %>
               <td>
-                <% if field.datatype == "formule" %>
-                  <%= field.evaluate(values) %>
-                <% else %>
                   <%= values[index] %>
-                <% end %>
               </td>
             <% end %>
             <td><%= l(updated_at) %></td>

@@ -30,7 +30,7 @@
 					<th />
 					<% @table.fields.each_with_index do | field,index | %>
 						<th>
-							<%= link_to_unless field.datatype == 'formule', field.name, url_for(params.merge(sort_by:field.id)) %>
+							<%= link_to field.name, url_for(params.merge(sort_by:field.id)) %>
 						</th>
 						<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 					<% end %>
@@ -48,9 +48,7 @@
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
 								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
-									<% if field.datatype == "formule" %>
-										<%= field.evaluate(values) %>
-									<% elsif field.datatype == "fichier" and value %>
+									<% if field.datatype == "fichier" and value %>
 										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 									<% else %>
 										<%= value %>

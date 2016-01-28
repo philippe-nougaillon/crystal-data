@@ -37,7 +37,7 @@
 				<th />
 				<% @table.fields.each_with_index do | field,index | %>
 					<th>
-						<%= link_to_unless field.datatype == 'formule', field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
+						<%= link_to field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
 					</th>
 					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 				<% end %>
