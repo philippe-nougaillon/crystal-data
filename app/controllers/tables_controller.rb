@@ -156,12 +156,11 @@ class TablesController < ApplicationController
         return
       end  
 
+      # enregistre le fichier
       if field.datatype == 'fichier' and value
-         # enregistre le fichier
          value = field.save_file(value)
       elsif field.datatype == 'formule'
-         # evalue le champ calculé
-         value = field.evaluate(values.values)
+         value = field.evaluate(values.values) # evalue le champ calculé
       end          
   
       # test si c'est un update ou new record
@@ -208,7 +207,7 @@ class TablesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html.phone { redirect_to tables_path }
+      format.html.phone { redirect_to table }
       format.html.none { redirect_to table }
     end
   end  

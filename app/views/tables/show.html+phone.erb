@@ -10,7 +10,7 @@
 		    <br>
 		    
 		    <% @table.fields.filtres.each_with_index do | field,index | %>
-			    <%= field.name.humanize %>
+			    <%= field.name.humanize %>:
 			    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
 			    <%= select_tag "select[#{index}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, onchange:'this.form.submit()', class: 'form-control' %>
 			    <br>
@@ -39,11 +39,12 @@
 
 			<% if @records.any? %>
 				<tbody>
-					<% @records.each do | index | %>
-						<% values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data) %>
+					<% @records.each do | record_index | %>
+						<% values = @table.values.joins(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
 						<tr>
 							<td>	
-								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default pull-right' %>
+								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:record_index), 
+										class:'btn btn-lg btn-default pull-right' %>
 							</td>
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
@@ -51,7 +52,7 @@
 									<% if field.datatype == "fichier" and value %>
 										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 									<% elsif field.datatype == "signature" and values[index] %>
-										Signé
+										<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% else %>
 										<%= value %>
 										<% @sum[field.id] += value.to_i if field.sum %>

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"si",
+				"signature"
+			],
+			[
+				"fi",
+				"field"
+			],
+			[
+				"ta",
+				"tables"
+			],
+			[
 				"valu",
 				"value"
 			],
@@ -68,10 +80,6 @@
 				"field_value"
 			],
 			[
-				"si",
-				"sizeInMb"
-			],
-			[
 				"up",
 				"uploaded_io"
 			],
@@ -90,10 +98,6 @@
 			[
 				"upda",
 				"updated_at_list"
-			],
-			[
-				"ta",
-				"table"
 			],
 			[
 				"th",
@@ -190,10 +194,6 @@
 			[
 				"record",
 				"record_index"
-			],
-			[
-				"fi",
-				"field_id"
 			],
 			[
 				"es",
@@ -523,7 +523,7 @@
 			"file": "TODO",
 			"settings":
 			{
-				"buffer_size": 780,
+				"buffer_size": 854,
 				"line_ending": "Unix",
 				"name": "TODO"
 			}
@@ -532,7 +532,7 @@
 			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 1897,
+				"buffer_size": 1948,
 				"line_ending": "Unix"
 			}
 		},
@@ -540,7 +540,7 @@
 			"file": "config/routes.rb",
 			"settings":
 			{
-				"buffer_size": 2753,
+				"buffer_size": 2802,
 				"line_ending": "Unix"
 			}
 		},
@@ -549,6 +549,22 @@
 			"settings":
 			{
 				"buffer_size": 679,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/secrets.yml",
+			"settings":
+			{
+				"buffer_size": 1063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 568,
 				"line_ending": "Unix"
 			}
 		},
@@ -564,7 +580,23 @@
 			"file": "app/assets/javascripts/application.js",
 			"settings":
 			{
-				"buffer_size": 2117,
+				"buffer_size": 1856,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/stickytableheaders.js",
+			"settings":
+			{
+				"buffer_size": 4855,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/tables.coffee",
+			"settings":
+			{
+				"buffer_size": 380,
 				"line_ending": "Unix"
 			}
 		},
@@ -572,7 +604,15 @@
 			"file": "app/assets/stylesheets/application.css.sass",
 			"settings":
 			{
-				"buffer_size": 824,
+				"buffer_size": 875,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/initializers/assets.rb",
+			"settings":
+			{
+				"buffer_size": 612,
 				"line_ending": "Unix"
 			}
 		},
@@ -580,7 +620,7 @@
 			"file": "app/models/field.rb",
 			"settings":
 			{
-				"buffer_size": 1340,
+				"buffer_size": 1352,
 				"line_ending": "Unix"
 			}
 		},
@@ -625,18 +665,18 @@
 			}
 		},
 		{
-			"file": "app/controllers/tables_controller.rb",
+			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 15131,
+				"buffer_size": 4212,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/controllers/users_controller.rb",
+			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1062,
+				"buffer_size": 15259,
 				"line_ending": "Unix"
 			}
 		},
@@ -644,7 +684,7 @@
 			"file": "app/views/tables/show.html.erb",
 			"settings":
 			{
-				"buffer_size": 3888,
+				"buffer_size": 4149,
 				"line_ending": "Unix"
 			}
 		},
@@ -652,7 +692,7 @@
 			"file": "app/views/tables/show.xls.erb",
 			"settings":
 			{
-				"buffer_size": 957,
+				"buffer_size": 1107,
 				"line_ending": "Unix"
 			}
 		},
@@ -660,7 +700,31 @@
 			"file": "app/views/tables/show.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 2564,
+				"buffer_size": 2660,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/sessions/welcome.html.erb",
+			"settings":
+			{
+				"buffer_size": 4881,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/fields/_form.html.erb",
+			"settings":
+			{
+				"buffer_size": 1162,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/fields/edit.html.erb",
+			"settings":
+			{
+				"buffer_size": 90,
 				"line_ending": "Unix"
 			}
 		},
@@ -684,7 +748,23 @@
 			"file": "app/views/tables/_form.html.erb",
 			"settings":
 			{
-				"buffer_size": 993,
+				"buffer_size": 1016,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/tables/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 2341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/tables/index.html+phone.erb",
+			"settings":
+			{
+				"buffer_size": 792,
 				"line_ending": "Unix"
 			}
 		},
@@ -692,7 +772,15 @@
 			"file": "app/views/tables/fill.html.erb",
 			"settings":
 			{
-				"buffer_size": 2702,
+				"buffer_size": 3101,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/tables/fill.html+phone.erb",
+			"settings":
+			{
+				"buffer_size": 2795,
 				"line_ending": "Unix"
 			}
 		},
@@ -705,67 +793,18 @@
 			}
 		},
 		{
-			"file": "app/views/tables/partages.html.erb",
+			"file": "app/controllers/values_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1045,
+				"buffer_size": 2001,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/tables/add_user.html.erb",
+			"file": "app/views/values/signature.html.erb",
 			"settings":
 			{
-				"buffer_size": 619,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/users/show.html.erb",
-			"settings":
-			{
-				"buffer_size": 1703,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/javascripts/fields/update_things_row_order.js.coffee",
-			"settings":
-			{
-				"buffer_size": 990,
-				"line_ending": "Unix",
-				"name": "jQuery ->"
-			}
-		},
-		{
-			"file": "app/controllers/fields_controller.rb",
-			"settings":
-			{
-				"buffer_size": 2454,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/tables/logs.html.erb",
-			"settings":
-			{
-				"buffer_size": 1457,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/tables/import.html.erb",
-			"settings":
-			{
-				"buffer_size": 609,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/tables/new.html.erb",
-			"settings":
-			{
-				"buffer_size": 103,
+				"buffer_size": 302,
 				"line_ending": "Unix"
 			}
 		}
@@ -798,8 +837,21 @@
 	},
 	"file_history":
 	[
-		"/home/phil/RailsProjects/CrystalData/db/migrate/20160127115156_add_row_order_to_fields.rb",
+		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/fields.coffee",
+		"/home/phil/RailsProjects/CrystalData/app/assets/stylesheets/logs.scss",
+		"/home/phil/RailsProjects/CrystalData/app/assets/stylesheets/tables.scss",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/partages.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/add_user.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/controllers/fields_controller.rb",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/logs.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/import.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/new.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/fields/update_things_row_order.js.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/views/users/show.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/controllers/users_controller.rb",
+		"/home/phil/RailsProjects/CrystalData/app/views/tables/signature.html.erb",
+		"/home/phil/RailsProjects/CrystalData/db/migrate/20160129100712_change_value_data_to_text.rb",
+		"/home/phil/RailsProjects/CrystalData/db/migrate/20160127115156_add_row_order_to_fields.rb",
 		"/home/phil/RailsProjects/CrystalData/db/migrate/20160125111254_add_index_to_values.rb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/index.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/show.xls.erb",
@@ -822,17 +874,12 @@
 		"/home/phil/RailsProjects/CrystalData/app/controllers/sessions_controller.rb",
 		"/home/phil/RailsProjects/CrystalData/app/mailers/user_mailer.rb",
 		"/home/phil/RailsProjects/CrystalData/app/views/user_mailer/notification.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/tables/logs.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/edit.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/_form.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/activity.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/tables/import.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/import_do.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/export.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/export_do.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/tables/add_user.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/tables/partages.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/tables/new.html.erb",
 		"/home/phil/RailsProjects/CrystalData/config/initializers/setup_mail.rb",
 		"/home/phil/RailsProjects/CrystalData/db/migrate/20160115092227_add_notification_to_table.rb",
 		"/home/phil/RailsProjects/CrystalData/app/assets/stylesheets/scaffolds.scss",
@@ -842,8 +889,6 @@
 		"/home/phil/RailsProjects/CrystalData/.gitignore",
 		"/home/phil/RailsProjects/CrystalData/config/database.yml",
 		"/home/phil/RailsProjects/CrystalData/app/controllers/application_controller.rb",
-		"/home/phil/RailsProjects/CrystalData/app/controllers/fields_controller.rb",
-		"/home/phil/RailsProjects/CrystalData/app/controllers/users_controller.rb",
 		"/home/phil/RailsProjects/CrystalData/app/views/logs/_form.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/logs/index.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/jobs/import_table_job.rb",
@@ -919,13 +964,7 @@
 		"/home/phil/RailsProjects/opencantine_4.2/app/views/prestations/index.html.erb",
 		"/home/phil/RailsProjects/opencantine_4.2/app/assets/javascripts/prestations.js.coffee",
 		"/home/phil/RailsProjects/opencantine_4.2/app/views/layouts/standard.html.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/factures/new_all.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/enfants/_enfant.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/factures/new.html.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/factures/index.html.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/factures/facturation_speciale.html.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/admin/setup.erb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/views/villes/edit.html.erb"
+		"/home/phil/RailsProjects/opencantine_4.2/app/views/factures/new_all.erb"
 	],
 	"find":
 	{
@@ -1164,7 +1203,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 28,
 			"sheets":
 			[
 				{
@@ -1172,15 +1211,15 @@
 					"file": "TODO",
 					"settings":
 					{
-						"buffer_size": 780,
+						"buffer_size": 854,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								780,
-								780
+								804,
+								804
 							]
 						],
 						"settings":
@@ -1199,15 +1238,15 @@
 					"file": "Gemfile",
 					"settings":
 					{
-						"buffer_size": 1897,
+						"buffer_size": 1948,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								869,
-								869
+								737,
+								737
 							]
 						],
 						"settings":
@@ -1225,15 +1264,15 @@
 					"file": "config/routes.rb",
 					"settings":
 					{
-						"buffer_size": 2753,
+						"buffer_size": 2802,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1040,
-								1040
+								1216,
+								1216
 							]
 						],
 						"settings":
@@ -1243,7 +1282,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 323.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1278,6 +1317,58 @@
 				},
 				{
 					"buffer": 4,
+					"file": "config/secrets.yml",
+					"settings":
+					{
+						"buffer_size": 1063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1063,
+								1063
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								548,
+								548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "db/schema.rb",
 					"settings":
 					{
@@ -1305,19 +1396,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "app/assets/javascripts/application.js",
 					"settings":
 					{
-						"buffer_size": 2117,
+						"buffer_size": 1856,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								775,
-								775
+								990,
+								990
 							]
 						],
 						"settings":
@@ -1327,25 +1418,77 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "app/assets/stylesheets/application.css.sass",
+					"buffer": 8,
+					"file": "app/assets/javascripts/stickytableheaders.js",
 					"settings":
 					{
-						"buffer_size": 824,
+						"buffer_size": 4855,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								772,
-								772
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/assets/javascripts/tables.coffee",
+					"settings":
+					{
+						"buffer_size": 380,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								212,
+								212
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/assets/stylesheets/application.css.sass",
+					"settings":
+					{
+						"buffer_size": 875,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								803,
+								803
 							]
 						],
 						"settings":
@@ -1359,25 +1502,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/models/field.rb",
+					"buffer": 11,
+					"file": "config/initializers/assets.rb",
 					"settings":
 					{
-						"buffer_size": 1340,
+						"buffer_size": 612,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								75,
-								75
+								312,
+								312
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1386,7 +1528,34 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 12,
+					"file": "app/models/field.rb",
+					"settings":
+					{
+						"buffer_size": 1352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								339,
+								339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
 					"file": "app/models/log.rb",
 					"settings":
 					{
@@ -1412,7 +1581,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 14,
 					"file": "app/models/table.rb",
 					"settings":
 					{
@@ -1439,7 +1608,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 15,
 					"file": "app/models/user.rb",
 					"settings":
 					{
@@ -1465,7 +1634,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 16,
 					"file": "app/models/value.rb",
 					"settings":
 					{
@@ -1493,7 +1662,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 17,
 					"file": "app/controllers/application_controller.rb",
 					"settings":
 					{
@@ -1521,19 +1690,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 18,
+					"file": "app/views/layouts/application.html.erb",
+					"settings":
+					{
+						"buffer_size": 4212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1688,
+								1688
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
-						"buffer_size": 15131,
+						"buffer_size": 15259,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5547,
-								5547
+								6795,
+								6795
 							]
 						],
 						"settings":
@@ -1543,53 +1739,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2348.0,
+						"translation.y": 1787.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 14,
-					"file": "app/controllers/users_controller.rb",
-					"settings":
-					{
-						"buffer_size": 1062,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								274,
-								274
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
+					"buffer": 20,
 					"file": "app/views/tables/show.html.erb",
 					"settings":
 					{
-						"buffer_size": 3888,
+						"buffer_size": 4149,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1421,
-								1421
+								181,
+								181
 							]
 						],
 						"settings":
@@ -1598,25 +1766,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 306.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 21,
 					"file": "app/views/tables/show.xls.erb",
 					"settings":
 					{
-						"buffer_size": 957,
+						"buffer_size": 1107,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								762,
-								762
+								951,
+								951
 							]
 						],
 						"settings":
@@ -1632,19 +1800,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 22,
 					"file": "app/views/tables/show.html+phone.erb",
 					"settings":
 					{
-						"buffer_size": 2564,
+						"buffer_size": 2660,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1853,
-								1853
+								1668,
+								1668
 							]
 						],
 						"settings":
@@ -1653,13 +1821,94 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 536.0,
+						"translation.y": 485.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 23,
+					"file": "app/views/sessions/welcome.html.erb",
+					"settings":
+					{
+						"buffer_size": 4881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								376,
+								376
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "app/views/fields/_form.html.erb",
+					"settings":
+					{
+						"buffer_size": 1162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1143,
+								1143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "app/views/fields/edit.html.erb",
+					"settings":
+					{
+						"buffer_size": 90,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								89,
+								89
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 26,
 					"file": "app/views/tables/show_attrs.html.erb",
 					"settings":
 					{
@@ -1686,7 +1935,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 27,
 					"file": "app/views/fields/_field.html.erb",
 					"settings":
 					{
@@ -1714,19 +1963,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 28,
 					"file": "app/views/tables/_form.html.erb",
 					"settings":
 					{
-						"buffer_size": 993,
+						"buffer_size": 1016,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								826,
-								826
+								821,
+								821
 							]
 						],
 						"settings":
@@ -1742,19 +1991,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
-					"file": "app/views/tables/fill.html.erb",
+					"buffer": 29,
+					"file": "app/views/tables/index.html.erb",
 					"settings":
 					{
-						"buffer_size": 2702,
+						"buffer_size": 2341,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2286,
-								2286
+								2076,
+								2076
 							]
 						],
 						"settings":
@@ -1764,13 +2013,97 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 357.0,
+						"translation.y": 612.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 30,
+					"file": "app/views/tables/index.html+phone.erb",
+					"settings":
+					{
+						"buffer_size": 792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								500,
+								500
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "app/views/tables/fill.html.erb",
+					"settings":
+					{
+						"buffer_size": 3101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2852,
+								2852
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 570.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 32,
+					"file": "app/views/tables/fill.html+phone.erb",
+					"settings":
+					{
+						"buffer_size": 2795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2557,
+								2557
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 383.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 33,
 					"file": "app/views/tables/activity.html.erb",
 					"settings":
 					{
@@ -1798,130 +2131,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 23,
-					"file": "app/views/tables/partages.html.erb",
+					"buffer": 34,
+					"file": "app/controllers/values_controller.rb",
 					"settings":
 					{
-						"buffer_size": 1045,
+						"buffer_size": 2001,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 24,
-					"file": "app/views/tables/add_user.html.erb",
-					"settings":
-					{
-						"buffer_size": 619,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 25,
-					"file": "app/views/users/show.html.erb",
-					"settings":
-					{
-						"buffer_size": 1703,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								150,
-								150
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 26,
-					"file": "app/assets/javascripts/fields/update_things_row_order.js.coffee",
-					"settings":
-					{
-						"buffer_size": 990,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9,
-								9
-							]
-						],
-						"settings":
-						{
-							"auto_name": "jQuery ->",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 27,
-					"file": "app/controllers/fields_controller.rb",
-					"settings":
-					{
-						"buffer_size": 2454,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1953,
-								1953
+								1591,
+								1591
 							]
 						],
 						"settings":
@@ -1931,81 +2153,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 841.0,
+						"translation.y": 765.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 28,
-					"file": "app/views/tables/logs.html.erb",
+					"buffer": 35,
+					"file": "app/views/values/signature.html.erb",
 					"settings":
 					{
-						"buffer_size": 1457,
+						"buffer_size": 302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								162,
-								162
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 29,
-					"file": "app/views/tables/import.html.erb",
-					"settings":
-					{
-						"buffer_size": 609,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 30,
-					"file": "app/views/tables/new.html.erb",
-					"settings":
-					{
-						"buffer_size": 103,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								64,
-								64
+								302,
+								302
 							]
 						],
 						"settings":
