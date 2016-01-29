@@ -18,7 +18,7 @@
       <br>
 
       <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque nouvel ajout de données ?" %>
-      <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (sinon c'est par ordre d'entrée)" %>
+      <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (le dernier modifié tout en haut, sinon c'est l'inverse)" %>
       <br><br>
 
       <%= f.submit @table.new_record? ? "Créer cette table" : "Modifier cette table", class: 'btn btn-success' %>
