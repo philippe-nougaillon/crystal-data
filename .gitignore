@@ -20,3 +20,5 @@
 # ignore user's files
 /public/table_files
 
+# ignore secrets
+#/config/secrets.yml
