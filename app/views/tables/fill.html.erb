@@ -50,17 +50,28 @@
             <div class="col-sm-4">
               <%= file_field_tag field_name, class: 'form-control' %>
             </div>
+          <% elsif field.datatype == "signature" %>
+            <div class="col-sm-4 sigPad">
+              <div class="sig sigWrapper">
+                <canvas class="pad" width="400" height="53"></canvas>
+                <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
+              </div>
+            </div>
+            <br>
           <% end %>
           <br>
   		</div>
   <% end %>  
   <br><br>
 
-  <div class="actions">
-     <%= submit_tag "Enregistrer", class: 'btn btn-success'%>
-     | <%= link_to 'Retour', @table %>
+  <div class="col-sm-offset-2">
+    <div class="col-sm-4">
+       <%= submit_tag "Enregistrer", class: 'btn btn-success'%>
+      | <%= link_to 'Retour', @table %>
+    </div>
   </div>
 <% end %>
+
 
 
 

@@ -18,25 +18,14 @@
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
 //= require bootstrap-sprockets
-//= require_tree .
 //= require turbolinks
 //= require stickytableheaders
 //= require nprogress
 //= require nprogress-turbolinks
+//= require signature-pad
+//= require jquery.modal
+//= require_tree .
     
-$(function() {
-    var flashCallback;
-    flashCallback = function() {
-        return $(".alert").fadeOut();
-    };
-    $(".alert").bind('click', (function(_this) {
-        return function(ev) {
-            return $(".alert").fadeOut();
-        };
-    })(this));
-    return setTimeout(flashCallback, 5000);
-});
-
 $.datepicker.regional['fr'] = {
         closeText: 'Fermer',
         prevText: 'Précédent',

@@ -21,7 +21,11 @@
           <tr>
             <% @table.fields.each_with_index do | field,index | %>
               <td>
+                <% if field.datatype == "signature" and values[index] %>
+                  Signé
+                <% else %>
                   <%= values[index] %>
+                <% end %>
               </td>
             <% end %>
             <td><%= l(updated_at) %></td>

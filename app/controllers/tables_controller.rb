@@ -172,7 +172,9 @@ class TablesController < ApplicationController
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
             # enregistre les modifications dans l'historique
-            inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+            unless field.datatype == 'signature'
+              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+            end  
             # supprimer les anciennes données
             table.values.find_by(record_index:record_index, field:field).delete
             # enregistrer les nouvelles données
@@ -180,7 +182,9 @@ class TablesController < ApplicationController
           end
       else
         # enregistre les ajouts dans l'historique
-        inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
+        unless field.datatype == 'signature'
+          inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
+        end
         # enregistrer les nouvelles données
         table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
         # collecte les données pour les envoyer par mail

@@ -10,7 +10,7 @@
       <% field_value = value.data if value %>
 
       <div class="field form-group">
-          <div class='col-sm-2' style='font-weight:bold' %>
+          <div class='col-sm-3' style='font-weight:bold' %>
             <h3>
               <%= truncate((field.obligatoire ? field.name.upcase.insert(0, '* ') : field.name), length:20) %>
             </h3>
@@ -36,6 +36,15 @@
                   <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
               <% elsif field.datatype == "fichier" %>
                   <%= file_field_tag field_name, class: 'form-control' %>
+              <% elsif field.datatype == "signature" %>
+                  <br><br><br>
+                  <div class="col-sm-4 sigPad">
+                    <div class="sig sigWrapper">
+                      <canvas class="pad" width="400" height="53"></canvas>
+                      <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
+                    </div>
+                  </div>
+                  <br><br>
               <% end %>
           </div>
       </div>

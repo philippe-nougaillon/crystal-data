@@ -6,24 +6,23 @@
       <tr>
         <th>Nom</th>
         <th>Màj</th>
-      	<th />
       </tr>
     </thead>
 
     <tfoot>
-      <tr><td /><td /><td /></tr>
+      <tr><td /><td /></tr>
     </tfoot>
 
     <tbody>
       	<% @tables.each do |table| %>
         	<tr>
-        		<td><b><%= link_to table.name.humanize, table, class:'btn btn-lg btn-default' %></b></td>
-        		<td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
-            <td>
-              <%= link_to fill_url(table.id), class:'btn btn-lg btn-primary' do %>
+        		<td>
+              <b><%= link_to table.name.humanize, table, class:'btn btn-lg btn-default' %></b>
+              <%= link_to fill_url(table.id), class:'btn btn-lg btn-primary pull-right' do %>
                 <i class="glyphicon glyphicon-plus"></i> 
               <% end %>
             </td>
+            <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
 			    </tr>
 	  	  <% end %>
 	</tbody>

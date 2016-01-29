@@ -1,40 +1,3 @@
-<script>
-  $(document).ready(function(){
-    $("#field_items").css('display','none')
-
-    if($('#field_datatype').val() == "liste" || $('#field_datatype').val() == "formule"){
-      $("#field_items").css('display','inline')
-    } 
-
-    $('#field_datatype').change(function(){
-      if($('#field_datatype').val() == "liste"){
-          $("#field_items").css('display','inline')
-          $("#field_items").attr('placeholder','Entrez les éléments de la liste séparés par une virgule')
-       } else {
-          if($('#field_datatype').val() == "formule"){
-              $("#field_items").css('display','inline')
-              $("#field_items").attr('placeholder',"Entrez une formule (ex: [1]+[2] pour additionner la colonne #1 avec la colonne #2)")
-           } else {
-              $("#field_items").css('display','none')
-           }
-       }
-    })
-
-    $(".field_sum").css('display','none')
-    if($('#field_datatype').val() == "nombre" || $('#field_datatype').val() == "euros"){
-      $(".field_sum").css('display','inline')
-    }
-    $('#field_datatype').change(function(){
-      if($('#field_datatype').val() == "nombre" || $('#field_datatype').val() == "euros"){
-          $(".field_sum").css('display','inline')
-       } else {
-          $(".field_sum").css('display','none')
-       }
-    })
-
-  });
-</script>
-
 <%= form_for(@field) do |f| %>
   <% if @field.errors.any? %>
     <div id="error_explanation">
@@ -66,7 +29,11 @@
       <%= f.check_box :sum %> Cumul ?<br>
     </div>
     <br>
-
-    <%= f.submit @field.new_record? ? "Créer cette colonne" : "Modifier", class: 'btn btn-success' %>
+    <% if @field.new_record? %>
+      <%= f.submit "Créer cette colonne", class: 'btn btn-success' %>
+    <% else %>  
+      <%= f.submit "Modifier", class: 'btn btn-success' %>
+      | <%= link_to 'Retour',  show_attrs_path(id:@field.table)  %>
+    <% end %>
   </div>
 <% end %>

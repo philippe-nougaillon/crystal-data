@@ -9,7 +9,7 @@ class Field < ActiveRecord::Base
 	validates_presence_of :name
 	validates_presence_of :datatype
 
-	enum datatype: [:texte, :nombre, :euros, :date, :oui_non?, :liste, :formule, :fichier]
+	enum datatype: [:texte, :nombre, :euros, :date, :oui_non?, :liste, :formule, :fichier, :signature]
 
 	scope :filtres, -> { where(filtre:true)}
 	scope :sommes,  -> { where(sum:true)}

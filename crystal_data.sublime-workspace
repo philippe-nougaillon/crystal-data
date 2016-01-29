@@ -520,10 +520,7 @@
 	"buffers":
 	[
 		{
-			"contents": "CrystalData TODO\n\nDONE\n- tester les valeurs d'une formule (ne pas calculer la formule si pas de données)\n- tri colonnes (ASC/DESC)\n- historique: inclure l'adresse IP \n- import table: entrée dans l'historique\n- pouvoir annuler le partage d'un utlilsateur @table.users.delete(User.find_by(name:'toto'))\n- champs calculé, formulaire, les données ne s'affichent pas !!\n- new colonne, type liste, pas d'option !\n- champs obligatoires\n- notifier le créateur par mail quand ajout de ligne\n- ordonner les colonnes \n\nTODO\n- formule sur colonne formule... \n- tri colonnes type formule \n- support tablette... \n- droits d'accès: lecture seule, ajout, modif, suppr ?\n\nMEMO\n- formule diff entre deux dates: (Date.strptime(\"[5]\",\"%d/%m/%Y\") - Date.strptime(\"[4]\",\"%d/%m/%Y\")).to_s.chomp('/1') \n\n",
 			"file": "TODO",
-			"file_size": 810,
-			"file_write_time": 1453720099000000,
 			"settings":
 			{
 				"buffer_size": 780,
@@ -559,7 +556,7 @@
 			"file": "db/schema.rb",
 			"settings":
 			{
-				"buffer_size": 4227,
+				"buffer_size": 4266,
 				"line_ending": "Unix"
 			}
 		},
@@ -631,7 +628,7 @@
 			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
-				"buffer_size": 14996,
+				"buffer_size": 15131,
 				"line_ending": "Unix"
 			}
 		},
@@ -647,7 +644,7 @@
 			"file": "app/views/tables/show.html.erb",
 			"settings":
 			{
-				"buffer_size": 4011,
+				"buffer_size": 3888,
 				"line_ending": "Unix"
 			}
 		},
@@ -655,7 +652,7 @@
 			"file": "app/views/tables/show.xls.erb",
 			"settings":
 			{
-				"buffer_size": 1111,
+				"buffer_size": 957,
 				"line_ending": "Unix"
 			}
 		},
@@ -663,7 +660,7 @@
 			"file": "app/views/tables/show.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 2689,
+				"buffer_size": 2564,
 				"line_ending": "Unix"
 			}
 		},
@@ -695,7 +692,7 @@
 			"file": "app/views/tables/fill.html.erb",
 			"settings":
 			{
-				"buffer_size": 2717,
+				"buffer_size": 2702,
 				"line_ending": "Unix"
 			}
 		},
@@ -1167,7 +1164,7 @@
 	"groups":
 	[
 		{
-			"selected": 13,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1182,8 +1179,8 @@
 						"selection":
 						[
 							[
-								547,
-								547
+								780,
+								780
 							]
 						],
 						"settings":
@@ -1284,7 +1281,7 @@
 					"file": "db/schema.rb",
 					"settings":
 					{
-						"buffer_size": 4227,
+						"buffer_size": 4266,
 						"regions":
 						{
 						},
@@ -1528,15 +1525,15 @@
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
-						"buffer_size": 14996,
+						"buffer_size": 15131,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13441,
-								13441
+								5547,
+								5547
 							]
 						],
 						"settings":
@@ -1546,7 +1543,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6356.0,
+						"translation.y": 2348.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1584,15 +1581,15 @@
 					"file": "app/views/tables/show.html.erb",
 					"settings":
 					{
-						"buffer_size": 4011,
+						"buffer_size": 3888,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3587,
-								3587
+								1421,
+								1421
 							]
 						],
 						"settings":
@@ -1601,7 +1598,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1326.0,
+						"translation.y": 306.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1611,15 +1608,15 @@
 					"file": "app/views/tables/show.xls.erb",
 					"settings":
 					{
-						"buffer_size": 1111,
+						"buffer_size": 957,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								278,
-								278
+								762,
+								762
 							]
 						],
 						"settings":
@@ -1639,15 +1636,15 @@
 					"file": "app/views/tables/show.html+phone.erb",
 					"settings":
 					{
-						"buffer_size": 2689,
+						"buffer_size": 2564,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1572,
-								1572
+								1853,
+								1853
 							]
 						],
 						"settings":
@@ -1656,7 +1653,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 485.0,
+						"translation.y": 536.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1749,15 +1746,15 @@
 					"file": "app/views/tables/fill.html.erb",
 					"settings":
 					{
-						"buffer_size": 2717,
+						"buffer_size": 2702,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								422,
-								422
+								2286,
+								2286
 							]
 						],
 						"settings":
@@ -1767,7 +1764,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 145.0,
+						"translation.y": 357.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

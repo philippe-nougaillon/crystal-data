@@ -1,0 +1,12 @@
+<h3>Signature</h3>
+<hr>
+<div class="sigPad_show">
+  <canvas class="pad" width="350" height="53"></canvas>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    sig = <%= raw @signature %>;
+    $('.sigPad_show').signaturePad({ displayOnly:true }).regenerate(sig);
+  });
+</script>

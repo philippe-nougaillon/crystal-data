@@ -2,7 +2,7 @@
 </h2>
 <% if @table.is_owner?(@current_user) %>
 	<small>
-		<%= link_to 'Modifier', show_attrs_path(id:@table), title:"Modifier les colonnes", "data-no-turbolink" => true %> |
+		<%= link_to 'Modifier', show_attrs_path(id:@table), title:"Modifier les colonnes", data: { no_turbolink: true } %> |
 		<%= link_to 'Historique', logs_path(id:@table), title:"Historique des modifications" %> |
 		<%= link_to 'Activité', activity_path(id:@table), title:"L'activité sous forme d'un graphique" %>
 	</small>
@@ -48,27 +48,29 @@
 
 		<% if @records.any? %>
 			<tbody>
-				<% @records.each do | index | %>
-					<% values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data) %>
+				<% @records.each do | record_index | %>
+					<% values = @table.values.joins(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
 					<tr>
-						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index) %></td>
+						<td><%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:record_index) %></td>
 						<% @table.fields.each_with_index do | field,index | %>
 							<% value = values[index] %>
 							<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
 								<% if field.datatype == "fichier" and values[index] %>
 									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
+								<% elsif field.datatype == "signature" and values[index] %>
+									<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 								<% else %>
 									<%= value %>
 									<% @sum[field.id] += value.to_f if field.sum %>
 								<% end %>
 							</td>
 						<% end %>
-						<td><%= l(@updated_at_list[index]) %></td>
-			            <td><%= link_to logs_path(table_id:@table,record_index:index), title:"Historique" do %>
+						<td><%= l(@updated_at_list[record_index]) %></td>
+			            <td><%= link_to logs_path(table_id:@table,record_index:record_index), title:"Historique" do %>
 			            		<i class="glyphicon glyphicon-time"></i><% end %>
 			            </td>
-						<td><%= link_to "Modifier", fill_url(@table.id, record_index:index), class: 'btn btn-info btn-xs' %>
-							<%= link_to "[X]", delete_record_url(@table.id, record_index:index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
+						<td><%= link_to "Modifier", fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' %>
+							<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
 						</td>
 					</tr>
 				<% end %>

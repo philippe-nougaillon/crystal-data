@@ -43,13 +43,15 @@
 						<% values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data) %>
 						<tr>
 							<td>	
-								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default' %>
+								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:index), class:'btn btn-default pull-right' %>
 							</td>
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
 								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
 									<% if field.datatype == "fichier" and value %>
 										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
+									<% elsif field.datatype == "signature" and values[index] %>
+										Signé
 									<% else %>
 										<%= value %>
 										<% @sum[field.id] += value.to_i if field.sum %>

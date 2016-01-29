@@ -61,6 +61,12 @@ class ValuesController < ApplicationController
     end
   end
 
+  def signature
+    @table = Table.find(params[:table])
+    @signature = @table.values.records_at(params[:record_index]).find_by(field_id:params[:field]).data
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_value

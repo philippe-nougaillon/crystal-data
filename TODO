@@ -10,13 +10,12 @@ DONE
 - new colonne, type liste, pas d'option !
 - champs obligatoires
 - notifier le créateur par mail quand ajout de ligne
+- ordonner les colonnes 
+- formule sur colonne formule... 
+- tri colonnes type formule 
 
 TODO
-- faire une page d'aide
-- tri colonnes type formule 
-- formule sur colonne formule... 
 - support tablette... 
-- ordonner les colonnes 
 - droits d'accès: lecture seule, ajout, modif, suppr ?
 
 MEMO
