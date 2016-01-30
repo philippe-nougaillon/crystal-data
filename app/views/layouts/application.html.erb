@@ -20,7 +20,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/manifest.json">
+	<link rel="manifest" href="/.sprockets-manifest-0ab9681aad614e51683e8715781733a0.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
@@ -36,7 +36,7 @@
 <div class="panel-body">
 	<div id="main-container" class="container-fluid">
 		<div class="row">
-			<ul class="nav nav-pills" role="tablist">
+			<ul class="nav nav-tabs" role="tablist">
 				<% if @current_user %>
 					<li class=<%= (controller_name == 'tables' && !params[:id]) ? 'active' : '' %>>
 						<%= link_to tables_path do %><i class="glyphicon glyphicon-th-list"></i><% end %>
