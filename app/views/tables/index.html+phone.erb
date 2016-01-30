@@ -1,28 +1,18 @@
 <h2>Tables</h2>
 
 <% if @tables.any? %>
-  <table class="table table-hover table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th />
-      </tr>
-    </thead>
-
-    <tfoot>
-      <tr><td /></tr>
-    </tfoot>
-
-    <tbody>
-      	<% @tables.each do |table| %>
-        	<tr>
-        		<td>
-              <b><%= link_to table.name.humanize, table, class:'btn btn-lg btn-default' %></b>
-              <%= link_to fill_url(table.id), class:'btn btn-lg btn-primary pull-right' do %>
-                  <i class="glyphicon glyphicon-plus"></i> 
-              <% end %>
-            </td>
-			    </tr>
-	  	  <% end %>
-	</tbody>
+  <table class="table table-condensed">
+    	<% @tables.each do |table| %>
+      	<tr>
+      		<td>
+            <b><%= link_to table.name.humanize, table, class:'btn btn-lg btn-block btn-default' %></b>
+          </td>
+          <td>
+            <%= link_to fill_url(table.id), class:'btn btn-lg btn-primary center-block' do %>
+                <i class="glyphicon glyphicon-plus"></i> 
+            <% end %>
+          </td>
+		    </tr>
+  	  <% end %>
   </table>
 <% end %>

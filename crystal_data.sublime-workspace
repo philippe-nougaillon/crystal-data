@@ -572,7 +572,7 @@
 			"file": "db/schema.rb",
 			"settings":
 			{
-				"buffer_size": 4266,
+				"buffer_size": 4272,
 				"line_ending": "Unix"
 			}
 		},
@@ -676,7 +676,7 @@
 			"file": "app/controllers/tables_controller.rb",
 			"settings":
 			{
-				"buffer_size": 15259,
+				"buffer_size": 15241,
 				"line_ending": "Unix"
 			}
 		},
@@ -700,7 +700,7 @@
 			"file": "app/views/tables/show.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 2660,
+				"buffer_size": 2828,
 				"line_ending": "Unix"
 			}
 		},
@@ -764,7 +764,7 @@
 			"file": "app/views/tables/index.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 792,
+				"buffer_size": 647,
 				"line_ending": "Unix"
 			}
 		},
@@ -780,7 +780,7 @@
 			"file": "app/views/tables/fill.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 2795,
+				"buffer_size": 2770,
 				"line_ending": "Unix"
 			}
 		},
@@ -1203,7 +1203,7 @@
 	"groups":
 	[
 		{
-			"selected": 28,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1219,7 +1219,7 @@
 						[
 							[
 								804,
-								804
+								793
 							]
 						],
 						"settings":
@@ -1372,7 +1372,7 @@
 					"file": "db/schema.rb",
 					"settings":
 					{
-						"buffer_size": 4266,
+						"buffer_size": 4272,
 						"regions":
 						{
 						},
@@ -1414,7 +1414,7 @@
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 8,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1721,15 +1721,15 @@
 					"file": "app/controllers/tables_controller.rb",
 					"settings":
 					{
-						"buffer_size": 15259,
+						"buffer_size": 15241,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6795,
-								6795
+								5512,
+								5512
 							]
 						],
 						"settings":
@@ -1739,7 +1739,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1787.0,
+						"translation.y": 2501.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1756,8 +1756,8 @@
 						"selection":
 						[
 							[
-								181,
-								181
+								2529,
+								2529
 							]
 						],
 						"settings":
@@ -1766,7 +1766,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 612.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1804,15 +1804,15 @@
 					"file": "app/views/tables/show.html+phone.erb",
 					"settings":
 					{
-						"buffer_size": 2660,
+						"buffer_size": 2828,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1668,
-								1668
+								1686,
+								1686
 							]
 						],
 						"settings":
@@ -1821,7 +1821,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 485.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2023,15 +2023,15 @@
 					"file": "app/views/tables/index.html+phone.erb",
 					"settings":
 					{
-						"buffer_size": 792,
+						"buffer_size": 647,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								500,
-								500
+								448,
+								448
 							]
 						],
 						"settings":
@@ -2058,8 +2058,8 @@
 						"selection":
 						[
 							[
-								2852,
-								2852
+								2679,
+								2679
 							]
 						],
 						"settings":
@@ -2069,7 +2069,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 570.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2079,15 +2079,15 @@
 					"file": "app/views/tables/fill.html+phone.erb",
 					"settings":
 					{
-						"buffer_size": 2795,
+						"buffer_size": 2770,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2557,
-								2557
+								2532,
+								2532
 							]
 						],
 						"settings":
@@ -2097,7 +2097,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 383.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

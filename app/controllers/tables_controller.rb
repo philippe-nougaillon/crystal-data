@@ -172,7 +172,7 @@ class TablesController < ApplicationController
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
             # enregistre les modifications dans l'historique
             unless field.datatype == 'signature'
-              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
             end  
             # supprimer les anciennes données
             table.values.find_by(record_index:record_index, field:field).delete
@@ -206,10 +206,7 @@ class TablesController < ApplicationController
       UserMailer.notification(table, notif_items).deliver_now
     end
 
-    respond_to do |format|
-      format.html.phone { redirect_to table }
-      format.html.none { redirect_to table }
-    end
+    redirect_to table
   end  
 
   def delete_record

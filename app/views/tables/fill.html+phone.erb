@@ -4,10 +4,11 @@
 
   <%= hidden_field_tag :table_id, @table.id %>
 
-  <% @table.fields.each do |field| %>
+  <% @table.fields.each_with_index do |field, index| %>
       <% field_name = "[data][#{@record_index}][#{field.id}]" %> 
       <% value = field.values.find_by(record_index:@record_index) %> 
       <% field_value = value.data if value %>
+      <% tabindex = index + 1 %>
 
       <div class="field form-group">
           <div class='col-sm-3' style='font-weight:bold' %>
@@ -18,30 +19,30 @@
 
           <div class="input-group-lg">
               <% if field.datatype == "texte" %>  
-                  <%= text_field_tag field_name, field_value, class: 'form-control' %>
+                  <%= text_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "nombre" %>
-                  <%= number_field_tag field_name, field_value, class: 'form-control' %>
+                  <%= number_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "euros" %>  
-                  <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
+                  <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control', tabindex:"#{tabindex}" %> €
               <% elsif field.datatype == "date" %>
-                  <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
+                  <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6, tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "oui_non?" %>
                   <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
                   <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
               <% elsif field.datatype == "liste" %>
                   <%= select_tag field_name, options_for_select(field.items.split(","), field_value), 
-                        include_blank: true, class: 'form-control' %>
+                        include_blank: true, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "formule" %>
                   <% field_value = field.evaluate(@table.values.records_at(@record_index).pluck(:data)) %>
-                  <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true %>
+                  <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true, tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "fichier" %>
-                  <%= file_field_tag field_name, class: 'form-control' %>
+                  <%= file_field_tag field_name, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "signature" %>
                   <br>
                   <div class="col-sm-4 sigPad">
                     <div class="sig">
                       <canvas class="pad" height="53"></canvas>
-                      <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
+                      <%= hidden_field_tag field_name, nil, class: "output", tabindex:"#{tabindex}" %><br /><br />
                     </div>
                   </div>
               <% end %>

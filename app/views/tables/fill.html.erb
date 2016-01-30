@@ -44,7 +44,7 @@
           <% elsif field.datatype == "formule" %>
             <div class="col-sm-2">
               <% field_value = field.evaluate(@table.values.joins(:field).records_at(@record_index).order("fields.row_order").pluck(:data)) %>
-              <%= text_field_tag field_name, field_value, class: 'form-control' %>
+              <%= text_field_tag field_name, field_value, disabled:true, class: 'form-control' %>
             </div>
           <% elsif field.datatype == "fichier" %>
             <div class="col-sm-4">
@@ -52,7 +52,7 @@
             </div>
           <% elsif field.datatype == "signature" %>
             <div class="col-sm-4 sigPad">
-              <div class="sig sigWrapper">
+              <div class="sig, disabled:true">
                 <canvas class="pad" width="400" height="53"></canvas>
                 <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
               </div>
