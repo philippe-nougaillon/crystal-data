@@ -23,7 +23,17 @@ class Table < ActiveRecord::Base
 				sizeInMB += (File.size("public/table_files/#{v.data}").to_f / 2**20) if v.data
 			end
 		end
-		sizeInMB.round(2)
+		return sizeInMB.round(2)
+	end
+
+	def files_count
+		i = 0
+		self.fields.fichier.each do |f| 
+			f.values.each do |v| 
+				i += 1 if v.data
+			end
+		end
+		return i
 	end
 
 end

@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def new
+    @user.email = params[:m] if params[:m]
   end
 
   def create
@@ -20,7 +21,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    #logger.debug "DEBUG #{session[:user_id]}"
     user = User.find(session[:user_id])
     update_authentication_token(user, nil)
     session[:user_id] = nil

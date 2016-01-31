@@ -13,10 +13,12 @@ DONE
 - ordonner les colonnes 
 - formule sur colonne formule... 
 - tri colonnes type formule 
+- support tablette... 
 
 TODO
-- support tablette... 
 - droits d'accès: lecture seule, ajout, modif, suppr ?
+- notification création compte, partage
+- graphique, filtres de la table  
 
 MEMO
 - formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 

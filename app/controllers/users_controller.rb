@@ -5,11 +5,13 @@ class UsersController < ApplicationController
 
   	def show
   		@user = @current_user
-      @total_tables, @total_lignes, @total_fichiers = 0, 0, 0
+      @total_tables, @total_lignes, @fichiers, @total_fichiers = 0, 0, 0, 0
+
       @user.tables.each do |table|
         if table.is_owner?(@user)
            @total_tables += 1
            @total_lignes += table.size
+           @fichiers += table.files_count
            @total_fichiers += table.files_size
         end
       end
@@ -22,9 +24,8 @@ class UsersController < ApplicationController
     def create
 	    @user = User.new(user_params)
 	    if @user.save
-	      #session[:user_id] = @user.id
-	      #cookies.permanent[:auth_token] = nil
-	      redirect_to root_url, notice:"Compte '#{@user.name}' créé !"
+        UserMailer.notification_nouveau_compte(@user).deliver_now
+	      redirect_to root_url, notice:"Compte '#{@user.name}' créé. Le nouvel utilisateur a été notifié par mail."
 	    else
 		    render :new	
 	    end

@@ -170,24 +170,29 @@ class TablesController < ApplicationController
 
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
+
             # enregistre les modifications dans l'historique
             unless field.datatype == 'signature'
               inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
             end  
+
             # supprimer les anciennes données
             table.values.find_by(record_index:record_index, field:field).delete
+
             # enregistrer les nouvelles données
             table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
           end
       else
+
         # enregistre les ajouts dans l'historique
         unless field.datatype == 'signature'
           inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
+          # collecte les données pour les envoyer par mail
+          notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
         end
+
         # enregistrer les nouvelles données
         table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
-        # collecte les données pour les envoyer par mail
-        notif_items.push "#{field.name}:#{value}" unless value.blank?
       end
     end
 
@@ -351,13 +356,15 @@ class TablesController < ApplicationController
       @user = User.find_by(email:params[:email])
       if @user
         unless @table.users.exists?(@user)
+          # ajoute le nouvel utilisateur aux utilisateurs de la table
           @table.users << @user 
+          UserMailer.notification_nouveau_partage(@user, @table).deliver_now
           flash[:notice] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' activé"
         else
           flash[:alert] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' déjà existant !"
         end
       else
-        flash[:alert] = "Utilisateur inconnu ! Demandez-lui de s'incrire d'abord."
+        flash[:alert] = "Utilisateur inconnu ! Créez un compte en allant sur 'Créer un compte' dans le menu utilisateur"
         redirect_to add_user_path(@table)
         return
       end
