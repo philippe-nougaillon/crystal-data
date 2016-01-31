@@ -1,6 +1,5 @@
   $(document).ready(function(){
     $("#field_items").css('display','none')
-
     if($('#field_datatype').val() == "liste" || $('#field_datatype').val() == "formule"){
       $("#field_items").css('display','inline')
     } 
@@ -30,5 +29,18 @@
           $(".field_sum").css('display','none')
        }
     })
+
+    $(".field_filtre").css('display','none')
+    if($('#field_datatype').val() != "signature" && $('#field_datatype').val() != "fichier"){
+      $(".field_filtre").css('display','inline')
+    }
+    $('#field_datatype').change(function(){
+      if($('#field_datatype').val() != "signature" && $('#field_datatype').val() != "fichier"){
+          $(".field_filtre").css('display','inline')
+       } else {
+          $(".field_filtre").css('display','none')
+       }
+    })
+
 
   });
