@@ -40,9 +40,9 @@ class TablesController < ApplicationController
     # applique les filtres
     @records_filter = []
     if params[:select]
-      params[:select].each_with_index do | option, index | 
+      params[:select].each do | option | 
         unless option.last.blank? 
-          field = @table.fields.filtres[index]
+          field = Field.find(option.first)
           filter_records = @table.values.where(field:field, data:option.last).pluck(:record_index) 
           if @records_filter.empty?
             @records_filter = filter_records 
@@ -425,6 +425,23 @@ class TablesController < ApplicationController
 
     unless params[:user_id].blank?
       @logs = @logs.where(user_id:params[:user_id])
+    end
+
+    # applique les filtres
+    @records_filter = []
+    if params[:select]
+      params[:select].each do | option | 
+        unless option.last.blank? 
+          field = Field.find(option.first)
+          filter_records = @table.values.where(field:field, data:option.last).pluck(:record_index) 
+          if @records_filter.empty?
+            @records_filter = filter_records 
+          else
+            @records_filter = @records_filter & filter_records 
+          end  
+        end
+      end
+      @logs = @logs.where(record_index:@records_filter) if @records_filter.any?
     end
 
     @hash = @logs.group_by_day("logs.created_at").count

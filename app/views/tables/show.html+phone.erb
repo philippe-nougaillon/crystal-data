@@ -53,7 +53,7 @@
 								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
 									<% if field.datatype == "fichier" and value %>
 										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
-									<% elsif field.datatype == "signature" and values[index] %>
+									<% elsif field.datatype == "signature" and value %>
 										<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% else %>
 										<%= value %>

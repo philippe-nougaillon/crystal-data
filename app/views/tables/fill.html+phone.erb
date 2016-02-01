@@ -26,7 +26,7 @@
               <% elsif field.datatype == "euros" %>  
                   <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control', tabindex:"#{tabindex}" %> €
               <% elsif field.datatype == "date" %>
-                  <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6, tabindex:"#{tabindex}" %>
+                  <%= date_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "oui_non?" %>
                   <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
                   <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
@@ -42,8 +42,8 @@
                   <br>
                   <div class="col-sm-4 sigPad">
                     <div class="sig">
-                      <canvas class="pad" height="53"></canvas>
-                      <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
+                      <canvas class="pad" height="100"></canvas>
+                      <%= hidden_field_tag field_name, nil, class: "output" %>
                     </div>
                   </div>
               <% end %>

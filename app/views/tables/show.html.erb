@@ -17,10 +17,10 @@
 	    Rechercher: 
 	    <%= text_field_tag :search, params[:search], onchange:'this.form.submit()' %>
 
-	    <% @table.fields.filtres.each_with_index do | field,index | %>
+	    <% @table.fields.filtres.each do | field | %>
 		    <%= field.name.humanize %>:
-		    <% default_value = params[:select] ? params[:select][index.to_s] : 'nil' %>
-		    <%= select_tag "select[#{index}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, onchange:'this.form.submit()' %>
+		    <% default_value = params[:select] ? params[:select][field.id.to_s] : 'nil' %>
+		    <%= select_tag "select[#{field.id}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, onchange:'this.form.submit()' %>
 		<% end %>
 		|
 	    <%= submit_tag 'Filtrer', class: 'btn btn-success' %> 
