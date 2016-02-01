@@ -745,18 +745,18 @@
 			}
 		},
 		{
-			"file": "app/views/tables/show.xls.erb",
+			"file": "app/views/tables/show.html+phone.erb",
 			"settings":
 			{
-				"buffer_size": 1107,
+				"buffer_size": 2853,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/sessions/welcome.html.erb",
+			"file": "app/views/tables/show.xls.erb",
 			"settings":
 			{
-				"buffer_size": 4881,
+				"buffer_size": 1107,
 				"line_ending": "Unix"
 			}
 		},
@@ -817,14 +817,6 @@
 			}
 		},
 		{
-			"file": "app/views/tables/show.html+phone.erb",
-			"settings":
-			{
-				"buffer_size": 2860,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/views/tables/fill.html+phone.erb",
 			"settings":
 			{
@@ -877,6 +869,8 @@
 	},
 	"file_history":
 	[
+		"/home/phil/RailsProjects/CrystalData/app/views/sessions/welcome.html.erb",
+		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/sessions.coffee",
 		"/home/phil/RailsProjects/CrystalData/config/application.rb",
 		"/home/phil/RailsProjects/CrystalData/app/views/user_mailer/notification_nouveau_partage.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/user_mailer/notification_nouveau_compte.html.erb",
@@ -905,8 +899,6 @@
 		"/home/phil/RailsProjects/CrystalData/app/views/layouts/application.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/sessions/new.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/users/new.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/views/sessions/welcome.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/sessions.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/views/fields/_form.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/fields/_field.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/views/fields/edit.html.erb",
@@ -1245,7 +1237,7 @@
 	"groups":
 	[
 		{
-			"selected": 16,
+			"selected": 29,
 			"sheets":
 			[
 				{
@@ -2008,6 +2000,33 @@
 				},
 				{
 					"buffer": 28,
+					"file": "app/views/tables/show.html+phone.erb",
+					"settings":
+					{
+						"buffer_size": 2853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1070,
+								1070
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 459.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 29,
 					"file": "app/views/tables/show.xls.erb",
 					"settings":
 					{
@@ -2027,33 +2046,6 @@
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 29,
-					"file": "app/views/sessions/welcome.html.erb",
-					"settings":
-					{
-						"buffer_size": 4881,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								376,
-								376
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -2210,8 +2202,8 @@
 						"selection":
 						[
 							[
-								2076,
-								2076
+								77,
+								77
 							]
 						],
 						"settings":
@@ -2221,7 +2213,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2256,33 +2248,6 @@
 				},
 				{
 					"buffer": 37,
-					"file": "app/views/tables/show.html+phone.erb",
-					"settings":
-					{
-						"buffer_size": 2860,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2285,
-								2285
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 663.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 38,
 					"file": "app/views/tables/fill.html+phone.erb",
 					"settings":
 					{
@@ -2310,7 +2275,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 39,
+					"buffer": 38,
 					"file": "app/views/tables/fill.html.erb",
 					"settings":
 					{
@@ -2338,7 +2303,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 40,
+					"buffer": 39,
 					"file": "app/views/tables/activity.html.erb",
 					"settings":
 					{
