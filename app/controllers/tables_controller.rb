@@ -454,7 +454,7 @@ class TablesController < ApplicationController
       else
         r = value + fields_count - (value % fields_count) 
       end 
-      logger.debug "[DEBUG] value:#{value} fields:#{fields_count} r:#{r}"
+      #logger.debug "[DEBUG] value:#{value} fields:#{fields_count} r:#{r}"
       @hash[key] = r / fields_count
     end  
   end

@@ -3,7 +3,6 @@
 require 'csv'
 namespace :tables do
     task :import, [:file_path, :filename, :user_id, :ip] => [:environment] do |t, args|
-	  	#@lignes = 0
 	  	@record_index = 0
 		CONN = ActiveRecord::Base.connection
 	  	inserts_log = []
@@ -37,8 +36,6 @@ namespace :tables do
 		# maj du nombre de ligne de cette table
 		@new_table.update_attributes(record_index:@record_index)
 
-		#puts "Nbr de lignes traitées: #{@lignes} | Lignes importées: #{@record_index}"
-
 		# execure requête d'insertion dans VALUES
 		sql = "INSERT INTO `values` (`field_id`, `table_id`, `user_id`, `data`, `created_at`, `updated_at`, `record_index`) VALUES #{inserts_value.join(", ")}"
     	CONN.execute sql
@@ -46,6 +43,5 @@ namespace :tables do
 		# execure requête d'insertion dans LOGS
 		sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{inserts_log.join(", ")}"
     	CONN.execute sql
-
 	end
 end
