@@ -839,6 +839,14 @@
 				"buffer_size": 974,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "app/views/sessions/welcome.html.erb",
+			"settings":
+			{
+				"buffer_size": 3460,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
@@ -1237,7 +1245,7 @@
 	"groups":
 	[
 		{
-			"selected": 29,
+			"selected": 40,
 			"sheets":
 			[
 				{
@@ -1683,8 +1691,8 @@
 						"selection":
 						[
 							[
-								1962,
-								1962
+								550,
+								550
 							]
 						],
 						"settings":
@@ -2326,6 +2334,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 40,
+					"file": "app/views/sessions/welcome.html.erb",
+					"settings":
+					{
+						"buffer_size": 3460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3236,
+								3236
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1377.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
