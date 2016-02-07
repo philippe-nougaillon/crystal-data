@@ -14,14 +14,14 @@ class UserMailer < ApplicationMailer
 	def notification_nouveau_compte(user)
 		@user = user
 
-		mail(to: @user.email, subject: "Création de compte")
+		mail(to: @user.email, subject: "Création de compte", bcc:"philippe.nougaillon@gmail.com")
 	end
 
 	def notification_nouveau_partage(user, table)
 		@user = user
 		@table = table
 
-		mail(to: @user.email, subject: "Partage de la table '#{@table.name.humanize}' activé")
+		mail(to: @user.email, subject: "Partage de la table '#{@table.name.humanize}' activé", bcc:"philippe.nougaillon@gmail.com")
 	end
 
 end
