@@ -16,10 +16,12 @@
 
 			    <br>
 			<% end %>
-		    <%= submit_tag 'Filtrer', class: 'btn-lg btn-success' %>
-			|
-			<%= link_to fill_url(@table.id), class: 'btn-lg btn-primary' do %>
-				<i class="glyphicon glyphicon-plus"></i> 
+		    <%= submit_tag 'Filtrer', class: 'btn btn-lg btn-block btn-success' %>
+		    <% if false %>
+			    <br>
+				<%= link_to fill_url(@table.id), class: 'btn btn-lg btn-block btn-primary' do %>
+					<i class="glyphicon glyphicon-plus"></i> 
+				<% end %>
 			<% end %>
 		</div>
 	  <% end %>

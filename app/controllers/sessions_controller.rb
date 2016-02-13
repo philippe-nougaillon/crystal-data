@@ -6,6 +6,11 @@ class SessionsController < ApplicationController
 
   def new
     @user.email = params[:m] if params[:m]
+
+    respond_to do |format|
+      format.html.phone 
+      format.html.none
+    end
   end
 
   def create
