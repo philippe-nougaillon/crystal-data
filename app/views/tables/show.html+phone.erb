@@ -1,5 +1,3 @@
-<h3>Table '<%= @table.name.humanize %>'</h3>
-
 <% if @table.fields.any? %>
 	<p>
 	  <%= form_tag(request.path, method: :get) do %>
@@ -16,17 +14,13 @@
 
 			    <br>
 			<% end %>
-		    <%= submit_tag 'Filtrer', class: 'btn btn-lg btn-block btn-success' %>
-		    <% if false %>
-			    <br>
-				<%= link_to fill_url(@table.id), class: 'btn btn-lg btn-block btn-primary' do %>
+		    <%= submit_tag 'Filtrer', class: 'btn btn-block btn-success' %>
+				<%= link_to fill_url(@table.id), class: 'btn btn-block btn-primary' do %>
 					<i class="glyphicon glyphicon-plus"></i> 
 				<% end %>
-			<% end %>
 		</div>
 	  <% end %>
 	</p>
-	<br>
 
 	<div class="table-responsive">
 		<% if @records.any? %>
@@ -49,7 +43,7 @@
 						<tr>
 							<td>	
 								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:record_index), 
-										class:'btn btn-lg btn-default pull-right' %>
+										class:'btn btn-lg btn-default center-block' %>
 							</td>
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>

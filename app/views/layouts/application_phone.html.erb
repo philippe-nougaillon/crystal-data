@@ -41,10 +41,12 @@
 						<li class=<%= (controller_name == 'tables' && !params[:id]) ? 'active' : '' %>>
 							<%= link_to tables_path do %><i class="glyphicon glyphicon-th-list"></i><% end %>
 						</li>
-						<% @current_user.tables.each do |table| %>
-							<li class=<%= (controller_name == 'tables' && params[:id]== table.id.to_s) ? 'active' : '' %>>
-								<%= link_to table.name.humanize, table %>
-							</li>
+						<% unless controller_name == 'tables' and params[:action] == 'index' %>
+							<% @current_user.tables.each do |table| %>
+								<li class=<%= ( params[:id]== table.id.to_s) ? 'active' : '' %>>
+									<%= link_to table.name.humanize, table %>
+								</li>
+							<% end %>
 						<% end %>
 					<% else %>
 						<li>
@@ -76,6 +78,7 @@
 				        </div>
 				    </div>
 				<% end %>
+				<hr>
 				<%= yield %>
 			</div>
 		</div>
@@ -83,6 +86,5 @@
 	<% unless request.host == 'localhost' %>
 	   <%= render "layouts/ga" %>
     <% end %>
-    
 </body>
 </html>

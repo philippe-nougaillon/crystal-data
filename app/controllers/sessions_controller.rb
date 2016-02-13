@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Bienvenue '#{user.name}' !"
       redirect_to tables_path
     else
-      redirect_to '/login'
+      redirect_to '/login', alert:"Utilisateur ou mot de passe inconnu !"
     end
   end
 

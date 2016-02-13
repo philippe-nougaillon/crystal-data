@@ -1,6 +1,3 @@
-<h3>Formulaire '<%= @table.name.humanize %>'</h3>
-<br>
-
 <%= form_tag({action: :fill}, multipart:true) do %>
 
   <%= hidden_field_tag :table_id, @table.id %>
