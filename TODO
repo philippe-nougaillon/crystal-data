@@ -14,11 +14,15 @@ DONE
 - formule sur colonne formule... 
 - tri colonnes type formule 
 - support tablette... 
+- graphique, filtres de la table  
+- notification création compte, partage
 
 TODO
-- droits d'accès: lecture seule, ajout, modif, suppr ?
-- notification création compte, partage
-- graphique, filtres de la table  
+- affiner les droits d'accès: lecture seule, ajout, modif, suppr ?
+- pouvoir envoyer à une ou plusieurs utilisateurs anonymes(invités) pour saisie formulaire uniquement
+- import, ajouter un fonction de mise à jour (déterminer le ou les champs clés)
+- notification d'ajout, pas uniquement le proprio mais une liste d'emails
+- faire la moyenne d'une colonne
 
 MEMO
 - formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 
