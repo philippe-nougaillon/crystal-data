@@ -43,7 +43,7 @@
 						</li>
 						<% unless controller_name == 'tables' and params[:action] == 'index' %>
 							<% @current_user.tables.each do |table| %>
-								<li class=<%= ( params[:id]== table.id.to_s) ? 'active' : '' %>>
+								<li class=<%= (params[:id]== table.id.to_s) ? 'active' : '' %>>
 									<%= link_to table.name.humanize, table %>
 								</li>
 							<% end %>

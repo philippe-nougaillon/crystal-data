@@ -11,9 +11,9 @@
             <%= " | " if field.obligatoire %>
             <i class="glyphicon glyphicon-zoom-in"></i> Filtre
         <% end %>
-        <% if field.sum %>
+        <% if field.operation %>
             <%= " | " if field.obligatoire or field.filtre %>
-            <i class="glyphicon glyphicon-plus"></i> Somme
+            <i class="glyphicon glyphicon-flash"></i> <%= field.operation.humanize %>
         <% end %>
     </td>
     <td>

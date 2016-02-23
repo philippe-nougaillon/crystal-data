@@ -54,7 +54,9 @@
 										<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% else %>
 										<%= value %>
-										<% @sum[field.id] += value.to_i if field.sum %>
+									<% end %>
+									<% if field.operation %>
+										<% @sum[field.id] += value.to_f %>
 									<% end %>
 								</td>
 							<% end %>
@@ -66,9 +68,13 @@
 					<tr>
 						<td />
 						<% @table.fields.each do |field| %>
-							<% if field.sum %>
+							<% if field.operation %>
 								<td class="text-right">
-									<%= @sum[field.id] %>
+									<% if field.somme? %>
+										<%= @sum[field.id] %>
+									<% elsif field.moyenne? %>
+										<%= @sum[field.id] / @records.count %>
+									<% end %>
 								</td>
 							<% else %>
 								<td />

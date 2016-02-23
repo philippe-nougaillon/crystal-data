@@ -84,7 +84,7 @@ class FieldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_params
-      params.require(:field).permit(:name, :table_id, :datatype, :filtre, :sum, :items, :obligatoire, :field_id, :row_order_position)
+      params.require(:field).permit(:name, :table_id, :datatype, :filtre, :items, :obligatoire, :operation, :field_id, :row_order_position)
     end
 
 end
