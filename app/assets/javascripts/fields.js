@@ -19,11 +19,11 @@
     })
 
     $(".field_sum").css('display','none')
-    if($('#field_datatype').val() == "nombre" || $('#field_datatype').val() == "euros" || $('#field_datatype').val() == "formule"){
+    if(["nombre","euros","formule"].indexOf($('#field_datatype').val()) >= 0) {
       $(".field_sum").css('display','inline')
     }
     $('#field_datatype').change(function(){
-      if($('#field_datatype').val() == "nombre" || $('#field_datatype').val() == "euros" || $('#field_datatype').val() == "formule"){
+    if(["nombre","euros","formule"].indexOf($('#field_datatype').val()) >= 0) {
           $(".field_sum").css('display','inline')
        } else {
           $(".field_sum").css('display','none')
