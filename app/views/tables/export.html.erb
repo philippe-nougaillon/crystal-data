@@ -5,12 +5,12 @@
 </h2>
 <br><br>
 
-<%= form_tag(action: "export_do", method: :post) do %>
+<%= form_tag(action: "export_do", method: :get, format: :csv) do %>
 
   <%= hidden_field_tag :id, params[:id] %>
 
   <div class="field">
-    <%= label :date_debut, "Exporter les données de '#{@table.name}' modifiées entre le " %>
+    <%= label :date_debut, "Exporter les données modifiées entre le " %>
     <%= text_field_tag :debut, params[:debut], class: 'datepicker' %>
 
     <%= label :date_fin, "et le " %>

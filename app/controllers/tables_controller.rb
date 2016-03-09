@@ -339,12 +339,43 @@ class TablesController < ApplicationController
   end
 
   def export_do
+    require 'csv'
+
     unless params[:debut].blank? and params[:fin].blank?
       @debut = params[:debut]
       @fin = params[:fin]
     else
       @debut = '01/01/1900'
       @fin = '01/01/2100'
+    end
+
+    updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
+    @records = @table.values.pluck(:record_index).uniq
+
+    @csv_string = CSV.generate(col_sep:';') do |csv|
+      csv << @table.fields.pluck(:name)
+
+      @records.each do | index |
+          values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data)
+          updated_at = updated_at_list[index]
+          cols = []
+          @table.fields.each_with_index do | field,index |
+            if field.datatype == "signature" and values[index]
+              cols << "Signé"
+            else
+              cols << (values[index] ? values[index].to_s.gsub("'", " ") : nil) 
+            end
+          end
+          cols << l(updated_at) 
+          csv << cols
+      end    
+    end
+
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"#{@table.name.humanize}\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
     end
   end
 
