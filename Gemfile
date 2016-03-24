@@ -53,6 +53,8 @@ gem 'nprogress-rails'
 gem 'ranked-model'
 gem 'signature-pad-rails'
 
+gem 'sitemap_generator'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

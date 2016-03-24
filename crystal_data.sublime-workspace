@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ima",
+				"image_tag"
+			],
+			[
+				"h",
+				"h4	Tag"
+			],
+			[
 				"tab",
 				"table"
 			],
@@ -178,10 +186,6 @@
 			[
 				"file",
 				"filename"
-			],
-			[
-				"h",
-				"h3	Tag"
 			],
 			[
 				"na",
@@ -510,10 +514,6 @@
 			[
 				"nom",
 				"nom_operateur"
-			],
-			[
-				"et",
-				"etat_pa"
 			]
 		]
 	},
@@ -900,7 +900,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 4909,
+				"buffer_size": 5144,
 				"line_ending": "Unix"
 			}
 		}
@@ -2590,15 +2590,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 4909,
+						"buffer_size": 5144,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1411,
-								1411
+								1345,
+								1345
 							]
 						],
 						"settings":
@@ -2607,7 +2607,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 99.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
