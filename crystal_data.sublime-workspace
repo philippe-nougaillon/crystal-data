@@ -588,7 +588,7 @@
 			"file": "app/assets/javascripts/fields.js",
 			"settings":
 			{
-				"buffer_size": 1854,
+				"buffer_size": 1748,
 				"line_ending": "Unix"
 			}
 		},
@@ -900,7 +900,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 3801,
+				"buffer_size": 4909,
 				"line_ending": "Unix"
 			}
 		}
@@ -933,6 +933,7 @@
 	},
 	"file_history":
 	[
+		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/tables.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/export_do.csvl.erb",
 		"/home/phil/RailsProjects/CrystalData/db/migrate/20160223112344_remove_sum_to_field.rb",
 		"/home/phil/RailsProjects/CrystalData/db/migrate/20160223105837_add_operation_to_field.rb",
@@ -944,7 +945,6 @@
 		"/home/phil/RailsProjects/CrystalData/app/views/user_mailer/notification_nouveau_compte.html.erb",
 		"/home/phil/RailsProjects/CrystalData/app/controllers/values_controller.rb",
 		"/home/phil/RailsProjects/CrystalData/app/views/values/signature.html.erb",
-		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/tables.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/stickytableheaders.js",
 		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/fields.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/assets/stylesheets/logs.scss",
@@ -1302,7 +1302,7 @@
 	"groups":
 	[
 		{
-			"selected": 33,
+			"selected": 47,
 			"sheets":
 			[
 				{
@@ -1527,15 +1527,15 @@
 					"file": "app/assets/javascripts/fields.js",
 					"settings":
 					{
-						"buffer_size": 1854,
+						"buffer_size": 1748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1245,
-								1245
+								1139,
+								1139
 							]
 						],
 						"settings":
@@ -1545,7 +1545,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2304,7 +2304,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 204.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2590,15 +2590,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 3801,
+						"buffer_size": 4909,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								335,
-								335
+								1411,
+								1411
 							]
 						],
 						"settings":
