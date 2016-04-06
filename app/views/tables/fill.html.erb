@@ -5,69 +5,72 @@
 
   <%= hidden_field_tag :table_id, @table.id %>
 
+
 	<% @table.fields.each do |field| %>
       <% field_name = "[data][#{@record_index}][#{field.id}]" %> 
       <% value = field.values.find_by(record_index:@record_index) %> 
       <% field_value = value.data if value %>
 
-      <br>
-      <div class="field form-group">
-          <div class='col-sm-2' style='font-weight:bold' %>
-            <%= truncate((field.obligatoire ? field.name.humanize.insert(0, '* ') : field.name.humanize), length:23) %>
-          </div>
-            
-          <% if field.datatype == "texte" %>  
-            <div class="col-sm-4">
-              <%= text_field_tag field_name, field_value, class: 'form-control' %>
-            </div>
-          <% elsif field.datatype == "nombre" %>
-            <div class="col-sm-2">
-              <%= number_field_tag field_name, field_value, class: 'form-control' %>
-            </div>
-          <% elsif field.datatype == "euros" %>  
-            <div class="col-sm-2">
-              <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
-            </div>
-          <% elsif field.datatype == "date" %>
-            <div class="col-sm-2">
-              <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
-            </div>
-          <% elsif field.datatype == "oui_non?" %>
-            <div class="col-sm-2">
-              <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
-              <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
-            </div>
-          <% elsif field.datatype == "liste" %>
-            <div class="col-sm-3">
-              <%= select_tag field_name, options_for_select(field.items.split(","), field_value), include_blank: true, class: 'form-control' %>
-            </div>
-          <% elsif field.datatype == "formule" %>
-            <div class="col-sm-2">
-              <% field_value = field.evaluate(@table.values.joins(:field).records_at(@record_index).order("fields.row_order").pluck(:data)) %>
-              <%= text_field_tag field_name, field_value, disabled:true, class: 'form-control' %>
-            </div>
-          <% elsif field.datatype == "fichier" %>
-            <div class="col-sm-4">
-              <%= file_field_tag field_name, class: 'form-control' %>
-            </div>
-          <% elsif field.datatype == "signature" %>
-            <div class="col-sm-4 sigPad">
-              <div class="sig, disabled:true">
-                <canvas class="pad" width="400" height="53"></canvas>
-                <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
-              </div>
-            </div>
-            <br /><br />
-          <% end %>
-          <br>
-  		</div>
-  <% end %>  
-  <br><br>
+      <fieldset class="form-group">
 
-  <div class="col-sm-offset-2">
-    <div class="col-sm-4">
-       <%= submit_tag "Enregistrer", class: 'btn btn-success'%>
-      | <%= link_to 'Retour', @table %>
+          <label>
+            <%= (field.obligatoire ? field.name.upcase.insert(0, '* ') : field.name) %>
+          </label>
+            
+          <div class="input-group-sm row">
+
+            <% if field.datatype == "texte" %>
+              <div class="col-sm-4">  
+                <%= text_field_tag field_name, field_value, class: 'form-control' %>
+              </div>
+            <% elsif field.datatype == "nombre" %>
+              <div class="col-sm-2">
+                <%= number_field_tag field_name, field_value, class: 'form-control' %>
+              </div>
+            <% elsif field.datatype == "euros" %>  
+              <div class="col-sm-2">
+                <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
+              </div>
+            <% elsif field.datatype == "date" %>
+              <div class="col-sm-2">
+                <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
+              </div>
+            <% elsif field.datatype == "oui_non?" %>
+              <div class="col-sm-2">
+                <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
+                <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
+              </div>
+            <% elsif field.datatype == "liste" %>
+              <div class="col-sm-3">
+                <%= select_tag field_name, options_for_select(field.items.split(","), field_value), include_blank: true, class: 'form-control' %>
+              </div>
+            <% elsif field.datatype == "formule" %>
+              <div class="col-sm-2">
+                <% field_value = field.evaluate(@table.values.joins(:field).records_at(@record_index).order("fields.row_order").pluck(:data)) %>
+                <%= text_field_tag field_name, field_value, disabled:true, class: 'form-control' %>
+              </div>
+            <% elsif field.datatype == "fichier" %>
+              <div class="col-sm-4">
+                <%= file_field_tag field_name, class: 'form-control-file' %>
+              </div>
+            <% elsif field.datatype == "signature" %>
+              <div class="col-sm-4 sigPad">
+                <div class="sig, disabled:true">
+                  <canvas class="pad" width="400" height="53"></canvas>
+                  <%= hidden_field_tag field_name, nil, class: "output" %><br /><br />
+                </div>
+              </div>
+              <br /><br />
+            <% end %>
+          </div>
+  		</fieldset>
+  <% end %>  
+  <br>
+
+  <div class="form-group row">
+    <div class="col-sm-5">
+       <%= submit_tag "Enregistrer", class: 'btn btn-primary'%>
+        | <%= link_to 'Retour', @table %>
     </div>
   </div>
 <% end %>

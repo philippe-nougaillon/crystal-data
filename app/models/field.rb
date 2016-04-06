@@ -27,11 +27,7 @@ class Field < ActiveRecord::Base
 			else
 				nil
 			end
-		rescue ArgumentError => se	
-			"#{se}: #{result}"
-		rescue TypeError => se
-			"#{se}: #{result}"
-		rescue SyntaxError => se
+		rescue Error => se	
 			"#{se}: #{result}"
 		end
 	end

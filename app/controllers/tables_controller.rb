@@ -173,7 +173,7 @@ class TablesController < ApplicationController
 
             # enregistre les modifications dans l'historique
             unless field.datatype == 'signature'
-              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
             end  
 
             # supprimer les anciennes données
@@ -186,7 +186,7 @@ class TablesController < ApplicationController
 
         # enregistre les ajouts dans l'historique
         unless field.datatype == 'signature'
-          inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
+          inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
           # collecte les données pour les envoyer par mail
           notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
         end
@@ -439,7 +439,7 @@ class TablesController < ApplicationController
       @logs = @logs.where(user_id:params[:user_id])
     end
 
-    @logs = @logs.order('id DESC').paginate(page:params[:page])
+    @logs = @logs.reorder('created_at DESC').paginate(page:params[:page])
   end
 
   def activity

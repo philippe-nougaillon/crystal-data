@@ -17,9 +17,11 @@
       <%= f.input :name, label:false, placeholder: 'Nom de la nouvelle table', :input_html => {size:30} %>
       <br>
 
-      <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque nouvel ajout de données ?" %>
-      <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (le dernier modifié tout en haut, sinon c'est l'inverse)" %>
-      <br><br>
+      <% unless @table.new_record? %>
+        <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque nouvel ajout de données ?" %>
+        <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (le dernier modifié tout en haut, sinon c'est l'inverse)" %>
+        <br><br>
+      <% end %>
 
       <%= f.submit @table.new_record? ? "Créer cette table" : "Modifier cette table", class: 'btn btn-success' %>
   </div>  

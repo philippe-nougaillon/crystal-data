@@ -16,13 +16,16 @@ DONE
 - support tablette... 
 - graphique, filtres de la table  
 - notification création compte, partage
+- faire la moyenne d'une colonne
 
 TODO
+- heure modification incorrecte !
+- plus de calcul de calculés si valeurs après la colonne de formule...
+
 - affiner les droits d'accès: lecture seule, ajout, modif, suppr ?
 - pouvoir envoyer à une ou plusieurs utilisateurs anonymes(invités) pour saisie formulaire uniquement
-- import, ajouter un fonction de mise à jour (déterminer le ou les champs clés)
+- import, ajouter une fonction de mise à jour (déterminer le ou les champs clés)
 - notification d'ajout, pas uniquement le proprio mais une liste d'emails
-- faire la moyenne d'une colonne
 
 MEMO
 - formule diff entre deux dates: (Date.strptime("[5]","%d/%m/%Y") - Date.strptime("[4]","%d/%m/%Y")).to_s.chomp('/1') 
@@ -31,3 +34,4 @@ Gandi
 556489
 20$60$29!CD
 ssh 556489@git.dc2.gpaas.net 'deploy default.git'
+
