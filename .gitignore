@@ -23,3 +23,5 @@
 # ignore secrets
 /config/secrets.yml
 /config/databases.yml
+/config/initializers/setup_mail.erb
+
