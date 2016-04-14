@@ -21,7 +21,7 @@
 /public/table_files
 
 # ignore secrets
-/config/secrets.yml
-/config/databases.yml
-/config/initializers/setup_mail.erb
+secrets.yml
+databases.yml
+setup_mail.erb
 
