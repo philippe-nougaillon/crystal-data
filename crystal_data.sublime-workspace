@@ -520,12 +520,11 @@
 	"buffers":
 	[
 		{
-			"file": "TODO",
+			"file": "/home/phil/Documents/CrystalData_TODO",
 			"settings":
 			{
 				"buffer_size": 1339,
-				"line_ending": "Unix",
-				"name": "TODO"
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -597,7 +596,7 @@
 			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 568,
+				"buffer_size": 587,
 				"line_ending": "Unix"
 			}
 		},
@@ -821,7 +820,7 @@
 			"file": "app/views/tables/show.html.erb",
 			"settings":
 			{
-				"buffer_size": 4312,
+				"buffer_size": 4429,
 				"line_ending": "Unix"
 			}
 		},
@@ -893,7 +892,7 @@
 			"file": "app/views/tables/show_attrs.html.erb",
 			"settings":
 			{
-				"buffer_size": 863,
+				"buffer_size": 753,
 				"line_ending": "Unix"
 			}
 		},
@@ -998,6 +997,7 @@
 	},
 	"file_history":
 	[
+		"/home/phil/RailsProjects/CrystalData/TODO",
 		"/home/phil/RailsProjects/CrystalData/app/assets/javascripts/tables.coffee",
 		"/home/phil/RailsProjects/CrystalData/app/views/tables/export_do.csvl.erb",
 		"/home/phil/RailsProjects/CrystalData/db/migrate/20160223112344_remove_sum_to_field.rb",
@@ -1124,8 +1124,7 @@
 		"/home/phil/RailsProjects/stock/db/migrate/20151016091145_add_memo_to_mouvement.rb",
 		"/home/phil/RailsProjects/stock/db/seeds.rb",
 		"/home/phil/RailsProjects/stock/db/migrate/20151015122420_create_articles.rb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/controllers/blogs_controller.rb",
-		"/home/phil/RailsProjects/opencantine_4.2/app/controllers/admin_controller.rb"
+		"/home/phil/RailsProjects/opencantine_4.2/app/controllers/blogs_controller.rb"
 	],
 	"find":
 	{
@@ -1367,12 +1366,12 @@
 	"groups":
 	[
 		{
-			"selected": 25,
+			"selected": 37,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "TODO",
+					"file": "/home/phil/Documents/CrystalData_TODO",
 					"settings":
 					{
 						"buffer_size": 1339,
@@ -1382,13 +1381,12 @@
 						"selection":
 						[
 							[
-								1339,
-								1339
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "TODO",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -1621,15 +1619,15 @@
 					"file": ".gitignore",
 					"settings":
 					{
-						"buffer_size": 568,
+						"buffer_size": 587,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								548,
-								548
+								583,
+								583
 							]
 						],
 						"settings":
@@ -2379,15 +2377,15 @@
 					"file": "app/views/tables/show.html.erb",
 					"settings":
 					{
-						"buffer_size": 4312,
+						"buffer_size": 4429,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2671,
-								2671
+								555,
+								555
 							]
 						],
 						"settings":
@@ -2396,7 +2394,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 757.0,
+						"translation.y": 255.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2621,15 +2619,15 @@
 					"file": "app/views/tables/show_attrs.html.erb",
 					"settings":
 					{
-						"buffer_size": 863,
+						"buffer_size": 753,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								389,
-								389
+								159,
+								159
 							]
 						],
 						"settings":
