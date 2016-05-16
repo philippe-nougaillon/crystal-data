@@ -4,8 +4,16 @@
 		"selected_items":
 		[
 			[
+				"im",
+				"image_tag"
+			],
+			[
 				"ima",
-				"image_path"
+				"image_tag"
+			],
+			[
+				"link",
+				"link_to"
 			],
 			[
 				"col",
@@ -130,10 +138,6 @@
 			[
 				"fl",
 				"flash"
-			],
-			[
-				"im",
-				"import_do"
 			],
 			[
 				"upda",
@@ -510,10 +514,6 @@
 			[
 				"ZTD-",
 				"ZTD-BD"
-			],
-			[
-				"den",
-				"densite_iris"
 			]
 		]
 	},
@@ -964,7 +964,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 5557,
+				"buffer_size": 6563,
 				"line_ending": "Unix"
 			}
 		}
@@ -1366,7 +1366,7 @@
 	"groups":
 	[
 		{
-			"selected": 37,
+			"selected": 21,
 			"sheets":
 			[
 				{
@@ -1948,8 +1948,8 @@
 						"selection":
 						[
 							[
-								550,
-								550
+								385,
+								385
 							]
 						],
 						"settings":
@@ -2869,15 +2869,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 5557,
+						"buffer_size": 6563,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1813,
-								1813
+								2892,
+								2892
 							]
 						],
 						"settings":
@@ -2886,7 +2886,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 357.0,
+						"translation.y": 349.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

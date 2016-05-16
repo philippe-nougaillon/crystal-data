@@ -7,6 +7,14 @@ Rails.application.routes.draw do
     post :update_row_order, on: :collection
   end
 
+  namespace :api, defaults: {format: :json}  do
+    namespace :v1 do
+      resources :users
+      resources :tables
+      resources :fields
+    end
+  end
+
   get 'tables/:id/fill' => 'tables#fill', as: :fill
   post 'tables/:id/fill' => 'tables#fill_do', as: :fill_do
   delete 'tables/:id/delete_record' => 'tables#delete_record', as: :delete_record
