@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Field < ActiveRecord::Base
 	include RankedModel
   	ranks :row_order, :with_same => :table_id 
@@ -9,7 +11,7 @@ class Field < ActiveRecord::Base
 	validates_presence_of :name
 	validates_presence_of :datatype
 
-	enum datatype: [:texte, :nombre, :euros, :date, :oui_non?, :liste, :formule, :fichier, :signature]
+	enum datatype: [:texte, :nombre, :euros, :date, :oui_non?, :liste, :formule, :fichier, :signature, :gps, :météo]
 	enum operation: [:somme, :moyenne]
 
 	scope :filtres, -> { where(filtre:true)}
