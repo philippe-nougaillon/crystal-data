@@ -996,7 +996,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 6563,
+				"buffer_size": 6142,
 				"line_ending": "Unix"
 			}
 		}
@@ -1399,7 +1399,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 59,
 			"sheets":
 			[
 				{
@@ -3006,15 +3006,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 6563,
+						"buffer_size": 6142,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2892,
-								2892
+								2300,
+								2300
 							]
 						],
 						"settings":
@@ -3023,7 +3023,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 349.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -1,13 +1,14 @@
-<h3>
-	A propos de crystalData<br>
-</h3>
+<div style="width:50%;margin-left:15px;">
+	<h3>
+		A propos de crystalData<br>
+	</h3>
+	<br>
 
-<div style="width:70%">
 	Développeur d'applications métiers depuis plus de 20 ans, j'ai très souvent aidé mes clients à passer d'un système d'information en silos, où les données critiques de l'entreprise sont enfermées dans des feuilles Excel, à un système de type plateforme où les données sont centralisées, partagées entre les services, et qui permet à la direction d'avoir une vue d'ensemble de l'activité.
 	<br><br>
 	A force de mettre en place ce type de solution, j'ai remarqué que des motifs se répétaient et qu'à chaque nouveau projet les besoins étaient les mêmes:
 	<br><br>
-	<ul class="list-group">
+	<ul class="list-group" style="width:50%">
 		<li class="list-group-item">1 - Importer les données d'Excel</li>
 		<li class="list-group-item">2 - Accéder aux données de n'importe où</li>
 		<li class="list-group-item">3 - Rechercher, filtrer</li>
@@ -15,139 +16,111 @@
 		<li class="list-group-item">5 - Organiser et lier les données entre elles</li>
 		<li class="list-group-item">6 - Ajouter des règles métiers</li>
 		<li class="list-group-item">7 - Créer des vues personnalisées</li>
+		<li class="list-group-item">8 - Gérer des utilisateurs et des rôles</li>
 	</ul>
-	C'est pourquoi j'ai développé crystalData, afin d'offrir les 4 premiers services d'un système ouvert de type plateforme et aider des entreprises à franchir le pas vers le décloisonnement de leurs données, pour une gestion efficace, collaborative et centrée sur leurs objectifs. Et, pourquoi pas, poser ainsi les fondations d'une future application web métier sur mesure intégrant les liens entre les données, les règles métiers et des vues personnalisées.
+	C'est pourquoi j'ai développé crystalData, afin d'offrir les 4 premiers services d'un système ouvert de type plateforme et aider des entreprises à franchir le pas vers le décloisonnement de leurs données, pour une gestion efficace, collaborative et centrée sur leurs objectifs.<br>
+	 Et, pourquoi pas, poser ainsi les fondations d'une future application web métier sur mesure intégrant les liens entre les données, les règles métiers et des vues personnalisées.
 	<br><br>
 
 	Philippe NOUGAILLON <br>
 	<%= link_to image_tag("LinkedIn.png"), "https://fr.linkedin.com/in/philippe-nougaillon-a028a840" %>
 	<%= link_to image_tag("GitHub.png", size:"75x30"), "https://github.com/philippe-nougaillon" %>
 
+	<br><br><br>
 </div>
-<br><br>
-
-<h3>
-	Les principales fonctionnalités de crystalData en images<br>
-</h3>
-<h4>
-	crystalData permet de créer des tables de données à partir de feuilles Excel
-	 et de les partager en ligne (et en mobilité)
-</h4>
-<br>
-
-<div class="table-responsive">
-	<table class="table-condensed"> 
+<div style="margin-left:15px;">
+	<h3>
+		crystalData en images<br>
+	</h3>
+	<h4>
+		crystalData permet de créer des tables de données à partir de feuilles Excel
+		 et de les partager en ligne (et en mobilité)
+	</h4>
+	<table class="table table-bordered"> 
 		<tr>
 			<td style="width:47%">
 				<h3>
-					<i style="margin-left:20px;">
+					<i>
 						Créer des tables de données<br>
 					</i>
-					<small style="margin-left:30px;">à partir de feuilles Excel, ou pas :)
+					<small >à partir de feuilles Excel, ou pas</small>
 				</h3>
-			</td>
-			<td>
+				<br><br>
 				<%= link_to image_tag(image_path("screen-lg.png"), width:'100%', id:"imageresource-lg1", class:"img-thumbnail"), image_path("screen-lg.png") %>
 			</td>
-		</tr>
-		<tr>
 			<td>
+				<h3>
+					<i>Ajoutez de nouvelles colonnes</i> 
+					<div >
+						<small>
+							Texte, Nombre, Euros, Date, Oui/Non, Liste de choix, 
+							Champ calculé (formule en langage <%= link_to "Ruby","https://www.ruby-lang.org/fr/documentation/quickstart/", :target => "_blank" %>), 
+							Fichier, <b>Signature manuscrite</b>
+						</small>
+					</div>
+				</h3>
+				<br>
 				<%= link_to image_tag(image_path("screen-lg-modif.png"), width:'100%', id:"imageresource-lg2", class:"img-thumbnail"), image_path("screen-lg-modif.png") %>
 			</td>
-			<td>
-				<h3>
-					<i style="margin-left:20px;">
-						Ajoutez de nouvelles colonnes<br><br>
-					</i> 
-
-					<small style="margin-left:20px;">Formats de données:</small><br>
-					<ul><li>Texte</li><li>Nombre</li><li>Euros</li><li>Date</li><li>Oui/Non</li><li>Liste de choix</li>
-						<li>Champ calculé (formule en langage <%= link_to "Ruby","https://www.ruby-lang.org/fr/documentation/quickstart/", :target => "_blank" %>)</li>
-						<li>Fichier</li>
-						<li><b>Signature manuscrite</b></li>
-					</ul>
-				</h3>
-			</td>
 		</tr>
 		<tr>
 			<td>
 				<h3>
-					<i style="margin-left:20px;">
-						Ajoutez, éditez vos enregistrements dans un formulaire<br>
-						<small style="margin-left:30px;">Chaque modification est consignée dans un historique (qui, quand, quoi)</small>
+					<i>Ajoutez, éditez vos enregistrements dans un formulaire<br>
+						<small >Chaque modification est consignée dans un historique (qui, quand, quoi)</small>
 					</i> 
 				</h3>
-			</td>
-			<td>
+				<br>
 				<%= link_to image_tag(image_path("screen-lg-form.png"), width:'100%', id:"imageresource-lg3", class:"img-thumbnail"), image_path("screen-lg-form.png") %>
 			</td>
-		</tr>
-		<tr>
 			<td>
+				<h3>
+					<i>Recherchez, filtrez, triez vos données</i> 
+				</h3>
+				<br><br>
 				<%= link_to image_tag(image_path("screen-lg-filtre.png"), width:'100%', id:"imageresource-lg4", class:"img-thumbnail"), image_path("screen-lg-filtre.png") %>
 			</td>
-			<td>
-				<h3>
-					<i style="margin-left:20px;">
-						Recherchez, filtrez, triez vos données
-					</i> 
-				</h3>
-			</td>
 		</tr>
 		<tr>
 			<td>
 				<h3>
-					<i style="margin-left:20px;">
-						Partagez vos données avec d'autres utilisateurs
-					</i> 
+					<i>Partagez vos données avec d'autres utilisateurs</i> 
 				</h3>
-			</td>
-			<td>
+				<br>
 				<%= link_to image_tag(image_path("screen-lg-partage.png"), width:'100%', id:"imageresource-lg5", class:"img-thumbnail"), image_path("screen-lg-partage.png") %>
 			</td>
-		</tr>
-		<tr>
 			<td>
+				<h3>
+					<i>Exportez vos données vers un tableur</i> 
+				</h3>
+				<br>
 				<%= link_to image_tag(image_path("screen-lg-excel2.png"), width:'100%', id:"imageresource-lg6", class:"img-thumbnail"), image_path("screen-lg-excel2.png") %>
 			</td>
-			<td>
-				<h3>
-					<i style="margin-left:20px;">
-						Exportez vos données vers un tableur
-					</i> 
-				</h3>
-			</td>
 		</tr>
 		<tr>
 			<td>
 				<h3>
-					<i style="margin-left:20px;">Suivez graphiquement l'activité de chaque table</i> 
-					<br><br>	
-					<i style="margin-left:20px;">Notification après chaque ajout de données</i>
+					<i>Suivi graphique de l'activité</i> 
+					<br>	
+					<i > + Notification après chaque ajout</i>
 				</h3>
-			</td>
-			<td>
+				<br>
 				<%= link_to image_tag(image_path("screen-lg-chart.png"), width:'100%', id:"imageresource-lg8", class:"img-thumbnail"), image_path("screen-lg-chart.png") %>
 			</td>
-		</tr>
-		<tr>
 			<td>
+				<h3>
+					<i>Accédez à vos données en mobilité<br>
+					 	<small >Les écrans s'adaptent automatiquement à la taille d'un écran de smartphone => WebApp</small>
+					</i> 
+				</h3>
+				<br>
 				<%= link_to image_tag(image_path("screen-sm-1.png"), width:'32%', id:"imageresource-sm-1", class:"img-thumbnail"), image_path("screen-sm-1.png") %>
 				<%= link_to image_tag(image_path("screen-sm-2.png"), width:'32%', id:"imageresource-sm-2", class:"img-thumbnail"), image_path("screen-sm-2.png") %>
 				<%= link_to image_tag(image_path("screen-sm-3.png"), width:'32%', id:"imageresource-sm-3", class:"img-thumbnail"), image_path("screen-sm-3.png") %>
-			</td>
-			<td>
-				<h3>
-					<i style="margin-left:20px;">
-						Accédez à vos données en mobilité<br>
-					 	<small style="margin-left:30px;">
-					 		WebApp => les écrans s'adaptent automatiquement à la taille d'un écran de smartphone</small>
-					</i> 
-				 </h3>
-				 <%= image_tag(image_path("mobile_logos.png")) %>
-				 <br>
-				 <i style="margin-left:20px;">Application UWP (Universal Windows Platform) en cours de réalisation</i>
-				 <%= link_to "Github", "https://github.com/philippe-nougaillon/crystalData_UWPClient" %>
+				<%= image_tag(image_path("mobile_logos.png")) %>
+				<br>
+				<i >Application UWP (Universal Windows Platform) en cours de réalisation</i>
+				<%= link_to "Github", "https://github.com/philippe-nougaillon/crystalData_UWPClient" %>
 			</td>
 		</tr>
 	</table>
