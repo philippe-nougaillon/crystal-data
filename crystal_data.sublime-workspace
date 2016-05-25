@@ -660,7 +660,7 @@
 			"file": "app/models/field.rb",
 			"settings":
 			{
-				"buffer_size": 1284,
+				"buffer_size": 1317,
 				"line_ending": "Unix"
 			}
 		},
@@ -764,7 +764,7 @@
 			"file": "app/controllers/api/v1/fields_controller.rb",
 			"settings":
 			{
-				"buffer_size": 186,
+				"buffer_size": 204,
 				"line_ending": "Unix"
 			}
 		},
@@ -996,7 +996,7 @@
 			"file": "app/views/sessions/welcome.html.erb",
 			"settings":
 			{
-				"buffer_size": 6142,
+				"buffer_size": 5605,
 				"line_ending": "Unix"
 			}
 		}
@@ -1174,6 +1174,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"style=\"margin-left:5px;\"",
+			"style=\"margin-left:5px;",
+			"style=\"margin-left:30px;\"",
+			"</li><li>",
+			"margin-left:20px;",
 			"@users",
 			"log",
 			"updated",
@@ -1296,12 +1301,7 @@
 			"updated_at",
 			"visited",
 			"session[:user_id]",
-			"update_roles",
-			"\"",
-			"puts",
-			"Localisation",
-			"puts",
-			"usure"
+			"update_roles"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -1309,6 +1309,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			", ",
+			"margin-left:5px;",
 			"@tables",
 			"h4",
 			"tabindex:\"#{tabindex}\"",
@@ -1866,15 +1869,15 @@
 					"file": "app/models/field.rb",
 					"settings":
 					{
-						"buffer_size": 1284,
+						"buffer_size": 1317,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								815,
-								815
+								18,
+								18
 							]
 						],
 						"settings":
@@ -1883,7 +1886,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 204.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2142,8 +2145,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								18,
+								18
 							]
 						],
 						"settings":
@@ -2215,15 +2218,15 @@
 					"file": "app/controllers/api/v1/fields_controller.rb",
 					"settings":
 					{
-						"buffer_size": 186,
+						"buffer_size": 204,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								39,
-								39
+								161,
+								161
 							]
 						],
 						"settings":
@@ -2691,8 +2694,8 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 74.0,
-						"translation.y": 969.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2846,8 +2849,8 @@
 						"selection":
 						[
 							[
-								77,
-								77
+								91,
+								91
 							]
 						],
 						"settings":
@@ -3006,15 +3009,15 @@
 					"file": "app/views/sessions/welcome.html.erb",
 					"settings":
 					{
-						"buffer_size": 6142,
+						"buffer_size": 5605,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2300,
-								2300
+								2927,
+								2927
 							]
 						],
 						"settings":
@@ -3023,7 +3026,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
