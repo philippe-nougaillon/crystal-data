@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json}  do
     namespace :v1 do
       get 'timestamps', to: 'users#timestamps'
+      post 'values/post_value'
       resources :users 
       resources :tables
       resources :fields
+      resources :values
     end
   end
+
 
   get 'tables/:id/fill' => 'tables#fill', as: :fill
   post 'tables/:id/fill' => 'tables#fill_do', as: :fill_do

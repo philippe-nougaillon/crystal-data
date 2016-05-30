@@ -1,0 +1,43 @@
+# encoding: utf-8
+
+class API::V1::ValuesController < ApplicationController
+	
+	protect_from_forgery with: :null_session
+
+	def index
+		@table = Table.find(params[:table_id])
+		@fields = @table.fields.order(:row_order)
+		render json: @fields
+	end
+
+	def post_value
+		@value = Value.new(value_params)
+		@table = @value.table
+		record_index = @table.record_index + 1
+
+		@value.record_index = record_index
+
+		if @value.field_id == @table.fields.last.id
+			@table.update_attributes(record_index:record_index)
+		end
+
+		respond_to do |format|
+		  if @value.save
+		    format.json { render json: @value, status: :created, location: @value }
+		  else
+		    format.json { render json: @value.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
+
+ private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_value
+      @value = Value.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def value_params
+      params.require(:value).permit(:user_id, :field_id, :table_id, :data)
+    end
+end
