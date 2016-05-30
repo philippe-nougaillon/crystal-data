@@ -8,15 +8,18 @@ class API::V1::UsersController < ApplicationController
 	end
 
 	def timestamps
-		timestamps = {}
 		unless params[:user_id]
+			timestamps = {}
 			timestamps['Name'] = "users"
 			timestamps['TimeStampValue'] = User.maximum(:updated_at).to_i
+			render json: timestamps
 		else
-			timestamps['tables'] = Table.maximum(:updated_at).to_i
-			timestamps['fields'] = Field.maximum(:updated_at).to_i
+			array_of_timestamps = [
+				{:Name => 'tables', :TimeStampValue => Table.maximum(:updated_at).to_i}, 
+				{:Name => 'fields', :TimeStampValue => Field.maximum(:updated_at).to_i}
+			]
+			render json: array_of_timestamps
 		end
-		render json: timestamps
 	end
 
 end

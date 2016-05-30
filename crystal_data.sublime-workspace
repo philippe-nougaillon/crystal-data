@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"tim",
+				"timestamps"
+			],
+			[
+				"t",
+				"timestamps"
+			],
+			[
 				"f",
 				"fields"
 			],
@@ -150,10 +158,6 @@
 			[
 				"th",
 				"th	Tag"
-			],
-			[
-				"t",
-				"table	Tag"
 			],
 			[
 				"ti",
@@ -510,10 +514,6 @@
 			[
 				"typ",
 				"type_dossier"
-			],
-			[
-				"nb",
-				"nbre_lgt_reel"
 			]
 		]
 	},
@@ -548,7 +548,7 @@
 			"file": "config/routes.rb",
 			"settings":
 			{
-				"buffer_size": 2957,
+				"buffer_size": 3005,
 				"line_ending": "Unix"
 			}
 		},
@@ -748,7 +748,7 @@
 			"file": "app/controllers/api/v1/users_controller.rb",
 			"settings":
 			{
-				"buffer_size": 137,
+				"buffer_size": 455,
 				"line_ending": "Unix"
 			}
 		},
@@ -1402,7 +1402,7 @@
 	"groups":
 	[
 		{
-			"selected": 59,
+			"selected": 28,
 			"sheets":
 			[
 				{
@@ -1489,15 +1489,15 @@
 					"file": "config/routes.rb",
 					"settings":
 					{
-						"buffer_size": 2957,
+						"buffer_size": 3005,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								217,
-								217
+								263,
+								263
 							]
 						],
 						"settings":
@@ -2145,8 +2145,8 @@
 						"selection":
 						[
 							[
-								18,
-								18
+								92,
+								92
 							]
 						],
 						"settings":
@@ -2166,20 +2166,21 @@
 					"file": "app/controllers/api/v1/users_controller.rb",
 					"settings":
 					{
-						"buffer_size": 137,
+						"buffer_size": 455,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								137,
-								137
+								255,
+								255
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
