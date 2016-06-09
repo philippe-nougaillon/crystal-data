@@ -57,30 +57,30 @@ class API::V1::TablesController < ApplicationController
 				# extraire la date
 				begin
 					date_course = I18n.l(Date.parse(link[27..34]))	
+
+					# si lieu, extraire le lieu, le lien vers la page résultat
+					if lieu_categorie = link[35..-1]
+						lieu_categorie = lieu_categorie.split('.pdf').first
+						if lieu_categorie.include?('-')
+							lieu = lieu_categorie.split('-').first
+							categorie = lieu_categorie.split('-').last
+							categorie = categorie.gsub("min","Minimes ") 
+							categorie = categorie.gsub("cad","Cadets ") 
+							categorie = categorie.gsub("jun","Juniors ") 
+							categorie = categorie.gsub("sen","Seniors ") 
+							categorie = categorie.gsub("fem","Dames ") 
+							categorie = categorie.gsub("dep","Départementales ") 
+						else
+							lieu = lieu_categorie
+							categorie = ''
+						end
+							
+						page_resultat = link.split('/')[3]
+						links << {date:date_course, lieu:lieu.upcase, link:page_resultat, cat:categorie}
+					end
 				rescue 
 					next
 				end	
-
-				# si lieu, extraire le lieu, le lien vers la page résultat
-				if lieu_categorie = link[35..-1]
-					lieu_categorie = lieu_categorie.split('.pdf').first
-					if lieu_categorie.include?('-')
-						lieu = lieu_categorie.split('-').first
-						categorie = lieu_categorie.split('-').last
-						categorie = categorie.gsub("min","Minimes ") 
-						categorie = categorie.gsub("cad","Cadets ") 
-						categorie = categorie.gsub("jun","Juniors ") 
-						categorie = categorie.gsub("sen","Seniors ") 
-						categorie = categorie.gsub("fem","Dames ") 
-						categorie = categorie.gsub("dep","Départementales ") 
-					else
-						lieu = lieu_categorie
-						categorie = ''
-					end
-						
-					page_resultat = link.split('/')[3]
-					links << {date:date_course, lieu:lieu.upcase, link:page_resultat, cat:categorie}
-				end
 			end
 		end
 
