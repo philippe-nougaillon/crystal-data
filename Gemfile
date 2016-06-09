@@ -55,6 +55,7 @@ gem 'signature-pad-rails'
 
 gem 'sitemap_generator'
 
+gem 'sanitize'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

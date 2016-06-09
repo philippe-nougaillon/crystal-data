@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'timestamps', to: 'users#timestamps'
       post 'values/post_value'
+      get 'courses', to: 'tables#courses'
+      get 'resultats', to: 'tables#resultats'
       resources :users 
       resources :tables
       resources :fields
