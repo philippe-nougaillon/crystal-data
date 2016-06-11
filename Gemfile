@@ -2,11 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 
 gem 'mysql2','~> 0.3.18'
-#gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -54,8 +51,6 @@ gem 'ranked-model'
 gem 'signature-pad-rails'
 
 gem 'sitemap_generator'
-
-gem 'sanitize'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
