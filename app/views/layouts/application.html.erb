@@ -6,14 +6,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/.sprockets-manifest-0ab9681aad614e51683e8715781733a0.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
-
+ -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
@@ -28,7 +28,9 @@
 			<ul class="nav nav-tabs" role="tablist">
 				<% if @current_user %>
 					<li class=<%= (controller_name == 'tables' && !params[:id]) ? 'active' : '' %>>
-						<%= link_to tables_path do %><i class="glyphicon glyphicon-th-list"></i><% end %>
+						<%= link_to tables_path do %>				               
+							<%= image_tag("icons/data_shared16.png") %>		
+						<% end %>
 					</li>
 					<% @current_user.tables.each do |table| %>
 						<li class=<%= (controller_name == 'tables' && params[:id]== table.id.to_s) ? 'active' : '' %>>
@@ -55,11 +57,13 @@
 					<li>
 					    <li class="dropdown">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				            	<i class="glyphicon glyphicon-th-list"></i>
+				               <%= image_tag("icons/data_shared16.png") %>		
 				               crystalData<b class="caret"></b>
 				            </a>
 				            <ul class="dropdown-menu">
 				              <li><%= link_to "A propos de crystalData", '/about' %></li>
+  				              <li class="divider"></li>
+				              <li><%= link_to "Créer un compte", signup_path %></li>
 				              <li class="divider"></li>
 				              <li><%= link_to "Se connecter", '/login' %></li>
 				            </ul>

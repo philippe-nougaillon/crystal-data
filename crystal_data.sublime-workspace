@@ -531,7 +531,7 @@
 			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 1972,
+				"buffer_size": 1895,
 				"line_ending": "Unix"
 			}
 		},
@@ -764,7 +764,7 @@
 			"file": "/home/phil/RailsProjects/infos_cycliste_idf/Gemfile",
 			"settings":
 			{
-				"buffer_size": 1544,
+				"buffer_size": 1596,
 				"line_ending": "Unix"
 			}
 		},
@@ -1418,7 +1418,7 @@
 	"groups":
 	[
 		{
-			"selected": 29,
+			"selected": 41,
 			"sheets":
 			[
 				{
@@ -1452,15 +1452,15 @@
 					"file": "Gemfile",
 					"settings":
 					{
-						"buffer_size": 1972,
+						"buffer_size": 1895,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1447,
-								1447
+								578,
+								578
 							]
 						],
 						"settings":
@@ -1468,7 +1468,7 @@
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 620.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1566,8 +1566,8 @@
 						"selection":
 						[
 							[
-								123,
-								123
+								678,
+								678
 							]
 						],
 						"settings":
@@ -1577,7 +1577,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 34.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2226,7 +2226,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1009.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -2236,7 +2236,7 @@
 					"file": "/home/phil/RailsProjects/infos_cycliste_idf/Gemfile",
 					"settings":
 					{
-						"buffer_size": 1544,
+						"buffer_size": 1596,
 						"regions":
 						{
 						},
@@ -2540,8 +2540,8 @@
 						"selection":
 						[
 							[
-								14923,
-								14923
+								11347,
+								11347
 							]
 						],
 						"settings":
@@ -2551,7 +2551,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7067.0,
+						"translation.y": 5129.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

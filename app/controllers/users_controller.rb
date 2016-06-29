@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
-  	before_filter :authorize
+  	before_filter :authorize, except: [:new, :create]
 
   	def show
   		@user = @current_user
@@ -25,7 +25,8 @@ class UsersController < ApplicationController
 	    @user = User.new(user_params)
 	    if @user.save
         UserMailer.notification_nouveau_compte(@user).deliver_now
-	      redirect_to root_url, notice:"Compte '#{@user.name}' créé. Le nouvel utilisateur a été notifié par mail."
+        session[:user_id] = @user.id
+        redirect_to tables_path, notice:"Bienvenue '#{@user.name}' !. Votre compte a bien été '#{@user.name}' créé et vous avez été notifié par mail."
 	    else
 		    render :new	
 	    end
