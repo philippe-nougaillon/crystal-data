@@ -25,7 +25,7 @@ class TablesController < ApplicationController
     end
 
     @sum = Hash.new(0)
-    @numeric_types = ['formule','euros','nombre']
+    @numeric_types = ['Formule','Euros','Nombre']
     @td_style = []
     @pathname = Rails.root.join('public', 'table_files') 
 
