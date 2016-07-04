@@ -28,7 +28,7 @@ class Table < ActiveRecord::Base
 
 	def files_count
 		i = 0
-		self.fields.fichier.each do |f| 
+		self.fields.Fichier.each do |f| 
 			f.values.each do |v| 
 				i += 1 if v.data
 			end
@@ -39,7 +39,7 @@ class Table < ActiveRecord::Base
 	def shared_with(user)
 		users = self.users.pluck(:name)
 		users -= [user.name]
-		return users.join(', ')
+		return users.map{|u| u.humanize}.join(', ')
 	end
 
 end
