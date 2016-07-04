@@ -36,4 +36,10 @@ class Table < ActiveRecord::Base
 		return i
 	end
 
+	def shared_with(user)
+		users = self.users.pluck(:name)
+		users -= [user.name]
+		return users.join(', ')
+	end
+
 end
