@@ -1,5 +1,4 @@
 <h2>
-  <%= image_tag("icons/data_shared32.png") %>    
   Liste des tables partagées
 </h2>
 <br>
@@ -9,10 +8,10 @@
     <tr>
       <th>Nom</th>
       <th>Colonnes</th>
+      <th class="col-md-2">Partagée avec</th>
+      <th>Màj</th>
       <th>Lignes</th>
       <th>Stockage</th>
-      <th>Màj</th>
-      <th>Partagée avec</th>
       <th />
       <th colspan="3"/>
     </tr>
@@ -30,15 +29,15 @@
           <tr>
             <td style="font-size:16px"><b><%= link_to table.name.humanize, table %></b></td>
             <td><%= table.fields.pluck(:name).join(", ") %></td>
-            <td class="text-right"><%= table.size %></td>
-            <td class="text-right"><%= table.files_size %> MB</td>
-            <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
             <td>
               <%= table.users.pluck(:name).join(', ') %>
               <% if table.is_owner?(@current_user) %>
                 <%= link_to partages_path(table), title:"Partager avec un autre utilisateur" do %><i class="glyphicon glyphicon-plus-sign"></i><% end %>
               <% end %>
             </td>
+            <td><%= "Il y a #{time_ago_in_words(table.values.maximum(:updated_at))}" if table.values.any? %></td>
+            <td class="text-right"><%= table.size %></td>
+            <td class="text-right"><%= table.files_size %> MB</td>
             <td>
               <% if table.is_owner?(@current_user) %>
                 <%= link_to 'Modifier', show_attrs_path(id:table), title:"Modifier les colonnes", class: 'btn btn-info btn-xs' %>

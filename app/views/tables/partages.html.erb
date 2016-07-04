@@ -12,12 +12,12 @@
 
 	<% @table.users.each do |user| %>
 		<tr>
-			<td><%= user.name %></td>
+			<td><b><%= user.name %></b></td>
 			<td><%= user.email %></td>
 			<td><%= @table.is_owner?(user) ? "Créateur" : "Invité" %></td>
 			<td>
 				<% unless @table.is_owner?(user) %>
-					<%= link_to "Annuler", annuler_partage_path(@table, user_id:user.id), title:"Annuler ce partage", 
+					<%= link_to "Annuler le partage", annuler_partage_path(@table, user_id:user.id), title:"Annuler ce partage", 
 						data: { confirm: 'Vraiment ??' }, class: 'btn btn-danger btn-sm' %>
 				<% end %>
 			</td>

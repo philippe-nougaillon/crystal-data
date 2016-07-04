@@ -18,7 +18,7 @@
     <%= f.text_field :name %><br><br>
 
     <%= f.label :name, "Type" %><br>
-    <%= f.select :datatype, options_for_select(Field.datatypes.keys.to_a, @field.datatype) %>
+    <%= f.select :datatype, options_for_select(@fields, @field.datatype) %>
     <%= f.text_field :items, size:70  %><br><br>
     
     <%= f.label :name, "Options" %><br>
@@ -34,7 +34,7 @@
 
     <br>
     <% if @field.new_record? %>
-      <%= f.submit "Créer cette colonne", class: 'btn btn-success' %>
+      <%= f.submit "Créer la colonne", class: 'btn btn-success' %>
     <% else %>  
       <%= f.submit "Modifier", class: 'btn btn-success' %>
       | <%= link_to 'Retour',  show_attrs_path(id:@field.table)  %>

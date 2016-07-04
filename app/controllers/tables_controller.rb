@@ -110,6 +110,7 @@ class TablesController < ApplicationController
       return
     end 
     @field = Field.new(table_id:@table.id)
+    @fields = Field.datatypes.keys.to_a
   end
 
   # formulaire d'ajout / modification
@@ -157,9 +158,9 @@ class TablesController < ApplicationController
       end  
 
       # enregistre le fichier
-      if field.datatype == 'fichier' and value
+      if field.datatype == 'Fichier' and value
          value = field.save_file(value)
-      elsif field.datatype == 'formule'
+      elsif field.datatype == 'Formule'
          value = field.evaluate(values.values) # evalue le champ calculé
       end          
   
@@ -172,7 +173,7 @@ class TablesController < ApplicationController
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
 
             # enregistre les modifications dans l'historique
-            unless field.datatype == 'signature'
+            unless field.datatype == 'Signature'
               inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
             end  
 
@@ -185,7 +186,7 @@ class TablesController < ApplicationController
       else
 
         # enregistre les ajouts dans l'historique
-        unless field.datatype == 'signature'
+        unless field.datatype == 'Signature'
           inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
           # collecte les données pour les envoyer par mail
           notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
@@ -360,7 +361,7 @@ class TablesController < ApplicationController
           updated_at = updated_at_list[index]
           cols = []
           @table.fields.each_with_index do | field,index |
-            if field.datatype == "signature" and values[index]
+            if field.datatype == "Signature" and values[index]
               cols << "Signé"
             else
               cols << (values[index] ? values[index].to_s.gsub("'", " ") : nil) 
@@ -426,7 +427,7 @@ class TablesController < ApplicationController
     end
 
     if params[:record_index]
-      @logs = @logs.where(record_index:params[:record_index])  
+      @logs = @table.logs.where(record_index:params[:record_index])  
     else
       @logs = @table.logs
     end 

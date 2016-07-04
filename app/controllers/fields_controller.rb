@@ -22,6 +22,7 @@ class FieldsController < ApplicationController
 
   # GET /fields/1/edit
   def edit
+    @fields = Field.datatypes.keys.to_a
   end
 
   # POST /fields

@@ -11,8 +11,8 @@ class Field < ActiveRecord::Base
 	validates_presence_of :name
 	validates_presence_of :datatype
 
-	enum datatype: [:texte, :nombre, :euros, :date, :oui_non?, :liste, :formule, :fichier, :signature, :gps, :météo]
-	enum operation: [:somme, :moyenne]
+	enum datatype: [:Texte, :Nombre, :Euros, :Date, :Oui_non?, :Liste, :Formule, :Fichier, :Signature, :Gps, :Météo]
+	enum operation: [:Somme, :Moyenne]
 
 	scope :filtres, -> { where(filtre:true)}
 	scope :sommes,  -> { where(sum:true)}

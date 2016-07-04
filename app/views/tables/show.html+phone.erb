@@ -48,9 +48,9 @@
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
 								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
-									<% if field.datatype == "fichier" and value %>
+									<% if field.datatype == "Fichier" and value %>
 										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
-									<% elsif field.datatype == "signature" and value %>
+									<% elsif field.datatype == "Signature" and value %>
 										<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% else %>
 										<%= value %>
@@ -70,9 +70,9 @@
 						<% @table.fields.each do |field| %>
 							<% if field.operation %>
 								<td class="text-right">
-									<% if field.somme? %>
+									<% if field.Somme? %>
 										<%= @sum[field.id] %>
-									<% elsif field.moyenne? %>
+									<% elsif field.Moyenne? %>
 										<%= @sum[field.id] / @records.count %>
 									<% end %>
 								</td>

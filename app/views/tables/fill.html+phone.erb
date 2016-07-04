@@ -15,27 +15,27 @@
           </label>
 
           <div class="input-group-lg">
-              <% if field.datatype == "texte" %>  
+              <% if field.datatype == "Texte" %>  
                   <%= text_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
-              <% elsif field.datatype == "nombre" %>
+              <% elsif field.datatype == "Nombre" %>
                   <%= number_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
-              <% elsif field.datatype == "euros" %>  
+              <% elsif field.datatype == "Euros" %>  
                   <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control', tabindex:"#{tabindex}" %> €
-              <% elsif field.datatype == "date" %>
+              <% elsif field.datatype == "Date" %>
                   <%= date_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
-              <% elsif field.datatype == "oui_non?" %>
+              <% elsif field.datatype == "Oui_non?" %>
                   <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
                   <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
-              <% elsif field.datatype == "liste" %>
+              <% elsif field.datatype == "Liste" %>
                   <%= select_tag field_name, options_for_select(field.items.split(","), field_value), 
                         include_blank: true, class: 'form-control', tabindex:"#{tabindex}" %>
-              <% elsif field.datatype == "formule" %>
+              <% elsif field.datatype == "Formule" %>
                   <% field_value = field.evaluate(@table.values.records_at(@record_index).pluck(:data)) %>
                   <%= text_field_tag field_name, field_value, class: 'form-control', disabled:true, tabindex:"#{tabindex}" %>
-              <% elsif field.datatype == "fichier" %>
+              <% elsif field.datatype == "Fichier" %>
                   <%= file_field_tag field_name, class: 'form-control-file', tabindex:"#{tabindex}" %>
                   <br>
-              <% elsif field.datatype == "signature" %>
+              <% elsif field.datatype == "Signature" %>
                   <br>
                   <div class="col-sm-4 sigPad">
                     <div class="sig">
