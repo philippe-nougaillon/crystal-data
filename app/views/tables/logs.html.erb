@@ -22,7 +22,6 @@
     <tr>
       <th>Le</th>
       <th>Utilisateur</th>
-      <th>IP</th>
       <th>Action</th>
       <th>Ligne</th>
       <th>Colonne</th>
@@ -35,7 +34,6 @@
       <tr>
         <td><%= l(log.created_at) %></td>
         <td><%= log.user.name %></td>
-        <td><%= link_to log.ip, "http://www.ip-tracker.org/locator/ip-lookup.php?ip=#{log.ip}", target:'_new' %></td>
         <td><%= log.action.humanize %></td>
         <td class="text-right"><%= log.record_index %></td>
         <td><%= log.field.name %></td>

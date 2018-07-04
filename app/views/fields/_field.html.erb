@@ -1,6 +1,6 @@
 <tr data-item-id=<%= "#{field.id}" %> class="item">
     <td><%= i + 1 %></td>
-    <td><%= field.name %></td>
+    <td><b><%= field.name %></b></td>
     <td>
         <%= field.datatype.humanize %>
         <%= "= #{field.items}" unless field.items.blank? %>
@@ -14,6 +14,7 @@
         <% if field.operation %>
             <%= " | " if field.obligatoire or field.filtre %>
             <i class="glyphicon glyphicon-flash"></i> <%= field.operation.humanize %>
+            en bas de page
         <% end %>
     </td>
     <td>

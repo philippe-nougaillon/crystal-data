@@ -34,7 +34,7 @@
 
     <br>
     <% if @field.new_record? %>
-      <%= f.submit "Créer la colonne", class: 'btn btn-success' %>
+      <%= f.submit "Ajouter", class: 'btn btn-success' %>
     <% else %>  
       <%= f.submit "Modifier", class: 'btn btn-success' %>
       | <%= link_to 'Retour',  show_attrs_path(id:@field.table)  %>

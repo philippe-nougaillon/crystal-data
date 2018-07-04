@@ -1,16 +1,15 @@
-<h2>Table '<%= @table.name.humanize %>'</h2>
+<h2>Structure de la table "<%= @table.name.humanize %>"</h2>
 <small>
-	<%= link_to "Modifier", edit_table_path(@table), title:"Renommer cette table ou modifier les options" %>
+	<%= link_to "Renommer", edit_table_path(@table), title:"Renommer cette table ou modifier les options" %>
 </small>
 
 <br><br>
 
-<h3>Colonnes</h3>
 <table class="table table-striped table-hover table-bordered sticky" id="sortable">
 	<thead>
 		<tr>
 			<th class="col-md-1">#</th>
-			<th>Nom</th>
+			<th>Nom colonne</th>
 			<th>Type</th>
 			<th>Options</th>
 			<th />
@@ -23,9 +22,8 @@
 		<tr><td /><td>Aucune colonne pour l'instant</td><td /><td /><td /></tr>
 	<% end %>
 </table>
-<br>
 
-<h3>Créer une nouvelle colonne</h3>
+<h3>Ajouter une nouvelle colonne</h3>
 <% if @field %>	
 	<%= render partial:'fields/form' %>
 <% end %>
