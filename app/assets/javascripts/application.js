@@ -14,9 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery_ujs
-//= require jquery-ui/datepicker
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require stickytableheaders
@@ -25,7 +22,8 @@
 //= require signature-pad
 //= require jquery.modal
 //= require_tree .
-    
+
+/*
 $.datepicker.regional['fr'] = {
         closeText: 'Fermer',
         prevText: 'Précédent',
@@ -46,3 +44,4 @@ $.datepicker.regional['fr'] = {
         yearSuffix: ''};
         
 $.datepicker.setDefaults($.datepicker.regional['fr']);
+*/
