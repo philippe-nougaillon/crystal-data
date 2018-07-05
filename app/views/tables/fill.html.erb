@@ -5,7 +5,6 @@
 
   <%= hidden_field_tag :table_id, @table.id %>
 
-
 	<% @table.fields.each do |field| %>
       <% field_name = "[data][#{@record_index}][#{field.id}]" %> 
       <% value = field.values.find_by(record_index:@record_index) %> 
@@ -14,13 +13,13 @@
       <fieldset class="form-group">
 
           <label>
-            <%= (field.obligatoire ? field.name.upcase.insert(0, '* ') : field.name) %>
+            <%= (field.obligatoire ? field.name.insert(0, '* ') : field.name) %>
           </label>
             
           <div class="input-group-sm row">
 
             <% if field.datatype == "Texte" %>
-              <div class="col-sm-4">  
+              <div class="col-sm-3">  
                 <%= text_field_tag field_name, field_value, class: 'form-control' %>
               </div>
             <% elsif field.datatype == "Nombre" %>
@@ -29,7 +28,7 @@
               </div>
             <% elsif field.datatype == "Euros" %>  
               <div class="col-sm-2">
-                <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control' %> €
+                <%= number_field_tag field_name, field_value, step: 'any', class: 'form-control', placeholder: "€" %>
               </div>
             <% elsif field.datatype == "Date" %>
               <div class="col-sm-2">
