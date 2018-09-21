@@ -59,6 +59,7 @@ gem 'sitemap_generator'
 
 # Heroku
 gem 'rails_12factor'
+gem 'puma'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

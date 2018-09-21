@@ -96,6 +96,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     nprogress-rails (0.2.0.2)
     pg (0.18.4)
+    puma (3.12.0)
     rack (1.6.10)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -208,6 +209,7 @@ DEPENDENCIES
   jquery-ui-rails
   nprogress-rails
   pg (= 0.18.4)
+  puma
   rails (= 4.2.8)
   rails_12factor
   ranked-model
