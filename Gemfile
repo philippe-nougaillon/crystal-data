@@ -1,9 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '2.4.4'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 
-gem 'mysql2','~> 0.3.18'
+#gem 'mysql2','~> 0.3.18'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -51,6 +54,9 @@ gem 'ranked-model'
 gem 'signature-pad-rails'
 
 gem 'sitemap_generator'
+
+# Heroku
+gem 'rails_12factor'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
