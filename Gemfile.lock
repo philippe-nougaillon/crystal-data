@@ -92,10 +92,10 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    mysql2 (0.3.21)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     nprogress-rails (0.2.0.2)
-    pg (0.18.4)
     rack (1.6.10)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -206,8 +206,8 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  mysql2 (~> 0.3.18)
   nprogress-rails
-  pg (= 0.18.4)
   rails (= 4.2.8)
   rails_12factor
   ranked-model
