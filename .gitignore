@@ -22,6 +22,6 @@
 
 # ignore secrets
 secrets.yml
-database.yml
+#database.yml
 setup_mail.rb
 
