@@ -95,6 +95,7 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     nprogress-rails (0.2.0.2)
+    pg (0.18.4)
     rack (1.6.10)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -207,7 +208,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   nprogress-rails
-  rails (= 4.2.8)
+  pg (= 0.18.4)
   rails_12factor
   ranked-model
   sass-rails (~> 5.0)

@@ -3,10 +3,9 @@ source 'https://rubygems.org'
 ruby '2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.8'
-
+#gem 'rails', '4.2.8'
 #gem 'mysql2','~> 0.3.18'
-#gem 'pg', '0.18.4'
+gem 'pg', '0.18.4'
 
 gem 'sqlite3'
 
