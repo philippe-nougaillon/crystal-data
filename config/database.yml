@@ -24,7 +24,7 @@ test:
 
 production:
   adapter: mysql2
-  database: crystal_data
+  database: crystal-data
   socket: /srv/run/mysqld/mysqld.sock
   username: root
   password: 
