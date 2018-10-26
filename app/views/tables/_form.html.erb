@@ -14,8 +14,8 @@
 
 <div class="form-group">
   <div class="col-sm-9">
-      <b>Nom de la table</b> 
-      <%= f.input :name, label:false, placeholder: 'Nom de la nouvelle table', :input_html => {size:30} %>
+      <b>Nom</b> 
+      <%= f.input :name, label:false, placeholder: 'Entrez le nom de la nouvelle table', :input_html => {size:30} %>
       <br>
 
       <% unless @table.new_record? %>
@@ -24,7 +24,7 @@
         <br><br>
       <% end %>
 
-      <%= f.submit @table.new_record? ? "Créer cette table" : "Modifier cette table", class: 'btn btn-success' %>
+      <%= f.submit @table.new_record? ? "Continuer" : "Modifier cette table", class: 'btn btn-success' %>
   </div>  
 </div>
 

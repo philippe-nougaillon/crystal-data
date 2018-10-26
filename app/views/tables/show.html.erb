@@ -1,54 +1,56 @@
 <div class="page-header">
+	<div class="btn-group pull-right">
+	    <%= link_to fill_url(@table.id), class: 'btn btn-success' do %>
+			<i class="glyphicon glyphicon-plus"></i> Ajouter
+		<% end %>
+    </div>
+
 	<h1>
-    	<span class="glyphicon glyphicon-th-large"></span>
+    	<span class="fa fa-table"></span>
     	<%= @table.name.humanize %>
 	</h1>
-</div>
 
-<% if @table.is_owner?(@current_user) %>
-	<small>
-		<%= link_to 'Modifier', show_attrs_path(id:@table), title:"Modifier les colonnes", data: { no_turbolink: true } %> 
-		|
-		<%= link_to "Partager", partages_path(@table), title:"Voir les utilisateurs qui partagent cette table" %>
-		|
-		<%= link_to 'Historique', logs_path(id:@table), title:"Historique des modifications" %> 
-		|
-		<%= link_to 'Activité', activity_path(id:@table), title:"L'activité sous forme d'un graphique" %>
-	</small>
-	<br><br>
-<% end %>
-<br>
+	<% if @table.is_owner?(@current_user) %>
+		<small>
+			<%= link_to 'Modifier', show_attrs_path(id:@table), title:"Modifier les colonnes", data: { no_turbolink: true } %> 
+			|
+			<%= link_to "Partager", partages_path(@table), title:"Voir les utilisateurs qui partagent cette table" %>
+			|
+			<%= link_to 'Historique', logs_path(id:@table), title:"Historique des modifications" %> 
+			|
+          	<%= link_to 'Exporter', export_path(@table), title:"Exporter les données" %>
+			<!--
+			|
+			<%= link_to 'Activité', activity_path(id:@table), title:"L'activité sous forme d'un graphique" %>
+			-->
+		</small>
+		<br><br>
+	<% end %>
+</div>
 
 <% if @table.fields.any? %>
 	<%= form_tag(request.path, method: :get) do %>
-		<div class="form-group">
 			<div class="row">
 				<div class="col-sm-3">
 					<%= label_tag "Rechercher" %>
 					<div class="input-group">
 						<%= text_field_tag :search, params[:search], class:"form-control", onchange:'this.form.submit()' %>
 						<span class="input-group-btn"> 
-							<%= submit_tag 'Go', class:"form-control" %>
+							<%= submit_tag 'Go', class:"form-control btn-success" %>
 						</span>
 					</div>
 				</div>
 
-				<div class="col-sm-2">
-					<% @table.fields.filtres.each do | field | %>
-						<%= label_tag "Filtrer par " + field.name.humanize %>
+				<% @table.fields.filtres.each do | field | %>
+					<div class="col-sm-2">
+						<%= label_tag "Filtrer par '#{field.name.humanize}'" %>
 						<% default_value = params[:select] ? params[:select][field.id.to_s] : 'nil' %>
 						<%= select_tag "select[#{field.id}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, class:"form-control", onchange:'this.form.submit()' %>
-					<% end %>
-				</div>
-				
-				<div class="container-fluid pull-right"> 
-					<%= link_to fill_url(@table.id), class: 'btn btn-primary' do %>
-						<i class="glyphicon glyphicon-plus"></i> Ajouter
-					<% end %>
-				</div>
+					</div>
+				<% end %>
 			</div>
-		</div>
 	<% end %>
+	<br>
 
 	<table class="table table-striped table-hover table-bordered sticky">
 		<thead>
@@ -65,7 +67,7 @@
 				<!-- 
 					<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
 				-->
-				<th /><th />
+				<th />
 			</tr>
 		</thead>
 
@@ -95,10 +97,12 @@
 						<!--
 						<td><%= l(@updated_at_list[record_index]) %></td>
 			            -->
-						<td><%= link_to "Modifier", fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' %>
-							<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %></td>
-						<td style="text-align: center;"><%= link_to logs_path(table_id:@table,record_index:record_index), title:"Historique des modifications" do %>
-			            		<i class="glyphicon glyphicon-time"></i><% end %></td>
+						<td style="text-align:right; width:160px">
+							<%= link_to "Modifier", fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' %>
+							<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
+							<%= link_to logs_path(table_id:@table,record_index:record_index), title:"Historique des modifications" do %>
+			            		<i class="glyphicon glyphicon-time"></i><% end %>
+			            </td>
 					
 					</tr>
 				<% end %>
@@ -111,7 +115,7 @@
 					-->
 					<% @table.fields.each do |field| %>
 						<% if field.operation %>
-							<td class="text-right">
+							<td class="text-right bg-primary">
 								<% if field.Somme? %>
 									<%= @sum[field.id] %>
 								<% elsif field.Moyenne? %>
@@ -122,19 +126,12 @@
 							<td />
 						<% end %>
 					<% end %>
-					<td /><td />
+					<td />
 				</tr>
 			</tfoot>
 		</table>
 		<%= @records.count %> sur <%= @table.size %> au total 
 		<br>
-	<% else %>
-		<tbody>
-			<tr>
-				<td />
-				<td>Rien à afficher. Utilisez le bouton <b>+</b> pour ajouter des données</td>
-			</tr>
-		</tbody>
 	<% end %>
 <% else %>
 	<% unless params[:attrs] %>

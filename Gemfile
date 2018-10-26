@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.4.4'
+ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 
-#gem 'mysql2','~> 0.3.18'
-gem 'pg', '0.18.4'
+gem 'mysql2','~> 0.3.18'
+#gem 'pg', '0.18.4'
 
 #gem 'sqlite3'
 
@@ -21,7 +21,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'execjs'
-gem 'therubyracer'
+#gem 'therubyracer'
+gem 'mini_racer'
 	
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

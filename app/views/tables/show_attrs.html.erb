@@ -1,27 +1,34 @@
-<h2>Structure de la table "<%= @table.name.humanize %>"</h2>
+<div class="page-header">
+	<h1>
+    	<span class="fa fa-gears"></span>
+		Structure de la table "<%= @table.name.humanize %>"
+	</h1>
+</div>
+
+<!--
 <small>
 	<%= link_to "Renommer", edit_table_path(@table), title:"Renommer cette table ou modifier les options" %>
 </small>
+-->
 
-<br><br>
-
-<table class="table table-striped table-hover table-bordered sticky" id="sortable">
-	<thead>
-		<tr>
-			<th class="col-md-1">#</th>
-			<th>Nom colonne</th>
-			<th>Type</th>
-			<th>Options</th>
-			<th />
-		</tr>
-	</thead>
-	<% @table.fields.each_with_index do | field, index | %>
-		<%= render partial:'fields/field', locals: {field:field, i:index} %>
-	<% end %>
-	<% unless @table.fields.any? %>
-		<tr><td /><td>Aucune colonne pour l'instant</td><td /><td /><td /></tr>
-	<% end %>
-</table>
+<br>
+<% if @table.fields.any? %>
+	<table class="table table-striped table-hover table-bordered sticky" id="sortable">
+		<thead>
+			<tr>
+				<th class="col-md-1"></th>
+				<th>Nom de la colonne</th>
+				<th>Type</th>
+				<th>Options</th>
+				<th />
+			</tr>
+		</thead>
+		<% @table.fields.each_with_index do | field, index | %>
+			<%= render partial:'fields/field', locals: {field:field, i:index} %>
+		<% end %>
+	</table>
+<% end %>
+<br>
 
 <h3>Ajouter une nouvelle colonne</h3>
 <% if @field %>	

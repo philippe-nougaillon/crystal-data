@@ -229,7 +229,7 @@ class TablesController < ApplicationController
           deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"#{value.data} => ~"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
 
           # supprime le fichier lié
-          if value.field.fichier? and value.data
+          if value.field.Fichier? and value.data
               value.field.delete_file(value.data)
               deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"fichier supprimé. #{value.data} => !"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
           end
