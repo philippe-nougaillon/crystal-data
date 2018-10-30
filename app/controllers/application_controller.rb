@@ -43,5 +43,4 @@ private
     @sitename.concat(" v0.8")
   end
 
-
 end
