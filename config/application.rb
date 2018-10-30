@@ -24,6 +24,6 @@ module CrystalData
     config.active_record.raise_in_transactional_callbacks = true
 
     # defaut host 
-    config.action_mailer.default_url_options = { host: 'demo.crystaldata.net' }
+    config.action_mailer.default_url_options = { host: 'crystal-data.philnoug.com' }
   end
 end
