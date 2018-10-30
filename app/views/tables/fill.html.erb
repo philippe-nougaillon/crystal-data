@@ -16,8 +16,7 @@
             <%= (field.obligatoire ? field.name.insert(0, '* ') : field.name) %>
           </label>
             
-          <div class="input-group-sm row">
-
+          <div class="row">
             <% if field.datatype == "Texte" %>
               <div class="col-sm-3">  
                 <%= text_field_tag field_name, field_value, class: 'form-control' %>
@@ -36,8 +35,8 @@
               </div>
             <% elsif field.datatype == "Oui_non?" %>
               <div class="col-sm-2">
-                <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui'), class: 'form-control' %> Oui
-                <%= radio_button_tag field_name, 'Non', (field_value == 'Non'), class: 'form-control' %> Non
+                <%= radio_button_tag field_name, 'Oui', (field_value == 'Oui') %> Oui
+                <%= radio_button_tag field_name, 'Non', (field_value == 'Non') %> Non
               </div>
             <% elsif field.datatype == "Liste" %>
               <div class="col-sm-3">

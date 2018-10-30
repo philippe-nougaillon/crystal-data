@@ -150,24 +150,30 @@ class TablesController < ApplicationController
 
     # quel champ a été modifié ?
     table.fields.each do |field|
-      value =  values[field.id.to_s]
+      value = values[field.id.to_s]
       if field.obligatoire and value.blank?
         flash[:alert] = "Champ(s) obligatoire(s) manquant(s)"
-        redirect_to action: 'fill'
+        redirect_to action: 'fill', record_index: record_index
         return
       end  
 
       # enregistre le fichier
-      if field.datatype == 'Fichier' and value
-         value = field.save_file(value)
-      elsif field.datatype == 'Formule'
+      if field.datatype == 'Fichier' 
+        if value
+          value = field.save_file(value)
+        else 
+          # si l'utilisateur n'a pas choisi de fichier
+          # on passe pour ne pas écraser le fichier existant
+          next
+        end
+      end
+
+      if field.datatype == 'Formule'
          value = field.evaluate(values.values) # evalue le champ calculé
       end          
   
       # test si c'est un update ou new record
       old_value = table.values.find_by(record_index:record_index, field:field)
-
-      #logger.debug "DEBUG: value:#{value} old_value:#{old_value.data} update:#{update}"
 
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
@@ -183,8 +189,8 @@ class TablesController < ApplicationController
             # enregistrer les nouvelles données
             table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
           end
+          logger.debug "DEBUG UPDATE: index:#{record_index} value:#{value} old_value:#{old_value.data} update:#{update}"
       else
-
         # enregistre les ajouts dans l'historique
         unless field.datatype == 'Signature'
           inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
@@ -194,11 +200,15 @@ class TablesController < ApplicationController
 
         # enregistrer les nouvelles données
         table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
+
+        logger.debug "DEBUG CREATE: index:#{record_index} value:#{value}"
+        
+        # maj du nombre de lignes si c'est un ajout
+        table.update_attributes(record_index:record_index) unless update
+
+        logger.debug "DEBUG CREATE table update: RECORD index:#{record_index}"
       end
     end
-
-    # maj du nombre de lignes si c'est un ajout
-    table.update_attributes(record_index:record_index) unless update
 
     # execure requête d'insertion dans LOGS
     if inserts_log.any?
@@ -223,7 +233,7 @@ class TablesController < ApplicationController
 
     if params[:record_index]
       deletes_log = []
-      record_index = params[:record_index]
+      record_index = params[:record_index].to_i
       @table.values.where(record_index:record_index).each do | value |
           # log l'action dans l'historique
           deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"#{value.data} => ~"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
@@ -293,7 +303,7 @@ class TablesController < ApplicationController
     if @table.is_owner?(@current_user)
        # supprime les fichiers liés
        @table.values.each do | value |
-          value.field.delete_file(value.data) if value.field and value.field.fichier? and value.data
+          value.field.delete_file(value.data) if value.field and value.field.Fichier? and value.data
       end
       @table.destroy
       flash[:notice] = "Table supprimée."
