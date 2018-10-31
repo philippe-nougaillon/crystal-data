@@ -24,6 +24,16 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <%= csrf_meta_tags %>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71197852-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-71197852-1');
+	</script>
 </head>
 <body>
 
@@ -100,9 +110,6 @@
 			</div>
 		</div>
 	</div>
-	<% unless request.host == 'localhost' %>
-	   <%= render "layouts/ga" %>
-    <% end %>
 </div>
 
 </body>
