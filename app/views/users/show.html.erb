@@ -2,19 +2,19 @@
     <i class="glyphicon glyphicon-user"></i> 
 	<%= @user.name %>
 </h2>
-<i>Utilisateur depuis <%= time_ago_in_words(@user.created_at) %></i>
-<br><br>
+<br>
 
 <h3>Activité du compte</h3>
 
-<h4>Nombre de tables créées: <span class="badge"><%= @total_tables %></span></h4>
-<h4>Nombre total d'enregistrements: <span class="badge"><%= @total_lignes %> lignes</span></h4>
-<h4>Fichiers sauvegardés: <span class="badge"><%= @fichiers %></span></h4>
-<h4>Espace de stockage utilisé: <span class="badge"><%= @total_fichiers.round(2) %> MB</span></h4>
-<br>
+Nombre de tables créées: <span class="badge"><%= @total_tables %></span> | 
+Nombre total d'enregistrements: <span class="badge"><%= @total_lignes %> lignes</span><br>
+Fichiers sauvegardés: <span class="badge"><%= @fichiers %></span> |
+Espace de stockage utilisé: <span class="badge"><%= @total_fichiers.round(2) %> MB</span>
+<br><br>
 
 <h3>Informations personnelles</h3>	
-<small><i>Compte modifié il y a <%= time_ago_in_words(@user.updated_at) %></i></small>
+<i>Utilisateur depuis <%= time_ago_in_words(@user.created_at) %></i><br>
+<i>Ce compte a été modifié il y a <%= time_ago_in_words(@user.updated_at) %></i>
 <br><br>
 
 <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>

@@ -94,9 +94,6 @@
 								<% end %>
 							</td>
 						<% end %>
-						<!--
-						<td><%= l(@updated_at_list[record_index]) %></td>
-			            -->
 						<td style="text-align:right; width:160px">
 							<%= link_to "Modifier", fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' %>
 							<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>

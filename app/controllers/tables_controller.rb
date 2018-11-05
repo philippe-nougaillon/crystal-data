@@ -82,19 +82,17 @@ class TablesController < ApplicationController
     if params[:sort_by]
       # ordre de tri ASC/DESC
       order_by = (params[:sort_by] == session[:sort_by]) ? ((session[:order_by] == "DESC") ? "ASC" : "DESC") : "ASC"
-      if params[:sort_by] == '0' # tri sur la date de maj de la ligne
-         # calcule la date maximum de chaque ligne d'enregistrement 
-         h = @table.values.group(:record_index).maximum(:updated_at)
-         # inverse le hash (keys <=> values) pour faire un tri par date et retourne les record_index
-         @records = Hash[h.sort_by{|k, v| v}.reverse].keys
-      else
-         @records = @table.values.records_at(@records).where(field_id:params[:sort_by]).order("data #{order_by}").pluck(:record_index)
-      end 
+      
+      @records = @table.values.records_at(@records)
+                              .where(field_id: params[:sort_by])
+                              .order("data #{order_by}")
+                              .pluck(:record_index)
+      
       session[:sort_by] = params[:sort_by]
       session[:order_by] = order_by
     end
 
-    @updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
+    #@updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
 
     respond_to do |format|
       format.html.phone

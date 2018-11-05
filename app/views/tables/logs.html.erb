@@ -16,28 +16,31 @@
     <%= submit_tag 'Filtrer', class: 'btn btn-success' %>
   <% end %>
 </p>
+<br>
 
-<table class="table table-striped table-hover table-bordered sticky">
+<table class="table table-hover table-bordered sticky">
   <thead>
     <tr>
       <th>Le</th>
-      <th>Utilisateur</th>
+      <th>Qui</th>
       <th>Action</th>
       <th>Ligne</th>
-      <th>Colonne</th>
-      <th>Modification</th>
+      <th>Description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @logs.each do |log| %>
       <tr>
-        <td><%= l(log.created_at) %></td>
-        <td><%= log.user.name %></td>
+        <td>
+          <%= l(log.created_at) %>
+          (il y a <%= time_ago_in_words(log.created_at) %>)
+        </td>
+        <td><%= log.user.name.humanize %></td>
         <td><%= log.action.humanize %></td>
         <td class="text-right"><%= log.record_index %></td>
-        <td><%= log.field.name %></td>
-        <td><%= log.message %></td>
+        <td>
+          '<%= log.field.name %>' = <%= log.message %></td>
       </tr>
     <% end %>
   </tbody>
@@ -45,7 +48,8 @@
 <%= will_paginate @logs, renderer: BootstrapPagination::Rails %>
 <br>
 
-<%= pluralize(@logs.count, "modification") %> dans l'historique
+<%= pluralize(@logs.count, "modification") %>
+<%= "affichée".pluralize(@logs.count) %>
 
 
 
