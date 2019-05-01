@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11'
 
 gem 'mysql2','~> 0.3.18'
 #gem 'pg', '0.18.4'
@@ -42,7 +42,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'simple_form'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'autoprefixer-rails'
 
 gem "groupdate"
