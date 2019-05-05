@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authorize, except:[:new, :create, :welcome]
+  before_action :authorize, except:[:new, :create, :welcome, :demo]
 
   def welcome
   end
@@ -23,6 +23,12 @@ class SessionsController < ApplicationController
     else
       redirect_to '/login', alert:"Utilisateur ou mot de passe inconnu !"
     end
+  end
+
+  def demo
+      session[:user_id] = 1
+      flash[:notice] = "Bienvenue de le mode 'démo' !"
+      redirect_to tables_path
   end
 
   def destroy

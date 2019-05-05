@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/about' => 'sessions#welcome'
+  get '/demo' => 'sessions#demo'
 
   get 'values/signature', to: 'values#signature'
   resources :values

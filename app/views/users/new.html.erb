@@ -1,5 +1,5 @@
 <br>
-<div class="col-sm-offset-2">
+<div class="col-sm-offset-1">
 	<h2>Créer un compte</h2>
 </div>	
 <br><br>
@@ -19,33 +19,29 @@
 	<% end %>
    
  	<div class="field form-group">
-	    <%= f.label :name, "Nom", class: 'col-sm-2 control-label' %>
-	    <div class="col-sm-2">
-	  		<%= f.text_field :name, required:true, class: 'form-control' %>
+	    <div class="col-sm-offset-1 col-sm-2">
+	  		<%= f.text_field :name, required: true, class: 'form-control', placeholder: 'Nom ou Pseudo' %>
 	    </div>
 	</div>
     <div class="field form-group">
-	    <%= f.label :email, "Adresse mail", class: 'col-sm-2 control-label' %>
-	    <div class="col-sm-3">
-		    <%= f.text_field :email, required:true, class: 'form-control' %>
+	    <div class="col-sm-offset-1 col-sm-3">
+		    <%= f.text_field :email, required:true, class: 'form-control', placeholder: "Adresse mail"  %>
 	    </div>
 	</div>  
 	<div class="field form-group">
-	    <%= f.label :password, 'Mot de passe', class: 'col-sm-2 control-label' %>
-	    <div class="col-sm-2">
-		    <%= f.password_field :password, required:true, class: 'form-control' %>
+	    <div class="col-sm-offset-1 col-sm-2">
+		    <%= f.password_field :password, required:true, class: 'form-control', placeholder: 'Mot de passe' %>
 	    </div>
 	</div>  
 	<div class="field form-group">
-	    <%= f.label :password_confirmation, 'Confirmation', class: 'col-sm-2 control-label' %>
-	    <div class="col-sm-2">
-	    	<%= f.password_field :password_confirmation, class: 'form-control' %>
+	    <div class="col-sm-offset-1 col-sm-2">
+	    	<%= f.password_field :password_confirmation, class: 'form-control', placeholder:  'Confirmation'  %>
 	    </div>
 	</div>
 	<br>
 	
 	<div class="actions form-group">
-    	<div class="col-sm-offset-2 col-sm-10">
+    	<div class="col-sm-offset-1 col-sm-10">
 	    	<%= f.submit "Créer ce compte", class: 'btn btn-success' %> | 
 			<%= link_to "Annuler", login_path %>
   		</div>

@@ -10,12 +10,12 @@
 
     <div class="field form-group">
 	    <div class="col-sm-offset-1 col-sm-3">
-		    <%= f.text_field :email, required:true, class: 'form-control', placeholder:'Adresse mail' %>
+		    <%= f.text_field :email, required: true, class: 'form-control', placeholder:'Adresse mail' %>
 	    </div>
 	</div>  
 	<div class="field form-group">
 	    <div class="col-sm-offset-1 col-sm-3">
-		    <%= f.password_field :password, required:true, class: 'form-control', placeholder:'Mot de passe' %>
+		    <%= f.password_field :password, required: true, class: 'form-control', placeholder:'Mot de passe' %>
 	    </div>
 	</div>
 
@@ -29,8 +29,16 @@
 	<div class="actions form-group">
     	<div class="col-sm-offset-1 col-sm-10">
 		    <%= f.submit "S'identifier", class: 'btn btn-success' %>
+			| 
+			<%= link_to "Créer un compte", signup_path %> 
 		</div>
 	</div>
 
 <% end %>
-<br><br>
+<br>
+
+<div class="col-sm-offset-1">
+	<%= link_to "Ouvrir en mode 'démo'", demo_path, class: 'btn btn-primary' %>
+</div>
+
+

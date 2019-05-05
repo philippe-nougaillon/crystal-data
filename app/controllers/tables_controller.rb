@@ -272,7 +272,7 @@ class TablesController < ApplicationController
     respond_to do |format|
       if @table.save
         @table.users << @current_user
-        format.html { redirect_to show_attrs_path(id:@table), notice: "Table ajoutée. Vous pouvez la renommer ou modifier les options en cliquant sur le lien 'Modifier'" }
+        format.html { redirect_to show_attrs_path(id:@table), notice: "Table créée. Vous pouvez mantenant y ajouter des colonnes" }
         format.json { render :show, status: :created, location: @table }
       else
         format.html { render :new }
