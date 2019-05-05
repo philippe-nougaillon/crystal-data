@@ -3,10 +3,9 @@ source 'https://rubygems.org'
 ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-#gem 'rails', '4.2.11.1'
-gem 'rails', '5.1'
+gem 'rails', '5.2.3'
 
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2'
 
 # # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -26,8 +25,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 
-# gem 'jquery-modal-rails' NOT SUPPORTED !
-
+# gem 'jquery-modal-rails' NOT SUPPORTED BY RAILS 5 !
 
 
 # # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
