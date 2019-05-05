@@ -19,7 +19,7 @@ gem 'coffee-rails'
 # # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'execjs'
 gem 'mini_racer'
-	
+
 # # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
