@@ -48,8 +48,7 @@
 <%= will_paginate @logs, renderer: BootstrapPagination::Rails %>
 <br>
 
-<%= pluralize(@logs.count, "modification") %>
-<%= "affichée".pluralize(@logs.count) %>
+<%= @logs.size.to_s + " modification".pluralize(@logs.size) %>
 
 
 

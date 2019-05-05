@@ -320,8 +320,6 @@ class TablesController < ApplicationController
   def import_do
     if params[:upload]
       require 'rake'
-      Rake::Task.clear # necessary to avoid tasks being loaded several times in dev mode
-      CrystalData::Application.load_tasks 
 
       #Save file to local dir
       filename = params[:upload].original_filename
@@ -330,6 +328,8 @@ class TablesController < ApplicationController
           file.write(params[:upload].read)
       end
 
+      Rake::Task.clear # necessary to avoid tasks being loaded several times in dev mode
+      CrystalData::Application.load_tasks 
       Rake::Task['tables:import'].invoke(filename_with_path, filename, @current_user.id, request.remote_ip)
 
       @new_table = Table.last
