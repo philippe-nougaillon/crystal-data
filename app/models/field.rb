@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Field < ActiveRecord::Base
+class Field < ApplicationRecord
 	include RankedModel
   	ranks :row_order, :with_same => :table_id 
 

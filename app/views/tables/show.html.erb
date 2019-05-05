@@ -60,14 +60,11 @@
 				-->
 				<% @table.fields.each_with_index do | field,index | %>
 					<th>
-						<%= link_to field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
+						<%= link_to field.name.humanize, url_for(params.merge(sort_by: field.id).permit(:id)) %>
 					</th>
 					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 				<% end %>
-				<!-- 
-					<th><%= link_to 'Màj', url_for(params.merge(sort_by:0)) %></th>
-				-->
-				<th />
+				<th></th>
 			</tr>
 		</thead>
 
@@ -85,7 +82,7 @@
 								<% if field.datatype == "Fichier" and values[index] %>
 									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
 								<% elsif field.datatype == "Signature" and values[index] %>
-									<%= link_to_modal("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
+									<%= link_to("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 								<% else %>
 									<%= value %>
 								<% end %>

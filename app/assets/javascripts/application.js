@@ -20,5 +20,4 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require signature-pad
-//= require jquery.modal
 //= require_tree .

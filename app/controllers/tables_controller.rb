@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class TablesController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
 
   # GET /tables

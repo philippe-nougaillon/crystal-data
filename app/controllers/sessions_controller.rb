@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :authorize, except:[:new, :create, :welcome]
+  before_action :authorize, except:[:new, :create, :welcome]
 
   def welcome
   end

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
-  	before_filter :authorize, except: [:new, :create]
+  	before_action :authorize, except: [:new, :create]
 
   	def show
   		@user = @current_user
