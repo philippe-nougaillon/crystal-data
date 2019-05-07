@@ -211,7 +211,6 @@ DEPENDENCIES
   bootstrap-sass (>= 3.4.1)
   chartkick
   coffee-rails
-  execjs
   groupdate
   jbuilder (~> 2.0)
   jquery-rails
