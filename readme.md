@@ -53,4 +53,4 @@ Pour pouvoir executer l'application, vous devez d'abord installer RoR 4 sur votr
 
 # Version en ligne
 
-Une version en ligne est disponible <a href="https://crystaldata.philnoug.com">ici.</a>
+Une version en ligne est disponible <a href="http://crystal-data.philnoug.com">ici.</a>
