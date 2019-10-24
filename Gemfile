@@ -15,19 +15,11 @@ gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 # # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails'
-# # See https://github.com/rails/execjs#readme for more supported runtimes
-
-# # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'execjs'
 gem 'mini_racer'
 
 # # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
-
-# gem 'jquery-modal-rails' NOT SUPPORTED BY RAILS 5 !
-
 
 # # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -57,10 +49,6 @@ gem 'ranked-model'
 gem 'signature-pad-rails'
 
 gem 'sitemap_generator'
-
-# Heroku
-gem 'rails_12factor'
-gem 'puma'
 
 group :development, :test do
 #   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
