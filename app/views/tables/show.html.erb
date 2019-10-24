@@ -48,78 +48,80 @@
 	<% end %>
 	<br>
 
-	<table class="table table-striped table-hover table-bordered sticky">
-		<thead>
-			<tr>
-				<% @table.fields.each_with_index do | field,index | %>
-					<th>
-						<%= link_to field.name.humanize, url_for(params.merge(sort_by: field.id).permit(:id, :sort_by)) %>
-					</th>
-					<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
-				<% end %>
-				<th></th>
-			</tr>
-		</thead>
-
-		<% if @records.any? %>
-			<tbody>
-				<% @records.each do | record_index | %>
-					<% values = @table.values.joins(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
-					<tr>
-						<% @table.fields.each_with_index do | field,index | %>
-							<% value = values[index] %>
-							<td class= <%= @td_style[index] %> >
-								<% if field.datatype == "Fichier" and values[index] %>
-									<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
-								<% elsif field.datatype == "Signature" and values[index] %>
-									<%= link_to("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
-								<% else %>
-									<%= value %>
-								<% end %>
-								<% if field.operation %>
-									<% @sum[field.id] += value.to_f %>
-								<% end %>
-							</td>
-						<% end %>
-						<td>
-							<%= link_to fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' do %>
-									<i class="glyphicon glyphicon-pencil"></i> Modifier
-							<% end %>
-						</td>
-						<td>
-							<%= link_to logs_path(table_id:@table,record_index:record_index), class: 'btn btn-warning btn-xs', title:"Audit des modifications" do %>
-									<i class="glyphicon glyphicon-time"></i> Audit
-							<% end %>
-						</td>
-						<td>
-							<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
-			    	</td>
-					</tr>
-				<% end %>
-			</tbody>
-
-			<tfoot>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered sticky">
+			<thead>
 				<tr>
-					<% @table.fields.each do |field| %>
-						<% if field.operation %>
-							<td class="text-right text-info">
-								<% if field.Somme? %>
-									<%= @sum[field.id] %>
-								<% elsif field.Moyenne? %>
-									<%= @sum[field.id] / @records.count %>
+					<% @table.fields.each_with_index do | field,index | %>
+						<th>
+							<%= link_to field.name.humanize, url_for(params.merge(sort_by: field.id).permit(:id, :sort_by)) %>
+						</th>
+						<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
+					<% end %>
+					<th></th>
+				</tr>
+			</thead>
+
+			<% if @records.any? %>
+				<tbody>
+					<% @records.each do | record_index | %>
+						<% values = @table.values.joins(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
+						<tr>
+							<% @table.fields.each_with_index do | field,index | %>
+								<% value = values[index] %>
+								<td class= <%= @td_style[index] %> >
+									<% if field.datatype == "Fichier" and values[index] %>
+										<%= link_to(value.split('__').last, url_for("/table_files/" + value)) %>
+									<% elsif field.datatype == "Signature" and values[index] %>
+										<%= link_to("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
+									<% else %>
+										<%= value %>
+									<% end %>
+									<% if field.operation %>
+										<% @sum[field.id] += value.to_f %>
+									<% end %>
+								</td>
+							<% end %>
+							<td>
+								<%= link_to fill_url(@table.id, record_index:record_index), class: 'btn btn-info btn-xs' do %>
+										<i class="glyphicon glyphicon-pencil"></i> Modifier
 								<% end %>
 							</td>
-						<% else %>
-							<td />
-						<% end %>
+							<td>
+								<%= link_to logs_path(table_id:@table,record_index:record_index), class: 'btn btn-warning btn-xs', title:"Audit des modifications" do %>
+										<i class="glyphicon glyphicon-time"></i> Audit
+								<% end %>
+							</td>
+							<td>
+								<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-danger btn-xs' %>
+						</td>
+						</tr>
 					<% end %>
-					<td />
-				</tr>
-			</tfoot>
-		</table>
-		<%= @records.count %> sur <%= @table.size %> au total 
-		<br>
-	<% end %>
+				</tbody>
+
+				<tfoot>
+					<tr>
+						<% @table.fields.each do |field| %>
+							<% if field.operation %>
+								<td class="text-right text-info">
+									<% if field.Somme? %>
+										<%= @sum[field.id] %>
+									<% elsif field.Moyenne? %>
+										<%= @sum[field.id] / @records.count %>
+									<% end %>
+								</td>
+							<% else %>
+								<td />
+							<% end %>
+						<% end %>
+						<td />
+					</tr>
+				</tfoot>
+			</table>
+			<%= @records.count %> sur <%= @table.size %> au total 
+			<br>
+		<% end %>
+	</div>
 <% else %>
 	<% unless params[:attrs] %>
 		Cette table ne contient aucune colonne<br><br>

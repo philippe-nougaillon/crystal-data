@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 
   def demo
       session[:user_id] = 1
-      flash[:notice] = "Bienvenue de le mode 'démo' !"
+      flash[:notice] = "Bienvenue dans le mode 'démonstration' !"
       redirect_to tables_path
   end
 
