@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  host: localhost
   database: crystal-data_production
   username: hosting-db
   password: 
