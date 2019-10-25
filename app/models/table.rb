@@ -3,13 +3,14 @@ class Table < ApplicationRecord
 	has_and_belongs_to_many :users
 
 	has_many :fields, dependent: :destroy
-	has_many :values, dependent: :destroy
+	has_many :values, through: :fields, dependent: :destroy
 	has_many :logs, through: :fields, dependent: :destroy
 
 	validates :name, presence: true
 
 	def size
-		self.values.group(:record_index).count.size
+		# self.values.group(:record_index).count.size
+		self.values.group("values.id, values.record_index").reorder(:id).count.size
 	end
 
 	def is_owner?(user)

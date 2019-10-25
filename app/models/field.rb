@@ -5,7 +5,7 @@ class Field < ApplicationRecord
   	ranks :row_order, :with_same => :table_id 
 
 	belongs_to :table
-	has_many :values
+	has_many :values, dependent: :destroy
 	has_many :logs, dependent: :destroy
 
 	validates_presence_of :name
@@ -14,13 +14,13 @@ class Field < ApplicationRecord
 	enum datatype: [:Texte, :Nombre, :Euros, :Date, :Oui_non?, :Liste, :Formule, :Fichier, :Signature, :Gps, :Météo]
 	enum operation: [:Somme, :Moyenne]
 
-	scope :filtres, -> { where(filtre:true)}
-	scope :sommes,  -> { where(sum:true)}
+	scope :filtres, -> { where(filtre: true) }
+	scope :sommes,  -> { where(sum: true) }
 
 	default_scope { rank(:row_order) } 
 
-	# evaluer [1] + [2]
 	def evaluate(values)
+		# evaluer [1] + [2]
 		begin
 			# test si opérandes nulles 
 			unless self.items.scan(/\[([^\]]+)\]/).flatten.select{|i| values[i.to_i - 1].nil? }.any?

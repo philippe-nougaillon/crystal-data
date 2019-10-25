@@ -6,7 +6,8 @@ ruby '2.6.0'
 gem 'rails', '5.2.3'
 
 # gem 'mysql2'
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
 
 # # Use SCSS for stylesheets
 gem 'sass-rails'

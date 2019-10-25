@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160223112344) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "fields", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.datetime "created_at",                              null: false
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160223112344) do
     t.integer  "table_id",    limit: 4
     t.integer  "datatype",    limit: 4,   default: 0
     t.string   "items",       limit: 255
-    t.boolean  "filtre",      limit: 1,   default: false
-    t.boolean  "obligatoire", limit: 1,   default: false
+    t.boolean  "filtre",      default: false
+    t.boolean  "obligatoire", default: false
     t.integer  "row_order",   limit: 4
     t.integer  "operation",   limit: 4
   end
@@ -44,13 +47,12 @@ ActiveRecord::Schema.define(version: 20160223112344) do
   add_index "logs", ["user_id"], name: "index_logs_on_user_id", using: :btree
 
   create_table "tables", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
     t.string   "name",         limit: 255
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.integer  "record_index", limit: 4,   default: 0
-    t.boolean  "notification", limit: 1,   default: false
-    t.boolean  "lifo",         limit: 1,   default: false
+    t.boolean  "notification", default: false
+    t.boolean  "lifo",         default: false
   end
 
   create_table "tables_users", force: :cascade do |t|
@@ -74,8 +76,6 @@ ActiveRecord::Schema.define(version: 20160223112344) do
 
   create_table "values", force: :cascade do |t|
     t.integer  "field_id",     limit: 4
-    t.integer  "table_id",     limit: 4
-    t.integer  "user_id",      limit: 4
     t.text     "data",         limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(version: 20160223112344) do
 
   add_index "values", ["field_id"], name: "index_values_on_field_id", using: :btree
   add_index "values", ["record_index"], name: "index_values_on_record_index", using: :btree
-  add_index "values", ["table_id", "record_index"], name: "index_values_on_table_id_and_record_index", using: :btree
-  add_index "values", ["table_id"], name: "index_values_on_table_id", using: :btree
 
   add_foreign_key "logs", "fields"
   add_foreign_key "logs", "users"
