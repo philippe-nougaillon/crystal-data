@@ -1,4 +1,4 @@
-  $(document).ready(function(){
+  $(document).on('turbolinks:load', function(){
     $("#field_items").css('display','none')
     if($('#field_datatype').val() == "Liste" || $('#field_datatype').val() == "Formule"){
       $("#field_items").css('display','inline')
