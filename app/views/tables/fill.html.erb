@@ -7,7 +7,7 @@
 
 	<% @table.fields.each_with_index do |field, index| %>
       <% field_name = "[data][#{@record_index}][#{field.id}]" %> 
-      <% value = field.values.find_by(record_index:@record_index) %> 
+      <% value = field.values.find_by(record_index: @record_index) %> 
       <% field_value = value.data if value %>
 
       <fieldset class="form-group">
@@ -31,7 +31,7 @@
               </div>
             <% elsif field.datatype == "Date" %>
               <div class="col-sm-2">
-                <%= text_field_tag field_name, field_value, class: 'datepicker form-control', size:6 %>
+                <%= text_field_tag field_name, field_value, class: 'form-control', type: 'date', size:6 %>
               </div>
             <% elsif field.datatype == "Oui_non?" %>
               <div class="col-sm-2">
