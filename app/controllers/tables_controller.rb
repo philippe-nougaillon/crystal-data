@@ -128,7 +128,8 @@ class TablesController < ApplicationController
   # formulaire d'ajout / modification posté
   def fill_do
     table = Table.find(params[:table_id])
-    user = @current_user
+    user = current_user
+
     unless table.users.include?(user)
       flash[:notice] = "Vous n'êtes pas utilisateur connu de cette table, circulez !"
       redirect_to tables_path
@@ -136,8 +137,9 @@ class TablesController < ApplicationController
     end
 
     data = params[:data]
-    record_index = data.first.first
+    record_index = data.keys.first
     values = data[record_index.to_s]
+
     inserts_log = []
     notif_items = []
 
@@ -185,7 +187,10 @@ class TablesController < ApplicationController
             table.values.find_by(record_index:record_index, field:field).delete
 
             # enregistrer les nouvelles données
-            table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
+            Value.create(field_id: field.id, 
+                          record_index: record_index, 
+                          data: value, 
+                          created_at: created_at_date)
           end
           logger.debug "DEBUG UPDATE: index:#{record_index} value:#{value} old_value:#{old_value.data} update:#{update}"
       else
@@ -197,7 +202,10 @@ class TablesController < ApplicationController
         end
 
         # enregistrer les nouvelles données
-        table.values.create(record_index:record_index, field_id:field.id, data:value, user_id:user.id, created_at:created_at_date)
+        Value.create(field_id: field.id, 
+                    record_index: record_index, 
+                    data: value, 
+                    created_at: created_at_date)
 
         logger.debug "DEBUG CREATE: index:#{record_index} value:#{value}"
         
@@ -208,12 +216,12 @@ class TablesController < ApplicationController
       end
     end
 
-    # execure requête d'insertion dans LOGS
-    if inserts_log.any?
-      sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{inserts_log.join(", ")}"
-      ActiveRecord::Base.connection.execute sql
-      flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
-    end
+    # execute la requête d'insertion dans LOGS
+    # if inserts_log.any?
+    #   sql = "INSERT INTO logs (field_id, user_id, message, created_at, updated_at, record_index, ip, action) VALUES #{inserts_log.join(", ")}"
+    #   ActiveRecord::Base.connection.execute sql
+    #   flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
+    # end
 
     # notifier l'utilisateur d'un ajout 
     if not update and table.notification

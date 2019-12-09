@@ -26,7 +26,9 @@ class SessionsController < ApplicationController
   end
 
   def demo
-      session[:user_id] = 1
+      user = User.find(1)
+      session[:user_id] = user.id
+      update_authentication_token(user, true)
       flash[:notice] = "Bienvenue dans le mode 'démonstration' !"
       redirect_to tables_path
   end
