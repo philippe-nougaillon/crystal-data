@@ -44,8 +44,6 @@ gem "chartkick", ">= 3.2.0"
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
-gem 'nprogress-rails'
-
 gem 'ranked-model'
 gem 'signature-pad-rails'
 

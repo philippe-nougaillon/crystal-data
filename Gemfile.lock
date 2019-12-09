@@ -101,7 +101,6 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    nprogress-rails (0.2.0.2)
     pg (1.1.4)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -202,7 +201,6 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   mini_racer
-  nprogress-rails
   pg
   rails (= 5.2.3)
   ranked-model

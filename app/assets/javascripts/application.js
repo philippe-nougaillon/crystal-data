@@ -13,11 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require stickytableheaders
-//= require nprogress
-//= require nprogress-turbolinks
 //= require signature-pad
 //= require_tree .
