@@ -178,10 +178,10 @@ class TablesController < ApplicationController
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
 
-            # enregistre les modifications dans l'historique
-            unless field.datatype == 'Signature'
-              inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
-            end  
+            # # enregistre les modifications dans l'historique
+            # unless field.datatype == 'Signature'
+            #   inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
+            # end  
 
             # supprimer les anciennes données
             table.values.find_by(record_index:record_index, field:field).delete
@@ -192,14 +192,14 @@ class TablesController < ApplicationController
                           data: value, 
                           created_at: created_at_date)
           end
-          logger.debug "DEBUG UPDATE: index:#{record_index} value:#{value} old_value:#{old_value.data} update:#{update}"
+          #logger.debug "DEBUG UPDATE: index:#{record_index} value:#{value} old_value:#{old_value.data} update:#{update}"
       else
         # enregistre les ajouts dans l'historique
-        unless field.datatype == 'Signature'
-          inserts_log.push "(#{field.id}, #{user.id}, \"#{value}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
-          # collecte les données pour les envoyer par mail
-          notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
-        end
+        # unless field.datatype == 'Signature'
+        #   inserts_log.push "(#{field.id}, #{user.id}, #{value}, '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
+        #   # collecte les données pour les envoyer par mail
+        #   notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
+        # end
 
         # enregistrer les nouvelles données
         Value.create(field_id: field.id, 
@@ -207,12 +207,12 @@ class TablesController < ApplicationController
                     data: value, 
                     created_at: created_at_date)
 
-        logger.debug "DEBUG CREATE: index:#{record_index} value:#{value}"
+        #logger.debug "DEBUG CREATE: index:#{record_index} value:#{value}"
         
         # maj du nombre de lignes si c'est un ajout
         table.update_attributes(record_index:record_index) unless update
 
-        logger.debug "DEBUG CREATE table update: RECORD index:#{record_index}"
+        #logger.debug "DEBUG CREATE table update: RECORD index:#{record_index}"
       end
     end
 
@@ -242,7 +242,7 @@ class TablesController < ApplicationController
       record_index = params[:record_index].to_i
       @table.values.where(record_index:record_index).each do | value |
           # log l'action dans l'historique
-          deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"#{value.data} => ~"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
+          #deletes_log.push "(#{value.field.id}, #{@current_user.id}, \"#{"#{value.data} => ~"}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 3)"  
 
           # supprime le fichier lié
           if value.field.Fichier? and value.data
@@ -252,10 +252,10 @@ class TablesController < ApplicationController
           value.delete
       end
 
-      if deletes_log.any?
-        sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{deletes_log.join(", ")}"
-        ActiveRecord::Base.connection.execute sql
-      end
+      # if deletes_log.any?
+      #   sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{deletes_log.join(", ")}"
+      #   ActiveRecord::Base.connection.execute sql
+      # end
       flash[:notice] = "Enregistrement ##{record_index} supprimé avec succès"
     end  
 
