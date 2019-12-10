@@ -1,6 +1,7 @@
 <h2>
     <i class="glyphicon glyphicon-share"></i> 
-	Liste des partages</h2>
+	Liste des partages
+</h2>
 <br>
 
 <table class="table table-striped table-hover table-bordered table-responsive">
@@ -33,3 +34,15 @@
   		<i class="glyphicon glyphicon-plus-sign"></i> Ajouter un partage
   	<% end %>
 <% end %>
+<br /><br />
+
+<h3>
+    <i class="glyphicon glyphicon-phone"></i> 
+	Saisie de données depuis un mobile
+</h3>
+<p>
+	Pour permettre à un utilisateur en mobilité d'ajouter des données dans la table '<%= @table.name %>' depuis son téléphone, <br>
+	envoyez-lui simplement ce lien : <%= link_to fill_url(@table.slug), fill_url(@table.slug) %>
+
+</p>
+<br>
