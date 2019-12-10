@@ -39,7 +39,7 @@
 
 					</li>
 					<% @current_user.tables.each do |table| %>
-						<li class=<%= (controller_name == 'tables' && params[:id]== table.id.to_s) ? 'active' : '' %>>
+						<li class=<%= (controller_name == 'tables' && params[:id]== table.slug) ? 'active' : '' %>>
 							<%= link_to table do %>
 								<span class="fa fa-table"></span>
 								<%= table.name.humanize %>
