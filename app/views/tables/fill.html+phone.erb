@@ -1,3 +1,9 @@
+<h2>
+    <span class="fa fa-table"></span>
+    <%= @table.name.humanize %>
+</h2>
+<br>
+
 <%= form_tag({action: :fill}, multipart:true) do %>
 
   <%= hidden_field_tag :table_id, @table.id %>
@@ -48,7 +54,7 @@
       </fieldset>
   <% end %>  
   <br>
-  <%= submit_tag "Enregistrer", class: 'btn btn-lg btn-block btn-success'%>
+  <%= submit_tag "Ajouter", class: 'btn btn-lg btn-block btn-success'%>
 <% end %>
 
 

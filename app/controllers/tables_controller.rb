@@ -311,10 +311,12 @@ class TablesController < ApplicationController
   # DELETE /tables/1.json
   def destroy
     if @table.is_owner?(@current_user)
-       # supprime les fichiers liés
-       @table.values.each do | value |
+      # supprime les fichiers liés
+      @table.values.each do | value |
           value.field.delete_file(value.data) if value.field and value.field.Fichier? and value.data
-      end
+          value.destroy
+        end
+      @table.fields.destroy_all
       @table.destroy
       flash[:notice] = "Table supprimée."
     else

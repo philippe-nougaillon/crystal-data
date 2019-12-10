@@ -1,4 +1,4 @@
-<h2>Formulaire '<%= @table.name.humanize %>'</h2>
+<h2>Formulaire ajout '<%= @table.name.humanize %>'</h2>
 <br>
 
 <%= form_tag({action: :fill}, multipart:true) do %>
@@ -73,7 +73,7 @@
   <div class="form-group row">
     <div class="col-sm-5">
        <%= submit_tag "Enregistrer", class: 'btn btn-success'%>
-        | <%= link_to 'Retour', @table %>
+        | <%= link_to "Retour à la table '#{@table.name}'", @table %>
     </div>
   </div>
 <% end %>

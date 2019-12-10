@@ -10,7 +10,7 @@ class Table < ApplicationRecord
 
 	validates :name, presence: true
 
-	# 
+	# Donne le nombre de ligne exact de la table 
 	def size
 		self.values.group("values.id, values.record_index").reorder(:id).count.size
 	end
