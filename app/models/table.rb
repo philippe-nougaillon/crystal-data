@@ -10,8 +10,8 @@ class Table < ApplicationRecord
 
 	validates :name, presence: true
 
+	# 
 	def size
-		# self.values.group(:record_index).count.size
 		self.values.group("values.id, values.record_index").reorder(:id).count.size
 	end
 

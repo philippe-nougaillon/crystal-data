@@ -32,10 +32,14 @@ class FieldsController < ApplicationController
 
     respond_to do |format|
       if @field.save
-        format.html { redirect_to show_attrs_path(id:@field.table), notice: 'Nouvelle colonne ajoutée.' }
+        # Remplir le nouveau champs de vide....   
+        @field.table.size.times do |index|
+          @field.values.create(record_index: index + 1)
+        end   
+        format.html { redirect_to show_attrs_path(id: @field.table), notice: 'Nouvelle colonne ajoutée.' }
         format.json { render :show, status: :created, location: @field }
       else
-        format.html { redirect_to show_attrs_path(id:@field.table), alert: 'Veuillez donner un nom à cette colonne' }
+        format.html { redirect_to show_attrs_path(id: @field.table), alert: 'Veuillez donner un nom à cette colonne' }
         format.json { render json: @field.errors, status: :unprocessable_entity }
       end
     end
