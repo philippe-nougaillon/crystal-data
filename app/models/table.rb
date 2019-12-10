@@ -1,5 +1,7 @@
 class Table < ApplicationRecord
-
+	extend FriendlyId
+	friendly_id :slug_candidates, use: :slugged
+  
 	has_and_belongs_to_many :users
 
 	has_many :fields, dependent: :destroy
@@ -42,5 +44,12 @@ class Table < ApplicationRecord
 		users -= [user.name]
 		return users.map{|u| u.humanize}.join(', ')
 	end
+
+private
+	# only one candidate for an nice id; one random UDID
+	def slug_candidates
+		[SecureRandom.uuid]
+	end
+
 
 end

@@ -49,6 +49,9 @@ gem 'signature-pad-rails'
 
 gem 'sitemap_generator'
 
+gem 'friendly_id', '~> 5.2.4'
+
+
 group :development, :test do
 #   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
 #   #gem 'debugger'
