@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class TablesController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:fill, :fill_do]
   before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
 
   # GET /tables
@@ -128,13 +128,13 @@ class TablesController < ApplicationController
   # formulaire d'ajout / modification posté
   def fill_do
     table = Table.find(params[:table_id])
-    user = current_user
+    user = @current_user
 
-    unless table.users.include?(user)
-      flash[:notice] = "Vous n'êtes pas utilisateur connu de cette table, circulez !"
-      redirect_to tables_path
-      return
-    end
+    # unless table.users.include?(user)
+    #   flash[:notice] = "Vous n'êtes pas utilisateur connu de cette table, circulez !"
+    #   redirect_to tables_path
+    #   return
+    # end
 
     data = params[:data]
     record_index = data.keys.first
@@ -228,7 +228,11 @@ class TablesController < ApplicationController
       UserMailer.notification(table, notif_items).deliver_now
     end
 
-    redirect_to table
+    if user
+      redirect_to table
+    else
+      redirect_to :fill, notice: "Données ajoutées avec succès :)"
+    end
   end  
 
   def delete_record

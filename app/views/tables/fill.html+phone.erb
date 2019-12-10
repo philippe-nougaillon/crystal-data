@@ -16,7 +16,7 @@
 
           <div class="input-group-lg">
               <% if field.datatype == "Texte" %>  
-                  <%= text_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
+                  <%= text_field_tag field_name, field_value, autofocus: (index == 0), class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "Nombre" %>
                   <%= number_field_tag field_name, field_value, class: 'form-control', tabindex:"#{tabindex}" %>
               <% elsif field.datatype == "Euros" %>  
