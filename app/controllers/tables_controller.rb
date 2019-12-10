@@ -228,7 +228,7 @@ class TablesController < ApplicationController
       UserMailer.notification(table, notif_items).deliver_now
     end
 
-    if user
+    if update
       redirect_to table
     else
       redirect_to :fill, notice: "Données ajoutées avec succès :)"
@@ -311,12 +311,15 @@ class TablesController < ApplicationController
   # DELETE /tables/1.json
   def destroy
     if @table.is_owner?(@current_user)
+      # supprime les champs
+      @table.fields.destroy_all
+
       # supprime les fichiers liés
       @table.values.each do | value |
           value.field.delete_file(value.data) if value.field and value.field.Fichier? and value.data
           value.destroy
         end
-      @table.fields.destroy_all
+      
       @table.destroy
       flash[:notice] = "Table supprimée."
     else

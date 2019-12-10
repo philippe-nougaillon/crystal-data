@@ -41,7 +41,13 @@
 					<div class="col-sm-2">
 						<%= label_tag "Filtrer par '#{field.name.humanize}'" %>
 						<% default_value = params[:select] ? params[:select][field.id.to_s] : 'nil' %>
-						<%= select_tag "select[#{field.id}]", options_for_select(field.values.records_at(@records).pluck(:data).uniq.sort, default_value), include_blank:true, class:"form-control", onchange:'this.form.submit()' %>
+						<%= select_tag "select[#{field.id}]", 
+										options_for_select(
+											field.values.records_at(@records).where.not(data: nil).pluck(:data).uniq.sort,
+											default_value), 
+										include_blank: true, 
+										class: "form-control", 
+										onchange: 'this.form.submit()' %>
 					</div>
 				<% end %>
 			</div>
@@ -75,7 +81,7 @@
 									<% elsif field.datatype == "Signature" and values[index] %>
 										<%= link_to("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% elsif field.datatype == "Date" and values[index] %>
-										<%= value.to_date %>
+										<%= l(value.to_date) %>
 									<% else %>
 										<%= value %>
 									<% end %>

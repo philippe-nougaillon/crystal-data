@@ -34,7 +34,7 @@ class FieldsController < ApplicationController
       if @field.save
         # Remplir le nouveau champs de vide....   
         @field.table.size.times do |index|
-          @field.values.create(record_index: index + 1)
+          @field.values.create(record_index: (index + 1))
         end   
         format.html { redirect_to show_attrs_path(id: @field.table), notice: 'Nouvelle colonne ajoutée.' }
         format.json { render :show, status: :created, location: @field }
