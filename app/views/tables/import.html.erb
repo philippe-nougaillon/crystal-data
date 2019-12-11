@@ -5,15 +5,15 @@
 </h2>
 <br>
 
-Importer un fichier CSV au format iso-8859-1, avec séparateur ';' et entêtes des colonnes sur la première ligne. 
-<br>
-<i><small>Attention, le traitement peut être un peu long...</small></i>
+<b>
+  Le fichier à importer doit être de type CSV au format UTF-8, avec séparateur ';' et les entêtes de colonnes sur la première ligne. 
+</b>
 <br><br>  
 
 <%= form_tag({action: "import_do", method: :post}, multipart: true) do %>
 
   <div class="field">
-    <%= label :filename, "Fichier source:" %>
+    <%= label :filename, "Fichier source" %>
     <%= file_field_tag 'upload', accept: 'text/csv' %>
   </div>
   <br>

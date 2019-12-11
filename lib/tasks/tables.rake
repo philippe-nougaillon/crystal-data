@@ -8,7 +8,7 @@ namespace :tables do
 	  	inserts_log = []
 	  	inserts_value = []
 
-		CSV.foreach(args.file_path, headers:true, return_headers:true, col_sep:';', encoding:'UTF-8') do |row|
+		CSV.foreach(args.file_path, headers: true, return_headers: true, col_sep: ';', encoding: 'UTF-8') do |row|
 			if row.header_row?
 				@new_table = Table.new(name:File.basename(args.filename,'.csv'))
 				if @new_table.save
@@ -23,25 +23,31 @@ namespace :tables do
 				row.each_with_index do | key, index |
 					# insertion des  valeurs
 					# @new_table.values.create(field_id:@fields[index].id, data:key.last, record_index:@record_index)
-			        inserts_value.push "(#{@fields[index].id}, #{@new_table.id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index})"	
+					
+					#inserts_value.push "(#{@fields[index].id}, #{@new_table.id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index})"	
+					if key.last
+						inserts_value.push "(#{@fields[index].id}, '#{key.last}', #{@record_index}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"	
+					end
 
 					# insertion dans l'historique
 			        #@new_table.fields[index].logs.import.create(user_id:args.user_id, record_index:@record_index, ip:args.ip, message:key.last)
-			        inserts_log.push "(#{@fields[index].id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index}, \"#{args.ip}\", 0)"	
+			        #inserts_log.push "(#{@fields[index].id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index}, \"#{args.ip}\", 0)"	
 				end
 			  	#@lignes += 1
 			end
 		end
 
 		# maj du nombre de ligne de cette table
-		@new_table.update_attributes(record_index:@record_index)
+		# @new_table.update_attributes(record_index: @record_index)
 
 		# execure requête d'insertion dans VALUES
-		sql = "INSERT INTO `values` (`field_id`, `table_id`, `user_id`, `data`, `created_at`, `updated_at`, `record_index`) VALUES #{inserts_value.join(", ")}"
+		# sql = "INSERT INTO values (field_id, table_id, user_id, data, created_at, updated_at, record_index) "
+		sql = "INSERT INTO values (field_id, data, record_index, created_at, updated_at) "
+		sql = sql + "VALUES #{inserts_value.join(', ')}"
     	CONN.execute sql
 
 		# execure requête d'insertion dans LOGS
-		sql = "INSERT INTO logs (`field_id`, `user_id`, `message`, `created_at`, `updated_at`, `record_index`, `ip`, `action`) VALUES #{inserts_log.join(", ")}"
-    	CONN.execute sql
+		#sql = "INSERT INTO logs ('field_id', 'user_id', 'message', 'created_at', 'updated_at', 'record_index', 'ip', 'action') VALUES #{inserts_log.join(", ")}"
+    	#CONN.execute sql
 	end
 end
