@@ -81,7 +81,7 @@
 									<% elsif field.datatype == "Signature" and values[index] %>
 										<%= link_to("Oui", values_signature_path(table:@table, field:field, record_index:record_index),data: { no_turbolink: true }) %>
 									<% elsif field.datatype == "Date" and values[index] %>
-										<%= l(value.to_date) %>
+										<%= l(value.to_date) unless value.blank? %>
 									<% else %>
 										<%= value %>
 									<% end %>
@@ -123,7 +123,7 @@
 				</tfoot>
 			<% end %>
 		</table>
-		<%= @records.count %> sur <%= @table.size %> au total 
+		<%= @records.size %> sur <%= @table.size %> au total 
 		<br>
 	</div>
 <% else %>
