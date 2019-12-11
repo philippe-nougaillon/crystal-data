@@ -14,14 +14,14 @@
   <div class="field">
     <%= f.hidden_field :table_id %>
 
-    <%= f.label :name, "Nom" %><br>
-    <%= f.text_field :name %><br><br>
+    <%= f.label :name, "Nom : " %>
+    <%= f.text_field :name %>
 
-    <%= f.label :name, "Type" %><br>
+    <%= f.label :name, "Type : " %>
     <%= f.select :datatype, options_for_select(@fields, @field.datatype) %>
     <%= f.text_field :items, size:70  %><br><br>
     
-    <%= f.label :name, "Options" %><br>
+    <%= f.label :name, "Options :" %><br>
     <%= f.check_box :obligatoire %> Obligatoire ?<br>
     <div class="field_filtre">
       <%= f.check_box :filtre %> Filtre ?<br>
