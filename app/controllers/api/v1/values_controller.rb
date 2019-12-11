@@ -13,12 +13,12 @@ class API::V1::ValuesController < ApplicationController
 	def post_value
 		@value = Value.new(value_params)
 		@table = @value.table
-		record_index = @table.record_index + 1
+		record_index = @table.size + 1
 
 		@value.record_index = record_index
 
 		if @value.field_id == @table.fields.last.id
-			@table.update_attributes(record_index:record_index)
+			@table.update_attributes(record_index: record_index)
 		end
 
 		respond_to do |format|

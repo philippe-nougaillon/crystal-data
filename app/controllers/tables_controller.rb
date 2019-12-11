@@ -114,14 +114,11 @@ class TablesController < ApplicationController
   # formulaire d'ajout / modification
   def fill
     if params[:record_index]
+      # modification ligne existante
       @record_index = params[:record_index]
     else
-      @record_index = @table.record_index + 1
-    end
-
-    respond_to do |format|
-      format.html.phone 
-      format.html.none
+      # ajout d'une ligne
+      @record_index = @table.size + 1
     end
   end
 
