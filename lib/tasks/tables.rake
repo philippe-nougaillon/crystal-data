@@ -26,7 +26,12 @@ namespace :tables do
 					
 					#inserts_value.push "(#{@fields[index].id}, #{@new_table.id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index})"	
 					if key.last
-						inserts_value.push "(#{@fields[index].id}, '#{key.last}', #{@record_index}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"	
+						data = key.last
+						# Supprimer les ' 
+						if data.include?("'")
+							data = data.gsub("'"," ")
+						end 
+						inserts_value.push "(#{@fields[index].id}, '#{data}', #{@record_index}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"	
 					end
 
 					# insertion dans l'historique
