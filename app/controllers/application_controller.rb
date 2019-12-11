@@ -40,7 +40,7 @@ private
 
   def set_layout_variables
     @sitename ||= "Crystal-data"
-    @sitename.concat(" v0.11")
+    @sitename.concat(" v0.11.a")
   end
 
 end
