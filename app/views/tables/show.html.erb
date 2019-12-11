@@ -71,7 +71,7 @@
 			<% unless @records.size.zero? %>
 				<tbody>
 					<% @records.each do | record_index | %>
-						<% values = @table.values.includes(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
+						<% values = @table.value_datas(record_index) %>
 						<tr>
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
