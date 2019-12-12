@@ -23,16 +23,15 @@ namespace :tables do
 				row.each_with_index do | key, index |
 					# insertion des  valeurs
 					# @new_table.values.create(field_id:@fields[index].id, data:key.last, record_index:@record_index)
-					
 					#inserts_value.push "(#{@fields[index].id}, #{@new_table.id}, #{args.user_id}, \"#{key.last}\", '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}', #{@record_index})"	
-					if key.last
-						data = key.last
+
+					if data = key.last
 						# Supprimer les ' 
-						if data.include?("'")
-							data = data.gsub("'"," ")
-						end 
-						inserts_value.push "(#{@fields[index].id}, '#{data}', #{@record_index}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"	
+						data.gsub!("'"," ") if data.include?("'")
+					else
+						data = ''  
 					end
+					inserts_value.push "(#{@fields[index].id}, '#{data}', #{@record_index}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"	
 
 					# insertion dans l'historique
 			        #@new_table.fields[index].logs.import.create(user_id:args.user_id, record_index:@record_index, ip:args.ip, message:key.last)
