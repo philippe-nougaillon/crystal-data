@@ -1,9 +1,10 @@
 class Table < ApplicationRecord
 	extend FriendlyId
 	friendly_id :slug_candidates, use: :slugged
-  
-	has_and_belongs_to_many :users
 
+	audited
+
+	has_and_belongs_to_many :users
 	has_many :fields, dependent: :destroy
 	has_many :values, through: :fields, dependent: :destroy
 	has_many :logs, through: :fields, dependent: :destroy

@@ -51,6 +51,7 @@ gem 'signature-pad-rails'
 gem 'sitemap_generator'
 
 gem 'friendly_id', '~> 5.2.4'
+gem "audited", "~> 4.9"
 
 
 group :development, :test do

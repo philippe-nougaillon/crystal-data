@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   before_action :authorize, except: [:fill, :fill_do]
-  before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index]
+  before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index, :log]
 
   # GET /tables
   # GET /tables.json
@@ -448,21 +448,17 @@ class TablesController < ApplicationController
       return
     end
 
-    if params[:record_index]
-      @logs = @table.logs.where(record_index:params[:record_index])  
-    else
-      @logs = @table.logs
-    end 
+    sql = "audited_changes ->> 'record_index' = '#{params[:record_index].to_s}'"
+    sql = sql + " AND ("    
 
-    unless params[:type_action].blank?
-      @logs = @logs.where(action:params[:type_action].to_i)
+    @table.fields.each_with_index do |field, index|
+       sql = sql + "(audited_changes ->> 'field_id' = '#{field.id.to_s}')"
+       sql = sql + " OR " unless index == @table.fields.size - 1
     end
-
-    unless params[:user_id].blank?
-      @logs = @logs.where(user_id:params[:user_id])
-    end
-
-    @logs = @logs.reorder('created_at DESC').paginate(page:params[:page])
+    sql = sql + ")"
+  
+    @audis =@audits = Audited::Audit.where(sql)
+    @audits = @audits.reorder('created_at DESC').paginate(page: params[:page])
   end
 
   def activity
@@ -516,7 +512,6 @@ class TablesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table
-      # @table = Table.find(params[:id])
       @table = Table.friendly.find(params[:id])
     end
 
