@@ -263,7 +263,6 @@ class TablesController < ApplicationController
     redirect_to @table
   end
 
-
   # GET /tables/new
   def new
     @table = Table.new
@@ -430,7 +429,6 @@ class TablesController < ApplicationController
     redirect_to partages_path(@table)
   end
 
-
   def partages
   end
 
@@ -448,16 +446,18 @@ class TablesController < ApplicationController
       return
     end
 
+    # Afficher les changements pour la ligne #record_index
     sql = "audited_changes ->> 'record_index' = '#{params[:record_index].to_s}'"
     sql = sql + " AND ("    
 
+    # et ayant comme champs ceux de la table en référence 
     @table.fields.each_with_index do |field, index|
        sql = sql + "(audited_changes ->> 'field_id' = '#{field.id.to_s}')"
        sql = sql + " OR " unless index == @table.fields.size - 1
     end
     sql = sql + ")"
   
-    @audis =@audits = Audited::Audit.where(sql)
+    @audis  = Audited::Audit.where(sql)
     @audits = @audits.reorder('created_at DESC').paginate(page: params[:page])
   end
 
