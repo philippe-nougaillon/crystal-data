@@ -457,7 +457,7 @@ class TablesController < ApplicationController
     end
     sql = sql + ")"
   
-    @audis  = Audited::Audit.where(sql)
+    @audits = Audited::Audit.where(sql)
     @audits = @audits.reorder('created_at DESC').paginate(page: params[:page])
   end
 
