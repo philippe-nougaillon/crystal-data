@@ -5,9 +5,7 @@ class API::V1::ValuesController < ApplicationController
 	protect_from_forgery with: :null_session
 
 	def index
-		@table = Table.find(params[:table_id])
-		@fields = @table.fields.order(:row_order)
-		render json: @fields
+		render json: Table.find_by(slug: params[:slug]).values.reorder(:record_index)
 	end
 
 	def post_value
