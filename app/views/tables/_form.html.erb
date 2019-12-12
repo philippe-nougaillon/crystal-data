@@ -1,31 +1,13 @@
-<%= simple_form_for(@table) do |f| %>
-
-  <% if @table.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@table.errors.count, "error") %> prohibited this table from being saved:</h2>
-
-      <ul>
-      <% @table.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= bootstrap_form_for(@table) do |f| %>
 
 <div class="form-group">
-  <div class="col-sm-9">
-      <b>Nom</b> 
-      <%= f.input :name, label:false, placeholder: 'Entrez le nom de la nouvelle table', :input_html => {size:30} %>
-      <br>
+    <%= f.text_field :name, required: true, label: "Nom de la table", placeholder: 'Ex: Articles', autofocus: true, class: "col-sm-3" %>
+    <br /><br />
+    <%= f.check_box :notification, label: "Notification ? Si vous voulez être notifié à chaque nouvel ajout de données" %>
+    <%= f.check_box :lifo, label: "Afficher d'abord les contenues les plus récents ? Afficher le contenu de la table trié par date de modification (le dernier modifié en haut)" %>
+    <br><br>
 
-      <% unless @table.new_record? %>
-        <%= f.input :notification, label:"Notification ?", hint:"Voulez-vous être notifié à chaque nouvel ajout de données ?" %>
-        <%= f.input :lifo, label:"Affichage des plus récents en premier ?", hint:"Afficher le contenu de la table trié par date de modification (le dernier modifié tout en haut, sinon c'est l'inverse)" %>
-        <br><br>
-      <% end %>
-
-      <%= f.submit @table.new_record? ? "Continuer" : "Modifier cette table", class: 'btn btn-success' %>
-  </div>  
+    <%= f.submit @table.new_record? ? "Continuer" : "Modifier cette table", class: 'btn btn-success' %>
 </div>
 
 <% end %>
