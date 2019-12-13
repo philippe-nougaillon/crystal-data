@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class TablesController < ApplicationController
-  before_action :authorize, except: [:fill, :fill_do]
+  before_action :authorize #, except: [:fill, :fill_do]
   before_action :set_table, except: [:new, :create, :import, :import_do, :checkifmobile, :index, :log]
 
   # GET /tables
@@ -19,8 +19,6 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
-    #raise
-
     unless @table.users.include?(@current_user)
       redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
       return

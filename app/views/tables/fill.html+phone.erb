@@ -4,7 +4,7 @@
 </h2>
 <br>
 
-<%= form_tag({action: :fill}, multipart:true) do %>
+<%= form_tag(url: fill_do_path, multipart: true) do %>
 
   <%= hidden_field_tag :table_id, @table.id %>
 
@@ -54,7 +54,7 @@
       </fieldset>
   <% end %>  
   <br>
-  <%= submit_tag "Ajouter", class: 'btn btn-lg btn-block btn-success'%>
+  <%= submit_tag "Ajouter!", class: 'btn btn-lg btn-block btn-success'%>
 <% end %>
 
 

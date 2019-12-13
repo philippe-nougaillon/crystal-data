@@ -22,20 +22,20 @@ private
 
   def detect_device_format
     case request.user_agent
-        when /iPhone/i, /Android/i && /mobile/i, /Windows Phone/i
-          request.variant = :phone
-        else
-          request.variant = :desktop
-      end
+    when /iPhone/i, /Android/i && /mobile/i, /Windows Phone/i
+      request.variant = :phone
+    else
+      request.variant = :desktop
+    end
   end
 
   def set_layout
-      case request.user_agent
-        when /iPhone/i, /Android/i && /mobile/i, /Windows Phone/i
-            "application_phone"
-        else
-            "application"
-      end
+    case request.user_agent
+    when /iPhone/i, /Android/i && /mobile/i, /Windows Phone/i
+      "application_phone"
+    else
+      "application"
+    end
   end
 
   def set_layout_variables
