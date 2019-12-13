@@ -78,7 +78,7 @@ class TablesController < ApplicationController
      # calcule la date maximum de chaque ligne d'enregistrement 
      h = @table.values.select("values.record_index").group("fields.row_order, values.record_index").maximum(:updated_at)
      # inverse le hash (keys <=> values) pour faire un tri par date et retourne les record_index
-     @records = Hash[h.sort_by{|k, v| v}.reverse].keys
+     @records = Hash[h.sort_by{|k, v| v}.reverse].keys & @records
     end     
 
     if params[:sort_by]
