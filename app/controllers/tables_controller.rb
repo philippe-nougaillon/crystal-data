@@ -19,6 +19,8 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
+    #raise
+
     unless @table.users.include?(@current_user)
       redirect_to tables_path, alert:"Vous n'êtes pas un utilisateur connu de cette table ! Circulez, y'a rien à voir :)"
       return
@@ -30,8 +32,8 @@ class TablesController < ApplicationController
     @pathname = Rails.root.join('public', 'table_files') 
 
     # recherche les lignes 
-    unless params[:search].blank?
-      @values = @table.values.where("data like ?", "%#{params[:search].strip}%")      
+    unless params.permit![:search].blank?
+      @values = @table.values.where("data like ?", "%#{params.permit![:search].strip}%")      
     else
       @values = @table.values
     end
@@ -92,11 +94,8 @@ class TablesController < ApplicationController
       session[:order_by] = order_by
     end
 
-    #@updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
-
     respond_to do |format|
-      format.html.phone
-      format.html.none 
+      format.html
       format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{@table.name}-#{l(DateTime.now, format: :compact)}\"" }
     end 
   end
