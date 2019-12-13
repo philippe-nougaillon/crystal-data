@@ -74,7 +74,7 @@ class TablesController < ApplicationController
 
     if @table.lifo 
      # calcule la date maximum de chaque ligne d'enregistrement 
-     h = @table.values.group(:record_index).maximum(:updated_at)
+     h = @table.values.select("values.record_index").group("fields.row_order, values.record_index").maximum(:updated_at)
      # inverse le hash (keys <=> values) pour faire un tri par date et retourne les record_index
      @records = Hash[h.sort_by{|k, v| v}.reverse].keys
     end     
@@ -126,13 +126,6 @@ class TablesController < ApplicationController
   def fill_do
     table = Table.find(params[:table_id])
     user = @current_user
-
-    # unless table.users.include?(user)
-    #   flash[:notice] = "Vous n'êtes pas utilisateur connu de cette table, circulez !"
-    #   redirect_to tables_path
-    #   return
-    # end
-
     data = params[:data]
     record_index = data.keys.first
     values = data[record_index.to_s]
@@ -174,12 +167,6 @@ class TablesController < ApplicationController
 
       if old_value
           if (old_value.data != value) and !(old_value.data.blank? and value.blank?)
-
-            # # enregistre les modifications dans l'historique
-            # unless field.datatype == 'Signature'
-            #   inserts_log.push "(#{field.id}, #{user.id}, \"#{old_value.data} => #{value.to_s.html_safe}\", '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 2)"  
-            # end  
-
             # supprimer les anciennes données
             table.values.find_by(record_index:record_index, field:field).delete
 
@@ -189,36 +176,15 @@ class TablesController < ApplicationController
                           data: value, 
                           created_at: created_at_date)
           end
-          #logger.debug "DEBUG UPDATE: index:#{record_index} value:#{value} old_value:#{old_value.data} update:#{update}"
       else
-        # enregistre les ajouts dans l'historique
-        # unless field.datatype == 'Signature'
-        #   inserts_log.push "(#{field.id}, #{user.id}, #{value}, '#{Time.now.utc.to_s(:db)}', '#{Time.now.utc.to_s(:db)}', #{record_index}, \"#{request.remote_ip}\", 1)"  
-        #   # collecte les données pour les envoyer par mail
-        #   notif_items.push "#{field.name}: <b>#{value}</b>" unless value.blank?
-        # end
-
         # enregistrer les nouvelles données
         Value.create(field_id: field.id, 
                     record_index: record_index, 
                     data: value, 
                     created_at: created_at_date)
 
-        #logger.debug "DEBUG CREATE: index:#{record_index} value:#{value}"
-        
-        # maj du nombre de lignes si c'est un ajout
-        table.update_attributes(record_index:record_index) unless update
-
-        #logger.debug "DEBUG CREATE table update: RECORD index:#{record_index}"
       end
     end
-
-    # execute la requête d'insertion dans LOGS
-    # if inserts_log.any?
-    #   sql = "INSERT INTO logs (field_id, user_id, message, created_at, updated_at, record_index, ip, action) VALUES #{inserts_log.join(", ")}"
-    #   ActiveRecord::Base.connection.execute sql
-    #   flash[:notice] = "Enregistrement ##{record_index} #{update ? "modifié" : "ajouté"} avec succès"
-    # end
 
     # notifier l'utilisateur d'un ajout 
     if not update and table.notification
