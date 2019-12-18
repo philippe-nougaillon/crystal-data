@@ -27,7 +27,6 @@
 			<table class="table table-striped table-bordered table-condensed">
 				<thead> 
 					<tr>
-						<th />
 						<% @table.fields.each_with_index do | field,index | %>
 							<th>
 								<%= link_to field.name.humanize, url_for(params.merge(sort_by:field.id)) %>
@@ -41,10 +40,6 @@
 					<% @records.each do | record_index | %>
 						<% values = @table.values.joins(:field).records_at(record_index).order("fields.row_order").pluck(:data) %>
 						<tr>
-							<td>	
-								<%= link_to image_tag('modif.png'), fill_url(@table.id, record_index:record_index), 
-										class:'btn btn-xs btn-default center-block' %>
-							</td>
 							<% @table.fields.each_with_index do | field,index | %>
 								<% value = values[index] %>
 								<td <%= "class=#{@td_style[index]}" if @td_style[index] %>>
@@ -66,7 +61,6 @@
 
 				<tfoot>
 					<tr>
-						<td />
 						<% @table.fields.each do |field| %>
 							<% if field.operation %>
 								<td class="text-right">

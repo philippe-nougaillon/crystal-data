@@ -42,14 +42,17 @@ Espace de stockage utilisé: <span class="badge"><%= @total_fichiers.round(2) %>
 	    	<%= f.label 'Adresse mail' %>
 		    <%= f.text_field :email, required:true, class: 'form-control' %>
 	    </div>
-	</div>  
-	<div class="field form-group">
-	    <div class="col-sm-2">
-	    	<%= f.label 'Mot de passe' %>
-		    <%= f.password_field :password, required:true, class: 'form-control', placeholder:'Mot de passe' %>
-	    	<%= f.password_field :password_confirmation, class: 'form-control', placeholder:'Confirmation' %>
-	    </div>
-	</div>
+	</div> 
+
+	<% unless @current_user.id == 1 %>
+		<div class="field form-group">
+			<div class="col-sm-2">
+				<%= f.label 'Mot de passe' %>
+				<%= f.password_field :password, required:true, class: 'form-control', placeholder:'Mot de passe' %>
+				<%= f.password_field :password_confirmation, class: 'form-control', placeholder:'Confirmation' %>
+			</div>
+		</div>
+	<% end %>
 	<br>
 
 	<div class="actions form-group">
