@@ -334,7 +334,8 @@ class TablesController < ApplicationController
       @fin = '01/01/2100'
     end
 
-    updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
+    #updated_at_list = @table.values.group(:record_index).maximum(:updated_at)
+
     @records = @table.values.pluck(:record_index).uniq
 
     @csv_string = CSV.generate(col_sep:';') do |csv|
@@ -342,7 +343,7 @@ class TablesController < ApplicationController
 
       @records.each do | index |
           values = @table.values.joins(:field).records_at(index).order("fields.row_order").pluck(:data)
-          updated_at = updated_at_list[index]
+          #updated_at = updated_at_list[index]
           cols = []
           @table.fields.each_with_index do | field,index |
             if field.datatype == "Signature" and values[index]
@@ -351,7 +352,7 @@ class TablesController < ApplicationController
               cols << (values[index] ? values[index].to_s.gsub("'", " ") : nil) 
             end
           end
-          cols << l(updated_at) 
+          #cols << l(updated_at) 
           csv << cols
       end    
     end
