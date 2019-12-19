@@ -67,6 +67,9 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     erubi (1.9.0)
+    exception_notification (4.4.0)
+      actionmailer (>= 4.0, < 7)
+      activesupport (>= 4.0, < 7)
     execjs (2.7.0)
     ffi (1.10.0)
     friendly_id (5.2.5)
@@ -210,6 +213,7 @@ DEPENDENCIES
   bootstrap_form (~> 4.0)
   chartkick (>= 3.2.0)
   coffee-rails
+  exception_notification
   friendly_id (~> 5.2.4)
   groupdate
   jbuilder (~> 2.0)
