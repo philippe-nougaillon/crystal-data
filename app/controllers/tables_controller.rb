@@ -411,8 +411,12 @@ class TablesController < ApplicationController
     end
 
     # Afficher les changements pour la ligne #record_index
-    sql = "audited_changes ->> 'record_index' = '#{params[:record_index].to_s}'"
-    sql = sql + " AND ("    
+    if params[:record_index]
+      sql = "audited_changes ->> 'record_index' = '#{params[:record_index].to_s}'"
+      sql = sql + " AND ("
+    else
+      sql = "("  
+    end    
 
     # et ayant comme champs ceux de la table en référence 
     @table.fields.each_with_index do |field, index|
