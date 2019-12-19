@@ -185,7 +185,7 @@ class TablesController < ApplicationController
 
     # notifier l'utilisateur d'un ajout 
     if not update and table.notification
-      UserMailer.notification(table, notif_items).deliver_now
+      UserMailer.notification(table, notif_items).deliver_later
     end
 
     if update
@@ -375,7 +375,7 @@ class TablesController < ApplicationController
         unless @table.users.exists?(@user)
           # ajoute le nouvel utilisateur aux utilisateurs de la table
           @table.users << @user 
-          UserMailer.notification_nouveau_partage(@user, @table).deliver_now
+          UserMailer.notification_nouveau_partage(@user, @table).deliver_later
           flash[:notice] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' activé"
         else
           flash[:alert] = "Partage de la table '#{@table.name.humanize}' avec l'utilisateur '#{@user.name}' déjà existant !"

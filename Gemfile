@@ -54,6 +54,7 @@ gem 'friendly_id', '~> 5.2.4'
 gem "audited", "~> 4.9"
 
 gem 'exception_notification'
+gem 'sucker_punch', '~> 2.0'
 
 group :development, :test do
 #   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
