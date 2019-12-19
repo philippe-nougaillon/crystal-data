@@ -76,4 +76,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Mail Gandi
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {arguments: '-i'}
+  config.action_mailer.asset_host = "https://crystal-data.philnoug.com"
+  config.action_mailer.default_url_options = { host: 'crystal-data.philnoug.com', protocol: 'https' }
+  
+  # Exception Notification
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Crystal-Data]",
+    :sender_address => %{"philnoug" <philippe.nougaillon@gmail.com>},
+    :exception_recipients => %w{philippe.nougaillon@gmail.com}
+  }
+  
 end
