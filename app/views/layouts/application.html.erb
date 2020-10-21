@@ -19,8 +19,14 @@
 		<meta name="author" content="Philippe NOUGAILLON" />
 		<meta name="description" content="Crystal-data base de données en ligne"/>
 
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		
 		<%= csrf_meta_tags %>
 	</head>
@@ -67,7 +73,11 @@
 					<li>
 					    <li class="dropdown">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				               <%= image_tag("icons/data_shared16.png") %>		
+				               <%
+=begin%>
+ <%= image_tag("icons/data_shared16.png") %>		 
+<%
+=end%>
 				               Crystal-data<b class="caret"></b>
 				            </a>
 				            <ul class="dropdown-menu">
