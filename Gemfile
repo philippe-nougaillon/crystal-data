@@ -5,9 +5,8 @@ ruby '2.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.4.4'
 
-# gem 'mysql2'
-# gem 'sqlite3'
 gem 'pg'
+gem 'puma'
 
 # # Use SCSS for stylesheets
 gem 'sass-rails'
