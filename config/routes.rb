@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :tables
+  resources :values
 
   resources :fields do
     post :update_row_order, on: :collection
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
       resources :values
     end
   end
-
 
   get 'tables/:id/fill' => 'tables#fill', as: :fill
   post 'tables/:id/fill' => 'tables#fill_do', as: :fill_do
@@ -46,7 +46,6 @@ Rails.application.routes.draw do
   get '/demo' => 'sessions#demo'
 
   get 'values/signature', to: 'values#signature'
-  resources :values
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
