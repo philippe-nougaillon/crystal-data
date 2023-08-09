@@ -43,14 +43,15 @@ intégrant les liens entre les données, les règles métiers et les vues person
 
 # Installation
 
-Crystal-data est une application <a href="http://rubyonrails.org/">Ruby On Rails 4</a>. 
+Crystal-data est une application <a href="http://rubyonrails.org/">Ruby On Rails 5</a>. 
 
-Pour pouvoir executer l'application, vous devez d'abord installer RoR 4 sur votre serveur, puis copier les sources (git clone) et lancer l'application en utilisant le processus classique:
+Pour pouvoir executer l'application, vous devez d'abord installer RoR 5 sur votre serveur, puis copier les sources (git clone) et lancer l'application en utilisant le processus classique:
 
 * bundle install
 * rake db:setup
+* rake db:seed
 * rails s
 
 # Version en ligne
 
-Une version en ligne est disponible <a href="http://crystal-data.philnoug.com">ici.</a>
+Une version de démonstration est en ligne à cette adresse : <a href="http://crystal-data.philnoug.com"></a>

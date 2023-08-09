@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       resources :fields
       resources :values
     end
-
     namespace :v2 do
 
     end
@@ -51,7 +50,6 @@ Rails.application.routes.draw do
   get '/demo' => 'sessions#demo'
 
   delete 'tables/:id/delete_record' => 'tables#delete_record', as: :delete_record
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

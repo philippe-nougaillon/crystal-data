@@ -29,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -77,18 +77,23 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Mail Gandi
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.sendmail_settings = {arguments: '-i'}
-  config.action_mailer.asset_host = "https://crystal-data.philnoug.com"
-  config.action_mailer.default_url_options = { host: 'crystal-data.philnoug.com', protocol: 'https' }
-  
-  # Exception Notification
-  Rails.application.config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[Crystal-Data]",
-    :sender_address => %{"philnoug" <philippe.nougaillon@gmail.com>},
-    :exception_recipients => %w{philippe.nougaillon@gmail.com}
+  ActionMailer::Base.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'crystal-data.philnoug.com',
+    :authentication => :plain,
   }
-  
+  ActionMailer::Base.delivery_method = :smtp
+
+  config.action_mailer.default_url_options = { host: 'crystal-data.philnoug.com', protocol: 'http' }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: '[CRYSTALDATA] ',
+    sender_address: %{"crystalData" <crystaldata@philnoug.com},
+    exception_recipients: %w{philippe.nougaillon@gmail.com}
+  }
+
 end
