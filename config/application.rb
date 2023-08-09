@@ -20,7 +20,7 @@ module CrystalData
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :fr
 
-    # defaut host 
-    config.action_mailer.default_url_options = { host: 'crystal-data.philnoug.com' }
+    # Configure the backend to use Sucker Punch
+    config.active_job.queue_adapter = :sucker_punch
   end
 end

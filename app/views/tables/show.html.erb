@@ -25,29 +25,23 @@
 </div>
 
 <% if @table.fields.any? %>
-	<%= form_tag(request.path, method: :get) do %>
+	<%= bootstrap_form_tag url: table_path(@table), method: :get do |f| %>
 			<div class="row">
 				<div class="col-sm-3">
-					<%= label_tag "Rechercher" %>
-					<div class="input-group">
-						<%= text_field_tag :search, params[:search], class: "form-control", onchange:'this.form.submit()' %>
-						<span class="input-group-btn"> 
-							<%= submit_tag 'Go', class: "form-control btn-success" %>
-						</span>
-					</div>
+					<%= f.text_field :search, value: params[:search], label: "Rechercher", onchange:'this.form.submit()' %>
 				</div>
 
 				<% @table.fields.filtres.each do | field | %>
 					<div class="col-sm-2">
-						<%= label_tag "Filtrer par '#{field.name.humanize}'" %>
-						<% default_value = params[:select] ? params[:select][field.id.to_s] : 'nil' %>
+						<%= label_tag :filter, field.name.humanize %>
+						<% default_value = params.permit![:select] ? params[:select][field.id.to_s] : 'nil' %>
 						<%= select_tag "select[#{field.id}]", 
-										options_for_select(
-											field.values.records_at(@records).where.not(data: nil).pluck(:data).uniq.sort,
-											default_value), 
-										include_blank: true, 
-										class: "form-control", 
-										onchange: 'this.form.submit()' %>
+									options_for_select(
+										field.values.records_at(@records).where.not(data: nil).pluck(:data).uniq.sort,
+										default_value), 
+									include_blank: true, 
+									class: "form-control", 
+									onchange: 'this.form.submit()' %>
 					</div>
 				<% end %>
 			</div>
@@ -60,7 +54,7 @@
 				<tr>
 					<% @table.fields.each_with_index do | field,index | %>
 						<th>
-							<%= link_to field.name.humanize, url_for(params.merge(sort_by: field.id).permit(:id, :sort_by)) %>
+							<%= link_to field.name.humanize, url_for(params.merge(sort_by: field.id).permit(:id, :sort_by, :search, :select)) %>
 						</th>
 						<% @td_style[index] = @numeric_types.include?(field.datatype) ? 'text-right' : nil %>
 					<% end %>
@@ -94,7 +88,7 @@
 								<%= link_to fill_url(@table.id, record_index:record_index), class: 'btn btn-xs' do %>
 										<i class="glyphicon glyphicon-pencil"></i> Modifier
 								<% end %>
-								<%= link_to logs_path(table_id:@table,record_index:record_index), class: 'btn btn-xs', title:"Audit des modifications" do %>
+								<%= link_to logs_path(record_index: record_index), class: 'btn btn-xs', title:"Audit des modifications" do %>
 										<i class="glyphicon glyphicon-time"></i> Audit
 								<% end %>
 								<%= link_to "[X]", delete_record_url(@table.id, record_index:record_index), method: :delete, data: { confirm: 'Vraiment ?' }, class: 'btn btn-xs' %>

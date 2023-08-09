@@ -3,9 +3,7 @@
 class API::V1::TablesController < ApplicationController
 
 	def index
-		@user = User.find(params[:user_id])
-		@tables = @user.tables
-		render json: @tables
+		render json: User.find(params[:user_id]).tables
 	end
 
 end

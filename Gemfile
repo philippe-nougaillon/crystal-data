@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "simple_form", ">= 5.0.0"
 gem "bootstrap-sass", ">= 3.4.1"
+gem "bootstrap_form", "~> 4.0"
 gem 'autoprefixer-rails'
 
 gem "groupdate"
@@ -49,7 +50,10 @@ gem 'signature-pad-rails'
 gem 'sitemap_generator'
 
 gem 'friendly_id', '~> 5.2.4'
+gem "audited", "~> 4.9"
 
+gem 'exception_notification'
+gem 'sucker_punch', '~> 2.0'
 
 group :development, :test do
 #   # Call 'debugger' anywhere in the code to stop execution and get a debugger console

@@ -4,6 +4,8 @@ class Field < ApplicationRecord
 	include RankedModel
   	ranks :row_order, :with_same => :table_id 
 
+	audited
+
 	belongs_to :table
 	has_many :values, dependent: :destroy
 	has_many :logs, dependent: :destroy
